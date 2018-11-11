@@ -24,6 +24,7 @@ const UserType = new GraphQLObjectType({
         id: { type: GraphQLID },
         name: { type: GraphQLString },
         firstname: { type: GraphQLString },
+        username: { type: GraphQLString },
 		birthDate: { type: GraphQLDate },//npm i --save graphql-date
 		mail: { type: GraphQLString },
 		city: { type: GraphQLString },
@@ -59,9 +60,44 @@ const RootQuery = new GraphQLObjectType({
         // code to get data from db
         return _.find(exercises, {id: args.id});
       }
+    },
+	user: {
+      type: UserType,
+      args: {id: {type: GraphQLString}},
+      resole(parent, args) {
+        // code to get data from db
+        return _.find(User, {id: args.id});
+      }
     }
   })
 });
+
+
+const Mutation =new GraphQLObjectType({
+	name: 'Mutation',
+	fields:{
+		addUser:{
+			type: UserType,
+			args:{
+				name: {type: new GraphQLNonNull(GraphQLString)},
+				firstname: {type: new GraphQLNonNull(GraphQLString)},
+				username: {type: new GraphQLNonNull(GraphQLString)},
+				age: {type: new GraphQLNonNull(GraphQLInt)},
+				mail: {type: new GraphQLNonNull(GraphQLString)},
+			},
+			resolve(parent,args){
+				let author = new Author({
+					name: args.name,
+					age:args.age
+				});
+				return author.save();
+			}
+		}
+		
+		
+	}
+});
+
 
 module.exports = new GraphQLSchema({
   query: RootQuery

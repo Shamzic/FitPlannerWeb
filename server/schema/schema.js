@@ -2,12 +2,14 @@ const graphql = require('graphql');
 const _ = require('lodash');
 const User = require('../models/user');
 
+const GraphQLDate = require('graphql-date')
+
 const {GraphQLObjectType, 
 	GraphQLString, 
 	GraphQLInt, 
 	GraphQLSchema,
 	GraphQLFloat,
-	GraphQLDate,//npm i --save graphql-date
+	//GraphQLDate,//npm i --save graphql-date
 	GraphQLList,
 	GraphQLID,
 	GraphQLNonNull
@@ -84,7 +86,7 @@ const Mutation =new GraphQLObjectType({
 				name: {type: new GraphQLNonNull(GraphQLString)},
 				firstname: {type: new GraphQLNonNull(GraphQLString)},
 				username: {type: new GraphQLNonNull(GraphQLString)},
-				birthDate: {type: new GraphQLNonNull(GraphQLInt)},
+				birthDate: {type: GraphQLDate},
 				mail: {type: new GraphQLNonNull(GraphQLString)},
 				city: {type: new GraphQLNonNull(GraphQLString)},
 				weight: {type: GraphQLFloat},

@@ -8,7 +8,9 @@ const {GraphQLObjectType,
 	GraphQLSchema,
 	GraphQLFloat,
 	GraphQLDate,//npm i --save graphql-date
-	GraphQLList
+	GraphQLList,
+	GraphQLID,
+	GraphQLNonNull
 } = graphql;
 
 var exercises = [
@@ -82,15 +84,24 @@ const Mutation =new GraphQLObjectType({
 				name: {type: new GraphQLNonNull(GraphQLString)},
 				firstname: {type: new GraphQLNonNull(GraphQLString)},
 				username: {type: new GraphQLNonNull(GraphQLString)},
-				age: {type: new GraphQLNonNull(GraphQLInt)},
+				birthDate: {type: new GraphQLNonNull(GraphQLInt)},
 				mail: {type: new GraphQLNonNull(GraphQLString)},
+				city: {type: new GraphQLNonNull(GraphQLString)},
+				weight: {type: GraphQLFloat},
+				height: {type: GraphQLFloat},
 			},
 			resolve(parent,args){
-				let author = new Author({
+				let user = new User({
 					name: args.name,
-					age:args.age
+					firstname: args.firstname,
+					username: args.username,
+					birthDate: args.birthDate,
+					mail: args.mail,
+					city: args.city,
+					weight: {type: GraphQLFloat},
+					height: {type: GraphQLFloat},
 				});
-				return author.save();
+				return user.save();
 			}
 		}
 		

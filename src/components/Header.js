@@ -7,39 +7,53 @@ class Header extends Component {
   render() {
     const authToken = localStorage.getItem(AUTH_TOKEN)
     return (
-      <div className="flex pa1 justify-between nowrap orange">
-        <div className="flex flex-fixed black">
-          <div className="fw7 mr1">Hacker News</div>
-          <Link to="/" className="ml1 no-underline black">
-            new
-          </Link>
-          {authToken && (
-            <div className="flex">
-              <div className="ml1">|</div>
-              <Link to="/create" className="ml1 no-underline black">
-                submit
-              </Link>
-            </div>
-          )}
-        </div>
-        <div className="flex flex-fixed">
-          {authToken ? (
-            <div
-              className="ml1 pointer black"
-              onClick={() => {
-                localStorage.removeItem(AUTH_TOKEN)
-                this.props.history.push(`/`)
-              }}
-            >
-              logout
-            </div>
-          ) : (
-            <Link to="/login" className="ml1 no-underline black">
-              login
+
+         <nav className="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+          <div className="row">
+            <Link to="/" className="navbar-brand">
+              FitPlanner
             </Link>
-          )}
-        </div>
-      </div>
+            <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+              <span className="navbar-toggler-icon"></span>
+            </button>
+
+          </div>
+          <div className="collapse navbar-collapse" id="navbarsExampleDefault">
+           <ul className="navbar-nav mr-auto">
+           <li className="nav-item active">
+             <a className="nav-link" href="/">Home
+               <span className="sr-only">
+                (current)
+               </span>
+             </a>
+          </li>
+          <div>
+            {authToken && (
+            <li className="nav-item active">
+              <Link to="/create" className="nav-link">submit</Link>
+            </li>
+            )}
+          </div>
+            <li className="nav-item active">
+            {authToken ? (
+              <div
+                className="nav-link"
+                onClick={() => {
+                  localStorage.removeItem(AUTH_TOKEN)
+                  this.props.history.push(`/`)
+                }}
+              >
+                logout
+              </div>
+            ) : (
+              <Link to="/login" className="nav-link">
+                login
+              </Link>
+            )}
+          </li>
+        </ul>
+          </div>
+        </nav>
     )
   }
 }

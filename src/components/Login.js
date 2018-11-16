@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import { AUTH_TOKEN } from '../constants'
 import { Mutation } from 'react-apollo'
 import gql from 'graphql-tag'
+import '../styles/Login.css'
+import { Button, FormGroup, FormControl, ControlLabel } from "react-bootstrap";
 
 const SIGNUP_MUTATION = gql`
   mutation SignupMutation($email: String!, $password: String!, $name: String!) {
@@ -22,6 +24,21 @@ const LOGIN_MUTATION = gql`
 
 
 class Login extends Component {
+
+  validateForm() {
+    return this.state.email.length > 0 && this.state.password.length > 0;
+  }
+
+  handleChange = event => {
+    this.setState({
+      [event.target.id]: event.target.value
+    });
+  }
+
+  handleSubmit = event => {
+    event.preventDefault();
+  }
+
   state = {
     login: true, // switch between Login and SignUp
     email: '',
@@ -32,7 +49,7 @@ class Login extends Component {
   render() {
     const { login, email, password, name } = this.state
     return (
-      <div>
+      <div className="container-fluid" id="main">
         <h4 className="">{login ? 'Login' : 'Sign Up'}</h4>
         <div className="">
           {!login && (
@@ -43,12 +60,14 @@ class Login extends Component {
               placeholder="Your name"
             />
           )}
+        <br/>
           <input
             value={email}
             onChange={e => this.setState({ email: e.target.value })}
             type="text"
             placeholder="Your email address"
           />
+        <br/>
           <input
             value={password}
             onChange={e => this.setState({ password: e.target.value })}
@@ -63,20 +82,22 @@ class Login extends Component {
             onCompleted={data => this._confirm(data)}
             >
               {mutation => (
-                <div className="button" onClick={mutation}>
+                  <button type="button" className="btn btn-dark" id="button"
+                     onClick={mutation}>
                   {login ? 'login' : 'create account'}
-                </div>
+                </button>
               )}
             </Mutation>
-          <div
-            className="button"
+          <br/>
+          <button type="button" className="btn btn-dark" id="button"
             onClick={() => this.setState({ login: !login })}
           >
             {login
               ? 'need to create an account?'
               : 'already have an account?'}
-          </div>
-        </div>
+          </button>
+    </div>
+
       </div>
     )
   }
@@ -84,7 +105,7 @@ class Login extends Component {
   _confirm = async data => {
     const { token } = this.state.login ? data.login : data.signup
     this._saveUserData(token)
-    this.props.history.push(`/`)
+    this.props.history.push(`/home`)
   }
 
   _saveUserData = token => {

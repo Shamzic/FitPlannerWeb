@@ -1,11 +1,8 @@
 #main
 {
   padding-top: 1%;
-  background-color:	#F0F0F0;
-  padding-left: 40%;
 }
 
-#button {
-  margin-top: 1%;
-  margin-bottom: 1%;
+input {
+  margin-bottom: 10px;
 }

@@ -48,57 +48,63 @@ class Login extends Component {
 
   render() {
     const { login, email, password, name } = this.state
-    return (
-      <div className="container-fluid" id="main">
-        <h4 className="">{login ? 'Login' : 'Sign Up'}</h4>
-        <div className="">
-          {!login && (
-            <input
-              value={name}
-              onChange={e => this.setState({ name: e.target.value })}
-              type="text"
-              placeholder="Your name"
-            />
-          )}
-        <br/>
-          <input
-            value={email}
-            onChange={e => this.setState({ email: e.target.value })}
-            type="text"
-            placeholder="Your email address"
-          />
-        <br/>
-          <input
-            value={password}
-            onChange={e => this.setState({ password: e.target.value })}
-            type="password"
-            placeholder="Choose a safe password"
-          />
-        </div>
-        <div className="">
-          <Mutation
-            mutation={login ? LOGIN_MUTATION : SIGNUP_MUTATION}
-            variables={{ email, password, name }}
-            onCompleted={data => this._confirm(data)}
-            >
-              {mutation => (
-                  <button type="button" className="btn btn-dark" id="button"
-                     onClick={mutation}>
-                  {login ? 'login' : 'create account'}
-                </button>
-              )}
-            </Mutation>
-          <br/>
-          <button type="button" className="btn btn-dark" id="button"
-            onClick={() => this.setState({ login: !login })}
-          >
-            {login
-              ? 'need to create an account?'
-              : 'already have an account?'}
-          </button>
-    </div>
 
-      </div>
+    return (
+      <div className="container text-center" id="main">
+        <div class="row justify-content-md-center">
+          <div className="col col-lg-4">
+
+            <h4 className="">{login ? 'Login' : 'Sign Up'}</h4>
+          <div className="form-group">
+              {!login && (
+                <input
+                  className="form-control"
+                  value={name}
+                  onChange={e => this.setState({ name: e.target.value })}
+                  type="text"
+                  placeholder="Username"
+                />
+              )}
+              <input
+                className="form-control"
+                value={email}
+                onChange={e => this.setState({ email: e.target.value })}
+                type="email"
+                placeholder="Email"
+                />
+              <input
+                className="form-control"
+                value={password}
+                onChange={e => this.setState({ password: e.target.value })}
+                type="password"
+                placeholder="Password"
+                />
+
+              <Mutation
+                className=""
+                mutation={login ? LOGIN_MUTATION : SIGNUP_MUTATION}
+                variables={{ email, password, name }}
+                onCompleted={data => this._confirm(data)}
+                >
+                  {mutation => (
+                      <button type="submit" className="btn btn-lg btn-primary btn-block" id="button"
+                         onClick={mutation} disabled={!this.validateForm()}>
+                        {login ? 'login'
+                           : 'create account'}
+                      </button>
+                  )}
+              </Mutation>
+                <button  type="submit" className="btn btn-lg btn-primary btn-block" id="button"
+                  onClick={() => this.setState({ login: !login })}
+                >
+                  {login
+                    ? 'need to create an account?'
+                    : 'already have an account?'}
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
     )
   }
 

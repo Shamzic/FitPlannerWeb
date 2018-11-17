@@ -1,12 +1,14 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom';
-import { Jumbotron, Grid, Row, Col, Image, Button } from 'react-bootstrap';
+import { Jumbotron, Grid, Button } from 'react-bootstrap';
+import MuscleSchema from './MuscleSchema'
 import '../styles/Home.css';
 
 
 export default class Home extends Component {
   render() {
   return (
+        <div className="container">
           <Grid>
             <Jumbotron>
               <h2>Welcome to FitPlaner</h2>
@@ -16,6 +18,12 @@ export default class Home extends Component {
               </Link>
             </Jumbotron>
           </Grid>
+          <div className="muscleSchema">
+            <MuscleSchema/>
+          </div>
+
+        </div>
+
     )
   }
 }

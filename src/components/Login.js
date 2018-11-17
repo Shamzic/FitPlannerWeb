@@ -3,7 +3,6 @@ import { AUTH_TOKEN } from '../constants'
 import { Mutation } from 'react-apollo'
 import gql from 'graphql-tag'
 import '../styles/Login.css'
-import { Button, FormGroup, FormControl, ControlLabel } from "react-bootstrap";
 
 const SIGNUP_MUTATION = gql`
   mutation SignupMutation($email: String!, $password: String!, $name: String!) {

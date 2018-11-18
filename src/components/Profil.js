@@ -9,7 +9,6 @@ import Link from './Link'
 const USER_QUERY = gql`
   {
     user{
-      id
       name
       email
     }
@@ -30,23 +29,22 @@ class Profil extends Component {
 	 //<div className="">
 	  <Query query={USER_QUERY}>
         {({ loading, error, data }) => {
-          //if (loading) 
-            //return <div>Fetching</div>
-          //if (error) 
+          if (loading) 
+            return <div>Fetching</div>
+          if (error) 
 			return <div>Error</div>
-		  //return <div>data</div>
+		
           const dataUser = data.user
 
           return (
-            <div>
-              {dataUser.map(user => ( //linksToRender
-				<div key={user.id}> 
-					<p> un user </p>
-					<p>name : `user.name`</p>
-					<p>email : `user.email`</p>
+            //<div >
+              //{dataUser.map(user => ( //linksToRender
+				<div key={dataUser.id} className=""> 
+					<p>   name : {dataUser.name} </p>
+					<p>   email : {dataUser.email} </p>
 				</div>
-			  ))}
-            </div>
+			  //))}
+            //</div>
           )
         }}
       </Query>

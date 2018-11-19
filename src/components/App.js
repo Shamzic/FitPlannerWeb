@@ -5,7 +5,7 @@ import Header from './Header'
 import { Switch, Route } from 'react-router-dom'
 import Login from './Login'
 import Home from './Home'
-import Profile from './Profil'
+import Profil from './Profil'
 import About from './About'
 import Edit from './Edit'
 

@@ -40,8 +40,12 @@ class Profil extends Component {
             //<div >
               //{dataUser.map(user => ( //linksToRender
 				<div key={dataUser.id} className=""> 
-					<p>   name : {dataUser.name} </p>
-					<p>   email : {dataUser.email} </p>
+					<p>   name : {dataUser.name} 
+						<Link to="/edit" className="nav-link">profile</Link>
+					</p>
+					<p>   email : {dataUser.email} 
+						<Link to="/edit" className="nav-link">profile</Link>
+					</p>
 				</div>
 			  //))}
             //</div>

@@ -12,7 +12,7 @@ class Header extends Component {
          <nav className="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
           <div className="row">
             <Link to="/" className="navbar-brand">
-              FitPlanner
+               FitPlanner
             </Link>
             <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
               <span className="navbar-toggler-icon"></span>
@@ -38,7 +38,7 @@ class Header extends Component {
 		  <div>
             {authToken && (
             <li className="nav-item active">
-              <Link to="/profile" className="nav-link">profile</Link>
+              <Link to="/profil" className="nav-link">profil</Link>
             </li>
             )}
           </div>

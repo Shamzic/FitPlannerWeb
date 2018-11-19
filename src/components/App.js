@@ -5,7 +5,7 @@ import Header from './Header'
 import { Switch, Route } from 'react-router-dom'
 import Login from './Login'
 import Home from './Home'
-import UserList from './UserList'
+import Profil from './Profil'
 import About from './About'
 
 class App extends Component {
@@ -21,7 +21,7 @@ class App extends Component {
             <Route exact path="/news" component={LinkList} />
             <Route exact path="/create" component={CreateLink} />
             <Route exact path="/login" component={Login} />
-            <Route exact path="/users" component={UserList} />
+            <Route exact path="/profil" component={Profil} />
           </Switch>
         </div>
       </div>

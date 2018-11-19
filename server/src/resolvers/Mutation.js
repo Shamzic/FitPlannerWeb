@@ -2,6 +2,8 @@ const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 const { APP_SECRET, getUserId } = require('../utils')
 
+const { Query } = require('react-apollo')
+
 function post(parent, { url, description }, ctx, info) {
   const userId = getUserId(ctx)
   return ctx.db.mutation.createLink(
@@ -63,9 +65,33 @@ async function vote(parent, args, ctx, info) {
   )
 }
 
+async function updateUser(parent, args, ctx, info) { //user
+  const tmpUser = {};
+  
+  const userId = getUserId(ctx)
+  const user  = ctx.db.query.user({ where: { id : userId  } })
+  if(user.name) tmpUser.name = user.name;
+  if(user.email) tmpUser.email = user.email;
+
+  /*return knex('authors')
+  .where('user_id', user.id)
+  .update(tmpUser)
+  .returning('*');*/
+  
+  return(
+      
+		user
+        //const dataUser = data.user
+        
+       
+  )
+}
+
+
 module.exports = {
   post,
   signup,
   login,
   vote,
+  updateUser,
 }

@@ -3,7 +3,7 @@ import { AUTH_TOKEN } from '../constants'
 import { Mutation } from 'react-apollo'
 import { Query } from 'react-apollo'
 import gql from 'graphql-tag'
-import Link from './Link'
+//import Link from './Link'
 
 
 const USER_QUERY = gql`
@@ -37,26 +37,18 @@ class Profil extends Component {
           const dataUser = data.user
 
           return (
-            //<div >
-              //{dataUser.map(user => ( //linksToRender
+
 				<div key={dataUser.id} className=""> 
 					<p>   name : {dataUser.name} 
-						<Link to="/edit" className="nav-link">profile</Link>
 					</p>
 					<p>   email : {dataUser.email} 
-						<Link to="/edit" className="nav-link">profile</Link>
 					</p>
 				</div>
-			  //))}
-            //</div>
           )
         }}
       </Query>
-	 //</div>
-	 //<h> profil </h>
-	 //</div>
     )
   }
 }
-
+//<Link to="/edit" className="nav-link">profile</Link>
 export default Profil

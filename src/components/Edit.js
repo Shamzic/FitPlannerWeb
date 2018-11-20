@@ -40,6 +40,7 @@ class Edit extends Component {
   
   render() {
 	const { name,email } = this.state
+	const {id}=''
     return (
 	 <div>
 	  <Query query={USER_QUERY}>
@@ -51,6 +52,7 @@ class Edit extends Component {
 		  const dataUser = data.user
 		  //this.setState({ name: dataUser.name })
 		  email:dataUser.email 
+		  id:dataUser.id 
           return (
 				<div key={dataUser.id} className=""> 
 					<p>   name :  
@@ -64,24 +66,31 @@ class Edit extends Component {
                 />
 					</p>
 					
-					<p>   email : {dataUser.email} 
-						
+					<p>   email : {name}
+						<input
+                  className="form-control"
+                  value={email}
+                  onChange={e => this.setState({ email: e.target.value })}
+                  type="text"
+                  placeholder = {dataUser.email}
+                />
 					</p>
+					console.log({name})
 				</div>
           )
         }}
       </Query>
 	  <Mutation
           mutation={UPDATE_USER_MUTATION}
-          variables={{ name, email }}
+          variables={{name,email }}//, ,{id}
 		  //onCompleted={data => this._confirm(data)}
           //onCompleted={() => this.props.history.push('/')}
         >
-          {mutation => <button  className="btn btn-lg btn-primary btn-block" id="button" 
-		  onClick={mutation}//(data => this._confirm(data))
+          {updateUserMutation => <button  className="btn btn-lg btn-primary btn-block" id="button" 
+		  onClick={updateUserMutation}//(data => this._confirm(data))
 		  >Save</button>}
         </Mutation>
-	  
+	  console.log({name})
 	 </div>
     )
   }

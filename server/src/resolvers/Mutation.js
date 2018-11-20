@@ -90,20 +90,21 @@ async function updateUser(parent, args, ctx, info) { //user
 
   
   return ctx.db.mutation.updateUser(
-	{	
+		
+	{
 	  data:{
-		//user : {
+		user : {
 			//id : userMe.id,
-			//name : tmpUser.name,
-			//email : tmpUser.email,
-			//password: tmpUser.password,
-		//},
-		user : tmpUser,
+			name : tmpUser.name,
+			email : tmpUser.email,
+			password: tmpUser.password,
+		},
+		//user : tmpUser,
 	  },
 	},
-	{where:{  }},//id : userId 
-  )
-  console.log("bien executer");
+	{where:{ id : userId }},//id : userId 
+  )//{user}
+  //console.log("bien executer");
 }
 
 

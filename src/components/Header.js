@@ -31,14 +31,14 @@ class Header extends Component {
           <div>
             {authToken && (
             <li className="nav-item active">
-              <Link to="/create" className="nav-link">submit</Link>
+              <Link to="/create" className="nav-link">Submit</Link>
             </li>
             )}
           </div>
 		  <div>
             {authToken && (
             <li className="nav-item active">
-              <Link to="/profile" className="nav-link">profil</Link>
+              <Link to="/profile" className="nav-link">Profile</Link>
             </li>
             )}
           </div>
@@ -51,11 +51,11 @@ class Header extends Component {
                   this.props.history.push(`/`)
                 }}
               >
-                logout
+                Logout
               </div>
             ) : (
               <Link to="/login" className="nav-link">
-                login
+                Login
               </Link>
             )}
           </li>

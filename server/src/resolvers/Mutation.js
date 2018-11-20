@@ -65,15 +65,25 @@ async function vote(parent, args, ctx, info) {
   )
 }
 
+
+function postm(parent, { name, type }, ctx, info) {
+  const userId = getUserId(ctx)
+  return ctx.db.mutation.createMuscle(
+    { data: { name, type } },
+    info,
+  )
+}
+
+
 async function updateUser(parent, args, ctx, info) { //user
 
   const tmpUser = {};
   const { name, email } = args
   const userId = getUserId(ctx)
-  
+
   const userMe  = await ctx.db.query.user({ where: { id : userId  } })
   tmpUser.id = userMe.id
-  if(name!='')tmpUser.name = name; 
+  if(name!='')tmpUser.name = name;
   if(email!=''){ tmpUser.email = email;}else{tmpUser.email = userMe.email;} //else userMe.email
   tmpUser.password = userMe.password;
   console.log("test1");
@@ -86,11 +96,10 @@ async function updateUser(parent, args, ctx, info) { //user
   console.log(typeof ctx.db.mutation.updateUser({data:{user : tmpUser,},},{where:{  }},));
   console.log(typeof {	data:{user : tmpUser,},});
   console.log(name);
-  
 
-  
+
+
   return ctx.db.mutation.updateUser(
-		
 	{
 	  data:{
 		user : {
@@ -102,11 +111,10 @@ async function updateUser(parent, args, ctx, info) { //user
 		//user : tmpUser,
 	  },
 	},
-	{where:{ id : userId }},//id : userId 
+	{where:{ id : userId }},//id : userId
   )//{user}
   //console.log("bien executer");
 }
-
 
 module.exports = {
   post,
@@ -114,4 +122,6 @@ module.exports = {
   login,
   vote,
   updateUser,
+  postm
+
 }

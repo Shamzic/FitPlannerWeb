@@ -17,6 +17,7 @@ type Mutation {
   login(email: String!, password: String!): AuthPayload
   vote(linkId: ID!): Vote
   postm(name: String!, type: String!): Muscle!
+  updateUser(name: String! , email : String!): User!
 }
 
 type AuthPayload {

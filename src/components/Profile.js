@@ -11,14 +11,17 @@ const USER_QUERY = gql`
   }
 `
 
-class Profil extends Component {
+class Profile extends Component {
+
+
 
   render() {
+
     return (
 
-	  <Query query={USER_QUERY}>
+	  <Query query={USER_QUERY} >
         {({ loading, error, data }) => {
-          
+
           if (loading)
             return <div>Fetching</div>
           if (error)
@@ -27,8 +30,9 @@ class Profil extends Component {
           const dataUser = data.user
           return (
     				<div key={dataUser.id} className="">
-    					<p>   name : {dataUser.name} </p>
-    					<p>   email : {dataUser.email} </p>
+              	<h3>   Profile User </h3>
+    					<p>   Name : {dataUser.name} </p>
+    					<p>   Email : {dataUser.email} </p>
     				</div>
             )
         }}
@@ -37,4 +41,4 @@ class Profil extends Component {
   }
 }
 
-export default Profil
+export default Profile

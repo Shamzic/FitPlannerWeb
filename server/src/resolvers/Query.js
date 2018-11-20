@@ -19,16 +19,6 @@ async function feed(parent, args, ctx, info) {
 
 async function user(parent, args, ctx, info) {
   const { filter, first, skip } = args // destructure input arguments
-  /* const where = filter
-    ? { OR: [{ url_contains: filter }, { description_contains: filter }] }
-    : {}
-
-  const allLinks = await ctx.db.query.links({}) //peut etre link pour 
-  const count = allLinks.length
-  
-
-  const queriedLinkes = await ctx.db.query.links({ first, skip, where })
-   */
   const userId = getUserId(ctx)
   const userMe = await ctx.db.query.user({ where: { id : userId  } })//args.email"rachel.noireau@orange.fr"
   const name = userMe.name
@@ -42,7 +32,26 @@ async function user(parent, args, ctx, info) {
 }
 
 
+async function muscle(parent, args, ctx, info) {
+  const { filter, first, skip } = args // destructure input arguments
+  //const userId = getUserId(ctx)
+  var muscleName = "biceps";
+  const muscle = await ctx.db.query.muscle({ where: { name : muscleName } })//args.email"rachel.noireau@orange.fr"
+  const mid  = muscle.id
+  const name = muscle.name
+  const type = muscle.type
+
+  return {
+	mid,
+	name,
+	type
+  }
+}
+
+//
+
 module.exports = {
   feed,
   user,
+  muscle
 }

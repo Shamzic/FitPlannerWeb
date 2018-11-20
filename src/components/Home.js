@@ -21,7 +21,6 @@ export default class Home extends Component {
           <div className="muscleSchema">
             <MuscleSchema/>
           </div>
-
         </div>
 
     )

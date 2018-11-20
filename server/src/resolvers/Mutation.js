@@ -63,9 +63,18 @@ async function vote(parent, args, ctx, info) {
   )
 }
 
+function postm(parent, { name, type }, ctx, info) {
+  const userId = getUserId(ctx)
+  return ctx.db.mutation.createMuscle(
+    { data: { name, type } },
+    info,
+  )
+}
+
 module.exports = {
   post,
   signup,
   login,
   vote,
+  postm
 }

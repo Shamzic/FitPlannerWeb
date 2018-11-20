@@ -15,7 +15,7 @@ type Mutation {
   signup(email: String!, password: String!, name: String!): AuthPayload
   login(email: String!, password: String!): AuthPayload
   vote(linkId: ID!): Vote
-  updateUser(userId:ID!): User!
+  updateUser(name : String! , email : String!): User!
 }
 
 type AuthPayload {

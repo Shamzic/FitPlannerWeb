@@ -38,7 +38,7 @@ class Header extends Component {
 		  <div>
             {authToken && (
             <li className="nav-item active">
-              <Link to="/profil" className="nav-link">profil</Link>
+              <Link to="/profile" className="nav-link">profil</Link>
             </li>
             )}
           </div>

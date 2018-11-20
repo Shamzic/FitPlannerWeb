@@ -66,25 +66,44 @@ async function vote(parent, args, ctx, info) {
 }
 
 async function updateUser(parent, args, ctx, info) { //user
-  const tmpUser = {};
-  
-  const userId = getUserId(ctx)
-  const user  = ctx.db.query.user({ where: { id : userId  } })
-  if(user.name) tmpUser.name = user.name;
-  if(user.email) tmpUser.email = user.email;
 
-  /*return knex('authors')
-  .where('user_id', user.id)
-  .update(tmpUser)
-  .returning('*');*/
+  const tmpUser = {};
+  const { name, email } = args
+  const userId = getUserId(ctx)
   
-  return(
-      
-		user
-        //const dataUser = data.user
-        
-       
+  const userMe  = await ctx.db.query.user({ where: { id : userId  } })
+  tmpUser.id = userMe.id
+  if(name!='')tmpUser.name = name; 
+  if(email!=''){ tmpUser.email = email;}else{tmpUser.email = userMe.email;} //else userMe.email
+  tmpUser.password = userMe.password;
+  console.log("test1");
+  console.log(userMe.id);
+  console.log(userMe);
+  console.log(tmpUser.name);
+  console.log(tmpUser.email);
+  console.log(tmpUser);
+  console.log(typeof tmpUser);
+  console.log(typeof ctx.db.mutation.updateUser({data:{user : tmpUser,},},{where:{  }},));
+  console.log(typeof {	data:{user : tmpUser,},});
+  console.log(name);
+  
+
+  
+  return ctx.db.mutation.updateUser(
+	{	
+	  data:{
+		//user : {
+			//id : userMe.id,
+			//name : tmpUser.name,
+			//email : tmpUser.email,
+			//password: tmpUser.password,
+		//},
+		user : tmpUser,
+	  },
+	},
+	{where:{  }},//id : userId 
   )
+  console.log("bien executer");
 }
 
 

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Query } from 'react-apollo'
 import gql from 'graphql-tag'
 //import Link from './Link'
-
+import { Link } from 'react-router-dom'
 
 const USER_QUERY = gql`
   {
@@ -30,13 +30,14 @@ class Profil extends Component {
           return (
     				<div key={dataUser.id} className="">
     					<p>   name : {dataUser.name} </p>
-    					<p>   email : {dataUser.email} </p>
+    					<p>   email : {dataUser.email}  </p>
+						<Link to="/edit" >edit</Link>
     				</div>
             )
         }}
-      </Query>
+      </Query>//className="nav-link"//lien a pparait que quandon passe dessu
     )
   }
 }
-//<Link to="/edit" className="nav-link">profile</Link>
+<Link to="/edit" className="nav-link">profile</Link>
 export default Profil

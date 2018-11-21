@@ -30,31 +30,31 @@ const USER_QUERY = gql`
 
 
 class Edit extends Component {
-	
+
 
     state = {// switch between Login and SignUp
 		name: '',
 		email: '',
-		
+
   }
-  
+
   render() {
 	const { name,email } = this.state
     return (
 	 <div>
 	  <Query query={USER_QUERY}>
         {({ loading, error, data }) => {
-          if (loading) 
+          if (loading)
             return <div>Fetching</div>
-          if (error) 
+          if (error)
 			return <div>Error</div>
 		  const dataUser = data.user
 		  //this.setState({ name: dataUser.name })
-		  email:dataUser.email 
+		  email:dataUser.email
           return (
-				<div key={dataUser.id} className=""> 
-					<p>   name :  
-					
+				<div key={dataUser.id} className="">
+					<p>   name :
+
 					<input
                   className="form-control"
                   value={name}
@@ -63,9 +63,9 @@ class Edit extends Component {
                   placeholder = {dataUser.name}
                 />
 					</p>
-					
-					<p>   email : {dataUser.email} 
-						
+
+					<p>   email : {dataUser.email}
+
 					</p>
 				</div>
           )
@@ -77,11 +77,11 @@ class Edit extends Component {
 		  //onCompleted={data => this._confirm(data)}
           //onCompleted={() => this.props.history.push('/')}
         >
-          {mutation => <button  className="btn btn-lg btn-primary btn-block" id="button" 
+          {mutation => <button  className="btn btn-lg btn-primary btn-block" id="button"
 		  onClick={mutation}//(data => this._confirm(data))
 		  >Save</button>}
         </Mutation>
-	  
+
 	 </div>
     )
   }
@@ -96,7 +96,7 @@ class Edit extends Component {
     this.props.history.push(`/profile`)
 	console.log("va dans profil");
   }
-  
+
   _saveUserData = token => {
     localStorage.setItem(AUTH_TOKEN, token)
   }

@@ -45,5 +45,5 @@ class Profile extends Component {
 }
 
 
-<Link to="/edit" className="nav-link">profile</Link>
+// <Link to="/edit" className="nav-link">profile</Link>
 export default Profile

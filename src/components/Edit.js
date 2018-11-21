@@ -9,9 +9,22 @@ import Link from './Link'
 //const { APP_SECRET, getUserId } = require('../../server/utils')
 //const { USER_QUERY } = require('')
 
-const UPDATE_USER_MUTATION = gql`
+//, $where: UserWhereUniqueInput!
+//,where : $where
+/* const UPDATE_USER_MUTATION = gql`
   mutation UpdateUserMutation($name: String!, $email: String!) {
     updateUser(name: $name, email: $email) {
+	  id
+      name
+      email
+    }
+  }
+` */
+
+const UPDATE_USER_MUTATION = gql`
+  mutation UpdateUserMutation($data: UserUpdateInput!, $where: UserWhereUniqueInput!) {
+    updateUser(data: $data, where: $where) {
+	  id
       name
       email
     }
@@ -41,6 +54,8 @@ class Edit extends Component {
   render() {
 	const { name,email } = this.state
 	const {id}=''
+	const {where}=''
+	const {data}={name,email}
     return (
 	 <div>
 	  <Query query={USER_QUERY}>
@@ -53,6 +68,7 @@ class Edit extends Component {
 		  //this.setState({ name: dataUser.name })
 		  email:dataUser.email 
 		  id:dataUser.id 
+		  where:{id : dataUser.id }
           return (
 				<div key={dataUser.id} className=""> 
 					<p>   name :  
@@ -66,7 +82,7 @@ class Edit extends Component {
                 />
 					</p>
 					
-					<p>   email : {name}
+					<p>   email :
 						<input
                   className="form-control"
                   value={email}
@@ -75,22 +91,25 @@ class Edit extends Component {
                   placeholder = {dataUser.email}
                 />
 					</p>
-					console.log({name})
+					
 				</div>
           )
+		  
         }}
       </Query>
+	  
 	  <Mutation
           mutation={UPDATE_USER_MUTATION}
-          variables={{name,email }}//, ,{id}
+          //variables={{name,email }}//, ,{id}
+		  variables={{data}, {where}}//{name,email }
 		  //onCompleted={data => this._confirm(data)}
           //onCompleted={() => this.props.history.push('/')}
         >
           {updateUserMutation => <button  className="btn btn-lg btn-primary btn-block" id="button" 
 		  onClick={updateUserMutation}//(data => this._confirm(data))
-		  >Save</button>}
+		  >Save </button>}
         </Mutation>
-	  console.log({name})
+	  
 	 </div>
     )
   }

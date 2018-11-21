@@ -86,32 +86,41 @@ async function updateUser(parent, args, ctx, info) { //user
   if(name!='')tmpUser.name = name;
   if(email!=''){ tmpUser.email = email;}else{tmpUser.email = userMe.email;} //else userMe.email
   tmpUser.password = userMe.password;
+  idUser=userMe.id
+  passUser=userMe.password
   console.log("test1");
   console.log(userMe.id);
   console.log(userMe);
   console.log(tmpUser.name);
   console.log(tmpUser.email);
+  console.log(tmpUser.password);
   console.log(tmpUser);
   console.log(typeof tmpUser);
-  console.log(typeof ctx.db.mutation.updateUser({data:{user : tmpUser,},},{where:{  }},));
+  console.log({"user" : {
+			"id" : {idUser},
+			"name" : name,
+			"email" : email,
+			"password": tmpUser.password,
+  }});
+  console.log(ctx.db.mutation.updateUser({data:{user : tmpUser,},},{where:{ id : userId  }},));
   console.log(typeof {	data:{user : tmpUser,},});
   console.log(name);
 
 
 
+
   return ctx.db.mutation.updateUser(
-	{
-	  data:{
+	
+	{data:{
 		user : {
-			//id : userMe.id,
-			name : tmpUser.name,
-			email : tmpUser.email,
-			password: tmpUser.password,
+			id : idUser,
+			name : name,
+			email : email,
+			password: passUser,
 		},
-		//user : tmpUser,
 	  },
 	},
-	{where:{ id : userId }},//id : userId
+	{where:{ id : userId }}//id : userId
   )//{user}
   //console.log("bien executer");
 }

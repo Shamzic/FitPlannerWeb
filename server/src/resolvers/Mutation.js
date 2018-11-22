@@ -103,7 +103,7 @@ async function updateUser(parent, args, ctx, info) { //user
 			"password": tmpUser.password,
   }});
   console.log(ctx.db.mutation.updateUser({data:{user : tmpUser,},},{where:{ id : userId  }},));
-  console.log(typeof {	data:{user : tmpUser,},});
+  console.log(typeof {data:{user : tmpUser,},});
   console.log(name);
 
 
@@ -112,15 +112,16 @@ async function updateUser(parent, args, ctx, info) { //user
   return ctx.db.mutation.updateUser(
 	
 	{data:{
-		user : {
-			id : idUser,
+		//user : {
+			//id : idUser,
 			name : name,
 			email : email,
-			password: passUser,
-		},
+			//password: passUser,
+		//},
 	  },
-	},
-	{where:{ id : userId }}//id : userId
+	}
+	//,
+	//{where:{ id : userId }}//id : userId
   )//{user}
   //console.log("bien executer");
 }

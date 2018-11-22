@@ -3,7 +3,7 @@
 type Query {
   feed(filter: String, skip: Int, first: Int, orderBy: LinkOrderByInput): Feed!
   user(filter: String, skip: Int, first: Int, orderBy: LinkOrderByInput): User!
-  muscle(filter: String, skip: Int, first: Int, orderBy: LinkOrderByInput): Muscle!
+  muscle(name: String): Muscle!
   }
 
 type Feed {
@@ -17,7 +17,7 @@ type Mutation {
   login(email: String!, password: String!): AuthPayload
   vote(linkId: ID!): Vote
   postm(name: String!, type: String!): Muscle!
-  updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User!
+  updateUser(name: String! , email : String!): User!
 }
 
 type AuthPayload {

@@ -43,14 +43,14 @@ const USER_QUERY = gql`
 
 
 class Edit extends Component {
-	
+
 
     state = {// switch between Login and SignUp
 		name: '',
 		email: '',
-		
+
   }
-  
+
   render() {
 	const { name,email } = this.state
 	const {id}=''
@@ -60,19 +60,19 @@ class Edit extends Component {
 	 <div>
 	  <Query query={USER_QUERY}>
         {({ loading, error, data }) => {
-          if (loading) 
+          if (loading)
             return <div>Fetching</div>
-          if (error) 
+          if (error)
 			return <div>Error</div>
 		  const dataUser = data.user
 		  //this.setState({ name: dataUser.name })
-		  email:dataUser.email 
-		  id:dataUser.id 
+		  email:dataUser.email
+		  id:dataUser.id
 		  where:{id : dataUser.id }
           return (
-				<div key={dataUser.id} className=""> 
-					<p>   name :  
-					
+				<div key={dataUser.id} className="">
+					<p>   name :
+
 					<input
                   className="form-control"
                   value={name}
@@ -81,7 +81,7 @@ class Edit extends Component {
                   placeholder = {dataUser.name}
                 />
 					</p>
-					
+
 					<p>   email :
 						<input
                   className="form-control"
@@ -91,13 +91,13 @@ class Edit extends Component {
                   placeholder = {dataUser.email}
                 />
 					</p>
-					
+
 				</div>
           )
-		  
+
         }}
       </Query>
-	  
+
 	  <Mutation
           mutation={UPDATE_USER_MUTATION}
           //variables={{name,email }}//, ,{id}
@@ -105,11 +105,11 @@ class Edit extends Component {
 		  //onCompleted={data => this._confirm(data)}
           //onCompleted={() => this.props.history.push('/')}
         >
-          {updateUserMutation => <button  className="btn btn-lg btn-primary btn-block" id="button" 
+          {updateUserMutation => <button  className="btn btn-lg btn-primary btn-block" id="button"
 		  onClick={updateUserMutation}//(data => this._confirm(data))
 		  >Save </button>}
         </Mutation>
-	  
+
 	 </div>
     )
   }
@@ -124,7 +124,7 @@ class Edit extends Component {
     this.props.history.push(`/profile`)
 	console.log("va dans profil");
   }
-  
+
   _saveUserData = token => {
     localStorage.setItem(AUTH_TOKEN, token)
   }

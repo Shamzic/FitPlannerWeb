@@ -35,8 +35,9 @@ async function user(parent, args, ctx, info) {
 async function muscle(parent, args, ctx, info) {
   const { filter, first, skip } = args // destructure input arguments
   //const userId = getUserId(ctx)
-  var muscleName = "biceps";
-  const muscle = await ctx.db.query.muscle({ where: { name : muscleName } })//args.email"rachel.noireau@orange.fr"
+  console.log("Query muscle !");
+  console.log("Args.name :"+args.name);
+  const muscle = await ctx.db.query.muscle({ where: { name : args.name } })//args.email"rachel.noireau@orange.fr"
   const mid  = muscle.id
   const name = muscle.name
   const type = muscle.type
@@ -48,10 +49,11 @@ async function muscle(parent, args, ctx, info) {
   }
 }
 
+
 //
 
 module.exports = {
   feed,
   user,
-  muscle
+  muscle,
 }

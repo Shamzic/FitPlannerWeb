@@ -12,7 +12,7 @@ class Header extends Component {
          <nav className="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
           <div className="row">
             <Link to="/" className="navbar-brand">
-              FitPlanner
+               FitPlanner
             </Link>
             <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
               <span className="navbar-toggler-icon"></span>
@@ -31,14 +31,14 @@ class Header extends Component {
           <div>
             {authToken && (
             <li className="nav-item active">
-              <Link to="/create" className="nav-link">submit</Link>
+              <Link to="/create" className="nav-link">Submit</Link>
             </li>
             )}
           </div>
 		  <div>
             {authToken && (
             <li className="nav-item active">
-              <Link to="/profile" className="nav-link">profile</Link>
+              <Link to="/profile" className="nav-link">Profile</Link>
             </li>
             )}
           </div>
@@ -51,11 +51,11 @@ class Header extends Component {
                   this.props.history.push(`/`)
                 }}
               >
-                logout
+                Logout
               </div>
             ) : (
               <Link to="/login" className="nav-link">
-                login
+                Login
               </Link>
             )}
           </li>

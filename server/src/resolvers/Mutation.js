@@ -2,6 +2,8 @@ const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 const { APP_SECRET, getUserId } = require('../utils')
 
+const { Query } = require('react-apollo')
+
 function post(parent, { url, description }, ctx, info) {
   const userId = getUserId(ctx)
   return ctx.db.mutation.createLink(
@@ -63,9 +65,73 @@ async function vote(parent, args, ctx, info) {
   )
 }
 
+
+function postm(parent, { name, type }, ctx, info) {
+  const userId = getUserId(ctx)
+  return ctx.db.mutation.createMuscle(
+    { data: { name, type } },
+    info,
+  )
+}
+
+
+async function updateUser(parent, args, ctx, info) { //user
+
+  const tmpUser = {};
+  const { name, email } = args
+  const userId = getUserId(ctx)
+
+  const userMe  = await ctx.db.query.user({ where: { id : userId  } })
+  tmpUser.id = userMe.id
+  if(name!='')tmpUser.name = name;
+  if(email!=''){ tmpUser.email = email;}else{tmpUser.email = userMe.email;} //else userMe.email
+  tmpUser.password = userMe.password;
+  idUser=userMe.id
+  passUser=userMe.password
+  console.log("test1");
+  console.log(userMe.id);
+  console.log(userMe);
+  console.log(tmpUser.name);
+  console.log(tmpUser.email);
+  console.log(tmpUser.password);
+  console.log(tmpUser);
+  console.log(typeof tmpUser);
+  console.log({"user" : {
+			"id" : {idUser},
+			"name" : name,
+			"email" : email,
+			"password": tmpUser.password,
+  }});
+  console.log(ctx.db.mutation.updateUser({data:{user : tmpUser,},},{where:{ id : userId  }},));
+  console.log(typeof {data:{user : tmpUser,},});
+  console.log(name);
+
+
+
+
+  return ctx.db.mutation.updateUser(
+	
+	{data:{
+		//user : {
+			//id : idUser,
+			name : name,
+			email : email,
+			//password: passUser,
+		//},
+	  },
+	}
+	//,
+	//{where:{ id : userId }}//id : userId
+  )//{user}
+  //console.log("bien executer");
+}
+
 module.exports = {
   post,
   signup,
   login,
   vote,
+  updateUser,
+  postm
+
 }

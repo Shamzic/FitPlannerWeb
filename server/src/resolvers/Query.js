@@ -1,3 +1,5 @@
+const { APP_SECRET, getUserId } = require('../utils')
+
 async function feed(parent, args, ctx, info) {
   const { filter, first, skip } = args // destructure input arguments
   const where = filter
@@ -15,6 +17,43 @@ async function feed(parent, args, ctx, info) {
   }
 }
 
+async function user(parent, args, ctx, info) {
+  const { filter, first, skip } = args // destructure input arguments
+  const userId = getUserId(ctx)
+  const userMe = await ctx.db.query.user({ where: { id : userId  } })//args.email"rachel.noireau@orange.fr"
+  const name = userMe.name
+  const email = userMe.email //"sdfghjklmù"//await ctx.db.query.user.email//"blabla"
+
+  return {
+	userId,
+	name,
+	email
+  }
+}
+
+
+async function muscle(parent, args, ctx, info) {
+  const { filter, first, skip } = args // destructure input arguments
+  //const userId = getUserId(ctx)
+  console.log("Query muscle !");
+  console.log("Args.name :"+args.name);
+  const muscle = await ctx.db.query.muscle({ where: { name : args.name } })//args.email"rachel.noireau@orange.fr"
+  const mid  = muscle.id
+  const name = muscle.name
+  const type = muscle.type
+
+  return {
+	mid,
+	name,
+	type
+  }
+}
+
+
+//
+
 module.exports = {
   feed,
+  user,
+  muscle,
 }

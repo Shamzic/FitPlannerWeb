@@ -12,6 +12,7 @@ const resolvers = {
   Feed,
 }
 
+
 const server = new GraphQLServer({
   typeDefs: './src/schema.graphql',
   resolvers,

@@ -76,44 +76,46 @@ function postm(parent, { name, type }, ctx, info) {
 
 
 async function updateUser(parent, args, ctx, info) { //user
-
+ console.log("args");
+  console.log(args);
   const tmpUser = {};
-  const { name, email } = args
+  const { data, where}=args
+	//name= args.data.name, 
+	//email=args.data.email }
   const userId = getUserId(ctx)
 
   const userMe  = await ctx.db.query.user({ where: { id : userId  } })
   tmpUser.id = userMe.id
-  if(name!='')tmpUser.name = name;
-  if(email!=''){ tmpUser.email = email;}else{tmpUser.email = userMe.email;} //else userMe.email
-  tmpUser.password = userMe.password;
-  console.log("test1");
-  console.log(userMe.id);
-  console.log(userMe);
+  if(data.name!=''){tmpUser.name = data.name;}else{tmpUser.name = userMe.name;}
+  if(data.email!=''){ tmpUser.email = data.email;}else{tmpUser.email = userMe.email;} //else userMe.email
+
+
+  console.log("test user intermediaire");
+  console.log(userMe.email);
   console.log(tmpUser.name);
   console.log(tmpUser.email);
   console.log(tmpUser);
-  console.log(typeof tmpUser);
-  console.log(typeof ctx.db.mutation.updateUser({data:{user : tmpUser,},},{where:{  }},));
-  console.log(typeof {	data:{user : tmpUser,},});
-  console.log(name);
+  console.log("user en ttt lettre");
+
+  console.log(ctx.db.mutation.updateUser({data:{user : tmpUser,},},{where:{ id : userId  }},));
+  console.log(typeof {data:{user : tmpUser,},});
+  console.log(data.name);
+
 
 
 
   return ctx.db.mutation.updateUser(
+	
 	{
-	  data:{
-		user : {
-			//id : userMe.id,
+		data:{
+		
 			name : tmpUser.name,
 			email : tmpUser.email,
-			password: tmpUser.password,
-		},
-		//user : tmpUser,
+			
 	  },
-	},
-	{where:{ id : userId }},//id : userId
-  )//{user}
-  //console.log("bien executer");
+		where:{ id : userId }
+	}
+  )
 }
 
 module.exports = {

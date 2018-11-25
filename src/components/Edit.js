@@ -138,8 +138,8 @@ class Edit extends Component {
   
 }}//, ,{id}{data},{where2}
 		  //variables={{data}, {where}}//{name,email }
-		  //onCompleted={data => this._confirm(data)}
-          onCompleted={() => this.props.history.push(`/profile`)}//, window.location.reload()
+		  onCompleted={data => this._confirm(data)}
+          //onCompleted={() => this.props.history.push(`/profile`)}//, window.location.reload()
         >
           {updateUserMutation => <button  className="btn btn-lg btn-primary btn-block" id="button"
 		  onClick={updateUserMutation}//(data => this._confirm(data))
@@ -155,18 +155,21 @@ class Edit extends Component {
 
 
 
+  _confirm = async data => {
+    //const { token } = this.state.login ? data.login : data.signup
+    //this._saveUserData(token)
+    this.props.history.push(`/profile`)
+	window.location.reload()
+	
+  }
   
-
   _saveUserData = token => {
     localStorage.setItem(AUTH_TOKEN, token)
+	
   }
 
 }
-  async function _confirm(data) {
-    //const { token } = this.state.login ? data.login : data.signup
-    //this._saveUserData(token)
-	console.log("salut");
-    this.props.history.push(`/profile`)
-	console.log("va dans profil");
-  }
+  
+
+  
 export default Edit

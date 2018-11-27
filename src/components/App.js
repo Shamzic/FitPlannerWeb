@@ -8,6 +8,7 @@ import Home from './Home'
 import Profile from './Profile'
 import About from './About'
 import Edit from './Edit'
+import Exercices from './Exercices'
 
 class App extends Component {
   render() {
@@ -24,6 +25,7 @@ class App extends Component {
             <Route exact path="/login" component={Login} />
             <Route exact path="/profile" component={Profile} />
 			      <Route exact path="/edit" component={Edit} />
+            <Route exact path="/exercices" component={Exercices} />
           </Switch>
         </div>
       </div>

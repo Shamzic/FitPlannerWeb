@@ -30,7 +30,7 @@ type Muscle {
 }
 
 type Exercice {
-  id: ID!
+  id: ID! @unique
   name: String
   Muscle : Muscle
 }

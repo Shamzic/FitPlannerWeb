@@ -35,6 +35,13 @@ class Header extends Component {
             </li>
             )}
           </div>
+          <div>
+            {authToken && (
+            <li className="nav-item active">
+              <Link to="/exercices" className="nav-link">Exercices</Link>
+            </li>
+            )}
+          </div>
 		  <div>
             {authToken && (
             <li className="nav-item active">

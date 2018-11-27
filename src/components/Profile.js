@@ -31,12 +31,18 @@ class Profile extends Component {
 
           const dataUser = data.user
           return (
+            <div className="container text-center" id="main">
+              <div class="row justify-content-md-center">
+                <div className="col col-lg-4">
     				<div key={dataUser.id} className="">
-              	<h3>  Profile User </h3>
-    					<p>   Name : {dataUser.name} </p>
-    					<p>   Email : {dataUser.email} </p>
-						<Link to="/edit" >edit</Link>
+              	<h4> {dataUser.name}'s profile </h4>
+    					<p className="form-control">  Name : {dataUser.name} </p>
+    					<p className="form-control">  Email : {dataUser.email} </p>
+						<Link to="/edit" className="btn btn-lg btn-primary btn-block"  >edit</Link>
     				</div>
+          </div>
+        </div>
+      </div>
             )
         }}
       </Query>//className="nav-link"//lien a pparait que quandon passe dessu

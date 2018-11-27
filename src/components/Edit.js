@@ -4,23 +4,8 @@ import { AUTH_TOKEN } from '../constants'
 import { Mutation } from 'react-apollo'
 import { Query } from 'react-apollo'
 import gql from 'graphql-tag'
-//import Link from './Link'
 
-//const { APP_SECRET, getUserId } = require('../../server/utils')
-//const { USER_QUERY } = require('')
 
-//, $where: UserWhereUniqueInput!
-//,where : $where
-/*const UPDATE_USER_MUTATION = gql`
-  mutation UpdateUserMutation($name: String!, $email: String!) {
-    updateUser(name: $name, email: $email) {
-	  id
-      name
-      email
-    }
-  }
-` 
-*/
 const UPDATE_USER_MUTATION = gql`
   mutation UpdateUserMutation($data: UserUpdateInput!, $where: UserWhereUniqueInput!) { 
     updateUser(data: $data, where: $where) {
@@ -30,9 +15,7 @@ const UPDATE_USER_MUTATION = gql`
     }
   }
 `
-// 
-  
-///
+
 
 const USER_QUERY = gql`
   {
@@ -42,6 +25,7 @@ const USER_QUERY = gql`
     }
   }
 `
+/*
   const MutationUpdateUser=( {name , email}) => (//, {id}
 	<Mutation
           mutation={UPDATE_USER_MUTATION}
@@ -52,7 +36,7 @@ const USER_QUERY = gql`
   },
   "where": {"id":'cjonjhuq0jllf0a64864l79sr'}
   
-}}//, ,{id}{data},{where2}
+}}
 		  //variables={{data}, {where}}//{name,email }
 		  //onCompleted={data => this._confirm(data)}
           onCompleted={() => Edit.props.history.push(`/profile`)}
@@ -62,12 +46,11 @@ const USER_QUERY = gql`
 		  >Save </button>}
     </Mutation>
   );
-
+*/
 class Edit extends Component {
 
 
-    state = {// switch between Login and SignUp
-
+    state = {
 			name: '',
 			email: '',
 			id:'cjonjhuq0jllf0a64864l79sr'
@@ -76,9 +59,7 @@ class Edit extends Component {
 
 
   render() {
-
-	console.log("ssssssssssssssssssssssaaaaaaaaaaaaaaaaaaallllllllllllluuuuuuuuutttt")
-    return (
+  return (
 	 <div>
 	  <Query query={USER_QUERY}>
         {({ loading, error, data }) => {
@@ -88,14 +69,8 @@ class Edit extends Component {
 			return <div>Error</div>
 		
 		  const dataUser = data.user
-		  //this.setState( {where : {id: dataUser.id}})
-		  //userid=dataUser.id
-		  //this.setState({id:dataUser.id})
-		  //where:{id : dataUser.id }
+
           return (
-		  //state={name,email}
-	
-    
 				<div key={dataUser.id} className="">
 				
 					<p>   name :
@@ -136,13 +111,13 @@ class Edit extends Component {
   },
   "where": {"id":'cjonjhuq0jllf0a64864l79sr'}
   
-}}//, ,{id}{data},{where2}
+}}
 		  //variables={{data}, {where}}//{name,email }
 		  onCompleted={data => this._confirm(data)}
           //onCompleted={() => this.props.history.push(`/profile`)}//, window.location.reload()
         >
           {updateUserMutation => <button  className="btn btn-lg btn-primary btn-block" id="button"
-		  onClick={updateUserMutation}//(data => this._confirm(data))
+		  onClick={updateUserMutation}
 		  >Save </button>}
     </Mutation>
 	  

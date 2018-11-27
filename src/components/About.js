@@ -15,17 +15,17 @@ class Header extends Component {
         </Jumbotron>
         <Row className="show-grid text-center">
           <Col xs={12} sm={4} className="person-wrapper">
-            <Image src="/assets/garry.jpg" circle className="profil-pic" />
+            <Image id="img" src="/img/garry.jpg" circle className="profil-pic" />
             <h3>Garry</h3>
             <p> Developper </p>
           </Col>
           <Col xs={12} sm={4} className="pwerson-wra pper">
-            <Image src="/simon.jpg" circle className="profil-pic" />
+            <Image id="img" src="/img/simon.jpg" circle className="profil-pic" />
             <h3>Simon</h3>
             <p> Developper </p>
           </Col>
           <Col xs={12} sm={4} className="pwerson-wrapper">
-            <Image src="./../assets/rachel.jpg" circle className="profil-pic" />
+            <Image id="img"   src="./img/rachel.jpg" circle className="profil-pic" />
             <h3>Rachel</h3>
             <p> Developper </p>
           </Col>

@@ -33,7 +33,7 @@ type User {
   lastname: String
   email: String!
   
-  age: Int
+  age: DateTime
   city: String
   weight: Float
   height: Float

@@ -22,12 +22,24 @@ async function user(parent, args, ctx, info) {
   const userId = getUserId(ctx)
   const userMe = await ctx.db.query.user({ where: { id : userId  } })//args.email"rachel.noireau@orange.fr"
   const name = userMe.name
-  const email = userMe.email //"sdfghjklmù"//await ctx.db.query.user.email//"blabla"
+  const email = userMe.email
+  const firstname = userMe.firstname
+  const lastname = userMe.lastname
+  const age = userMe.age
+  const city = userMe.city
+  const weight = userMe.weight
+  const height = userMe.height
 
   return {
 	userId,
 	name,
-	email
+	email,
+	firstname,
+	lastname,
+	age,
+	city,
+	weight,
+	height
   }
 }
 

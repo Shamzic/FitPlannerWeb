@@ -86,14 +86,16 @@ async function updateUser(parent, args, ctx, info) {
 
   const userMe  = await ctx.db.query.user({ where: { id : userId  } })
   tmpUser.id = userMe.id
+  console.log("test1")
   if(data.name!=''){tmpUser.name = data.name;}else{tmpUser.name = userMe.name;}
+  console.log("test2")
   if(data.email!=''){ tmpUser.email = data.email;}else{tmpUser.email = userMe.email;} 
   if(data.lastname!=''){ tmpUser.lastname = data.lastname;}else{tmpUser.lastname = userMe.lastname;} 
   if(data.firstname!=''){ tmpUser.firstname = data.firstname;}else{tmpUser.firstname = userMe.firstname;} 
   if(data.age!=''){ tmpUser.age = data.age;}else{tmpUser.age = userMe.age;} 
   if(data.city!=''){ tmpUser.city = data.city;}else{tmpUser.city = userMe.city;} 
-  if(data.weight){ tmpUser.weight = data.weight;}else{tmpUser.weight = userMe.weight;} 
-  if(data.height){ tmpUser.height = data.height;}else{tmpUser.height = userMe.height;} 
+  if(data.weight){ tmpUser.weight = data.weight;}else{tmpUser.weight = parseFloat(userMe.weight);} 
+  if(data.height){ tmpUser.height = data.height;}else{tmpUser.height = parseFloat(userMe.height);} 
 
 
 

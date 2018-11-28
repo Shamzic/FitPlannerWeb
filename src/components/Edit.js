@@ -77,10 +77,10 @@ class Edit extends Component {
 			return <div>Error</div>
 
 		  const dataUser = data.user
-
+		  
           return (
 				<div key={dataUser.id} className="">
-
+					
 					<p><strong> Name :</strong>
 					<input
                   className="form-control"
@@ -124,10 +124,10 @@ class Edit extends Component {
 					<p> <strong>  Age :</strong>
 						<input
                   className="form-control"
-                  value={this.state.age}
+                  value={this.state.age.substring(0,10)}
                   onChange={e => this.setState({ age: e.target.value})}
-                  type="text"
-                  placeholder = {dataUser.age}
+                  type="date"
+                  placeholder = {dataUser.age.substring(0,10)}
                 />
 					</p>
 					
@@ -145,8 +145,8 @@ class Edit extends Component {
 						<input
                   className="form-control"
                   value={this.state.weight}
-                  onChange={e => this.setState({ weight: e.target.value})}
-                  type="text"
+                  onChange={e => this.setState({ weight: parseFloat(e.target.value)})}
+                  type="number"
                   placeholder = {dataUser.weight}
                 />
 					</p>
@@ -155,8 +155,8 @@ class Edit extends Component {
 						<input
                   className="form-control"
                   value={this.state.height}
-                  onChange={e => this.setState({ height: e.target.value})}
-                  type="text"
+                  onChange={e => this.setState({ height: parseFloat(e.target.value)})}
+                  type="number"
                   placeholder = {dataUser.height}
                 />
 					</p>
@@ -179,8 +179,8 @@ class Edit extends Component {
     "lastname" : this.state.lastname ,
     "age" : this.state.age ,
     "city" : this.state.city ,
-    "weight" : this.state.weight ,
-    "height" : this.state.height ,
+    "weight" : parseFloat(this.state.weight) ,
+    "height" : parseFloat(this.state.height) ,
   },
   "where": {"id":'cjonjhuq0jllf0a64864l79sr'}
 

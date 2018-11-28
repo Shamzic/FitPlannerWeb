@@ -11,10 +11,8 @@ const USER_QUERY = gql`
       email
 	  firstname
 	  lastname
-			
 	  age
 	  city
-			
 	  weight
 	  height
     }
@@ -46,7 +44,7 @@ class Profil extends Component {
     					<p className="form-control">  Email : {dataUser.email} </p>
     					<p className="form-control">  Lastname : {dataUser.lastname} </p>
     					<p className="form-control">  Firstname : {dataUser.firstname} </p>
-    					<p className="form-control">  Age : {dataUser.age} </p>
+    					<p className="form-control">  Age : {dataUser.age.substring(0,10)} </p>
     					<p className="form-control">  City : {dataUser.city} </p>
     					<p className="form-control">  Weight : {dataUser.weight} </p>
     					<p className="form-control">  Height : {dataUser.height} </p>

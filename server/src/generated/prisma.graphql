@@ -1,9 +1,5 @@
 # source: https://us1.prisma.sh/simon-hamery-b2180b/fitplanner-db/dev
-# timestamp: Tue Nov 27 2018 03:06:51 GMT-0500 (EST)
-
-type AggregateExercice {
-  count: Int!
-}
+# timestamp: Tue Nov 27 2018 21:33:26 GMT-0500 (GMT-05:00)
 
 type AggregateLink {
   count: Int!
@@ -21,202 +17,16 @@ type AggregateVote {
   count: Int!
 }
 
+type AggregateWeight {
+  count: Int!
+}
+
 type BatchPayload {
   """The number of nodes that have been affected by the Batch operation."""
   count: Long!
 }
 
 scalar DateTime
-
-type Exercice implements Node {
-  id: ID!
-  name: String
-  Muscle: Muscle
-}
-
-"""A connection to a list of items."""
-type ExerciceConnection {
-  """Information to aid in pagination."""
-  pageInfo: PageInfo!
-
-  """A list of edges."""
-  edges: [ExerciceEdge]!
-  aggregate: AggregateExercice!
-}
-
-input ExerciceCreateInput {
-  name: String
-  Muscle: MuscleCreateOneInput
-}
-
-"""An edge in a connection."""
-type ExerciceEdge {
-  """The item at the end of the edge."""
-  node: Exercice!
-
-  """A cursor for use in pagination."""
-  cursor: String!
-}
-
-enum ExerciceOrderByInput {
-  id_ASC
-  id_DESC
-  name_ASC
-  name_DESC
-  updatedAt_ASC
-  updatedAt_DESC
-  createdAt_ASC
-  createdAt_DESC
-}
-
-type ExercicePreviousValues {
-  id: ID!
-  name: String
-}
-
-type ExerciceSubscriptionPayload {
-  mutation: MutationType!
-  node: Exercice
-  updatedFields: [String!]
-  previousValues: ExercicePreviousValues
-}
-
-input ExerciceSubscriptionWhereInput {
-  """Logical AND on all given filters."""
-  AND: [ExerciceSubscriptionWhereInput!]
-
-  """Logical OR on all given filters."""
-  OR: [ExerciceSubscriptionWhereInput!]
-
-  """Logical NOT on all given filters combined by AND."""
-  NOT: [ExerciceSubscriptionWhereInput!]
-
-  """
-  The subscription event gets dispatched when it's listed in mutation_in
-  """
-  mutation_in: [MutationType!]
-
-  """
-  The subscription event gets only dispatched when one of the updated fields names is included in this list
-  """
-  updatedFields_contains: String
-
-  """
-  The subscription event gets only dispatched when all of the field names included in this list have been updated
-  """
-  updatedFields_contains_every: [String!]
-
-  """
-  The subscription event gets only dispatched when some of the field names included in this list have been updated
-  """
-  updatedFields_contains_some: [String!]
-  node: ExerciceWhereInput
-}
-
-input ExerciceUpdateInput {
-  name: String
-  Muscle: MuscleUpdateOneInput
-}
-
-input ExerciceUpdateManyMutationInput {
-  name: String
-}
-
-input ExerciceWhereInput {
-  """Logical AND on all given filters."""
-  AND: [ExerciceWhereInput!]
-
-  """Logical OR on all given filters."""
-  OR: [ExerciceWhereInput!]
-
-  """Logical NOT on all given filters combined by AND."""
-  NOT: [ExerciceWhereInput!]
-  id: ID
-
-  """All values that are not equal to given value."""
-  id_not: ID
-
-  """All values that are contained in given list."""
-  id_in: [ID!]
-
-  """All values that are not contained in given list."""
-  id_not_in: [ID!]
-
-  """All values less than the given value."""
-  id_lt: ID
-
-  """All values less than or equal the given value."""
-  id_lte: ID
-
-  """All values greater than the given value."""
-  id_gt: ID
-
-  """All values greater than or equal the given value."""
-  id_gte: ID
-
-  """All values containing the given string."""
-  id_contains: ID
-
-  """All values not containing the given string."""
-  id_not_contains: ID
-
-  """All values starting with the given string."""
-  id_starts_with: ID
-
-  """All values not starting with the given string."""
-  id_not_starts_with: ID
-
-  """All values ending with the given string."""
-  id_ends_with: ID
-
-  """All values not ending with the given string."""
-  id_not_ends_with: ID
-  name: String
-
-  """All values that are not equal to given value."""
-  name_not: String
-
-  """All values that are contained in given list."""
-  name_in: [String!]
-
-  """All values that are not contained in given list."""
-  name_not_in: [String!]
-
-  """All values less than the given value."""
-  name_lt: String
-
-  """All values less than or equal the given value."""
-  name_lte: String
-
-  """All values greater than the given value."""
-  name_gt: String
-
-  """All values greater than or equal the given value."""
-  name_gte: String
-
-  """All values containing the given string."""
-  name_contains: String
-
-  """All values not containing the given string."""
-  name_not_contains: String
-
-  """All values starting with the given string."""
-  name_starts_with: String
-
-  """All values not starting with the given string."""
-  name_not_starts_with: String
-
-  """All values ending with the given string."""
-  name_ends_with: String
-
-  """All values not ending with the given string."""
-  name_not_ends_with: String
-  Muscle: MuscleWhereInput
-}
-
-input ExerciceWhereUniqueInput {
-  id: ID
-}
 
 type Link implements Node {
   id: ID!
@@ -743,11 +553,6 @@ input MuscleCreateInput {
   type: String!
 }
 
-input MuscleCreateOneInput {
-  create: MuscleCreateInput
-  connect: MuscleWhereUniqueInput
-}
-
 """An edge in a connection."""
 type MuscleEdge {
   """The item at the end of the edge."""
@@ -815,11 +620,6 @@ input MuscleSubscriptionWhereInput {
   node: MuscleWhereInput
 }
 
-input MuscleUpdateDataInput {
-  name: String
-  type: String
-}
-
 input MuscleUpdateInput {
   name: String
   type: String
@@ -828,20 +628,6 @@ input MuscleUpdateInput {
 input MuscleUpdateManyMutationInput {
   name: String
   type: String
-}
-
-input MuscleUpdateOneInput {
-  create: MuscleCreateInput
-  connect: MuscleWhereUniqueInput
-  disconnect: Boolean
-  delete: Boolean
-  update: MuscleUpdateDataInput
-  upsert: MuscleUpsertNestedInput
-}
-
-input MuscleUpsertNestedInput {
-  update: MuscleUpdateDataInput!
-  create: MuscleCreateInput!
 }
 
 input MuscleWhereInput {
@@ -984,32 +770,29 @@ type Mutation {
   createVote(data: VoteCreateInput!): Vote!
   createLink(data: LinkCreateInput!): Link!
   createUser(data: UserCreateInput!): User!
-  createExercice(data: ExerciceCreateInput!): Exercice!
   createMuscle(data: MuscleCreateInput!): Muscle!
+  createWeight(data: WeightCreateInput!): Weight!
   updateVote(data: VoteUpdateInput!, where: VoteWhereUniqueInput!): Vote
   updateLink(data: LinkUpdateInput!, where: LinkWhereUniqueInput!): Link
   updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
-  updateExercice(data: ExerciceUpdateInput!, where: ExerciceWhereUniqueInput!): Exercice
   updateMuscle(data: MuscleUpdateInput!, where: MuscleWhereUniqueInput!): Muscle
   deleteVote(where: VoteWhereUniqueInput!): Vote
   deleteLink(where: LinkWhereUniqueInput!): Link
   deleteUser(where: UserWhereUniqueInput!): User
-  deleteExercice(where: ExerciceWhereUniqueInput!): Exercice
   deleteMuscle(where: MuscleWhereUniqueInput!): Muscle
   upsertVote(where: VoteWhereUniqueInput!, create: VoteCreateInput!, update: VoteUpdateInput!): Vote!
   upsertLink(where: LinkWhereUniqueInput!, create: LinkCreateInput!, update: LinkUpdateInput!): Link!
   upsertUser(where: UserWhereUniqueInput!, create: UserCreateInput!, update: UserUpdateInput!): User!
-  upsertExercice(where: ExerciceWhereUniqueInput!, create: ExerciceCreateInput!, update: ExerciceUpdateInput!): Exercice!
   upsertMuscle(where: MuscleWhereUniqueInput!, create: MuscleCreateInput!, update: MuscleUpdateInput!): Muscle!
   updateManyLinks(data: LinkUpdateManyMutationInput!, where: LinkWhereInput): BatchPayload!
   updateManyUsers(data: UserUpdateManyMutationInput!, where: UserWhereInput): BatchPayload!
-  updateManyExercices(data: ExerciceUpdateManyMutationInput!, where: ExerciceWhereInput): BatchPayload!
   updateManyMuscles(data: MuscleUpdateManyMutationInput!, where: MuscleWhereInput): BatchPayload!
+  updateManyWeights(data: WeightUpdateManyMutationInput!, where: WeightWhereInput): BatchPayload!
   deleteManyVotes(where: VoteWhereInput): BatchPayload!
   deleteManyLinks(where: LinkWhereInput): BatchPayload!
   deleteManyUsers(where: UserWhereInput): BatchPayload!
-  deleteManyExercices(where: ExerciceWhereInput): BatchPayload!
   deleteManyMuscles(where: MuscleWhereInput): BatchPayload!
+  deleteManyWeights(where: WeightWhereInput): BatchPayload!
 }
 
 enum MutationType {
@@ -1043,18 +826,17 @@ type Query {
   votes(where: VoteWhereInput, orderBy: VoteOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Vote]!
   links(where: LinkWhereInput, orderBy: LinkOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Link]!
   users(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User]!
-  exercices(where: ExerciceWhereInput, orderBy: ExerciceOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Exercice]!
   muscles(where: MuscleWhereInput, orderBy: MuscleOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Muscle]!
+  weights(where: WeightWhereInput, orderBy: WeightOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Weight]!
   vote(where: VoteWhereUniqueInput!): Vote
   link(where: LinkWhereUniqueInput!): Link
   user(where: UserWhereUniqueInput!): User
-  exercice(where: ExerciceWhereUniqueInput!): Exercice
   muscle(where: MuscleWhereUniqueInput!): Muscle
   votesConnection(where: VoteWhereInput, orderBy: VoteOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): VoteConnection!
   linksConnection(where: LinkWhereInput, orderBy: LinkOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): LinkConnection!
   usersConnection(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserConnection!
-  exercicesConnection(where: ExerciceWhereInput, orderBy: ExerciceOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ExerciceConnection!
   musclesConnection(where: MuscleWhereInput, orderBy: MuscleOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): MuscleConnection!
+  weightsConnection(where: WeightWhereInput, orderBy: WeightOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): WeightConnection!
 
   """Fetches an object given its ID"""
   node(
@@ -1067,14 +849,20 @@ type Subscription {
   vote(where: VoteSubscriptionWhereInput): VoteSubscriptionPayload
   link(where: LinkSubscriptionWhereInput): LinkSubscriptionPayload
   user(where: UserSubscriptionWhereInput): UserSubscriptionPayload
-  exercice(where: ExerciceSubscriptionWhereInput): ExerciceSubscriptionPayload
   muscle(where: MuscleSubscriptionWhereInput): MuscleSubscriptionPayload
+  weight(where: WeightSubscriptionWhereInput): WeightSubscriptionPayload
 }
 
 type User implements Node {
   id: ID!
   name: String!
+  lastname: String
+  firstname: String
   email: String!
+  age: DateTime
+  city: String
+  weight: Float
+  height: Float
   password: String!
   links(where: LinkWhereInput, orderBy: LinkOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Link!]
   votes(where: VoteWhereInput, orderBy: VoteOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Vote!]
@@ -1092,7 +880,13 @@ type UserConnection {
 
 input UserCreateInput {
   name: String!
+  lastname: String
+  firstname: String
   email: String!
+  age: DateTime
+  city: String
+  weight: Float
+  height: Float
   password: String!
   links: LinkCreateManyWithoutPostedByInput
   votes: VoteCreateManyWithoutUserInput
@@ -1110,14 +904,26 @@ input UserCreateOneWithoutVotesInput {
 
 input UserCreateWithoutLinksInput {
   name: String!
+  lastname: String
+  firstname: String
   email: String!
+  age: DateTime
+  city: String
+  weight: Float
+  height: Float
   password: String!
   votes: VoteCreateManyWithoutUserInput
 }
 
 input UserCreateWithoutVotesInput {
   name: String!
+  lastname: String
+  firstname: String
   email: String!
+  age: DateTime
+  city: String
+  weight: Float
+  height: Float
   password: String!
   links: LinkCreateManyWithoutPostedByInput
 }
@@ -1136,8 +942,20 @@ enum UserOrderByInput {
   id_DESC
   name_ASC
   name_DESC
+  lastname_ASC
+  lastname_DESC
+  firstname_ASC
+  firstname_DESC
   email_ASC
   email_DESC
+  age_ASC
+  age_DESC
+  city_ASC
+  city_DESC
+  weight_ASC
+  weight_DESC
+  height_ASC
+  height_DESC
   password_ASC
   password_DESC
   updatedAt_ASC
@@ -1149,7 +967,13 @@ enum UserOrderByInput {
 type UserPreviousValues {
   id: ID!
   name: String!
+  lastname: String
+  firstname: String
   email: String!
+  age: DateTime
+  city: String
+  weight: Float
+  height: Float
   password: String!
 }
 
@@ -1194,7 +1018,13 @@ input UserSubscriptionWhereInput {
 
 input UserUpdateInput {
   name: String
+  lastname: String
+  firstname: String
   email: String
+  age: DateTime
+  city: String
+  weight: Float
+  height: Float
   password: String
   links: LinkUpdateManyWithoutPostedByInput
   votes: VoteUpdateManyWithoutUserInput
@@ -1202,7 +1032,13 @@ input UserUpdateInput {
 
 input UserUpdateManyMutationInput {
   name: String
+  lastname: String
+  firstname: String
   email: String
+  age: DateTime
+  city: String
+  weight: Float
+  height: Float
   password: String
 }
 
@@ -1224,14 +1060,26 @@ input UserUpdateOneWithoutLinksInput {
 
 input UserUpdateWithoutLinksDataInput {
   name: String
+  lastname: String
+  firstname: String
   email: String
+  age: DateTime
+  city: String
+  weight: Float
+  height: Float
   password: String
   votes: VoteUpdateManyWithoutUserInput
 }
 
 input UserUpdateWithoutVotesDataInput {
   name: String
+  lastname: String
+  firstname: String
   email: String
+  age: DateTime
+  city: String
+  weight: Float
+  height: Float
   password: String
   links: LinkUpdateManyWithoutPostedByInput
 }
@@ -1335,6 +1183,86 @@ input UserWhereInput {
 
   """All values not ending with the given string."""
   name_not_ends_with: String
+  lastname: String
+
+  """All values that are not equal to given value."""
+  lastname_not: String
+
+  """All values that are contained in given list."""
+  lastname_in: [String!]
+
+  """All values that are not contained in given list."""
+  lastname_not_in: [String!]
+
+  """All values less than the given value."""
+  lastname_lt: String
+
+  """All values less than or equal the given value."""
+  lastname_lte: String
+
+  """All values greater than the given value."""
+  lastname_gt: String
+
+  """All values greater than or equal the given value."""
+  lastname_gte: String
+
+  """All values containing the given string."""
+  lastname_contains: String
+
+  """All values not containing the given string."""
+  lastname_not_contains: String
+
+  """All values starting with the given string."""
+  lastname_starts_with: String
+
+  """All values not starting with the given string."""
+  lastname_not_starts_with: String
+
+  """All values ending with the given string."""
+  lastname_ends_with: String
+
+  """All values not ending with the given string."""
+  lastname_not_ends_with: String
+  firstname: String
+
+  """All values that are not equal to given value."""
+  firstname_not: String
+
+  """All values that are contained in given list."""
+  firstname_in: [String!]
+
+  """All values that are not contained in given list."""
+  firstname_not_in: [String!]
+
+  """All values less than the given value."""
+  firstname_lt: String
+
+  """All values less than or equal the given value."""
+  firstname_lte: String
+
+  """All values greater than the given value."""
+  firstname_gt: String
+
+  """All values greater than or equal the given value."""
+  firstname_gte: String
+
+  """All values containing the given string."""
+  firstname_contains: String
+
+  """All values not containing the given string."""
+  firstname_not_contains: String
+
+  """All values starting with the given string."""
+  firstname_starts_with: String
+
+  """All values not starting with the given string."""
+  firstname_not_starts_with: String
+
+  """All values ending with the given string."""
+  firstname_ends_with: String
+
+  """All values not ending with the given string."""
+  firstname_not_ends_with: String
   email: String
 
   """All values that are not equal to given value."""
@@ -1375,6 +1303,112 @@ input UserWhereInput {
 
   """All values not ending with the given string."""
   email_not_ends_with: String
+  age: DateTime
+
+  """All values that are not equal to given value."""
+  age_not: DateTime
+
+  """All values that are contained in given list."""
+  age_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  age_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  age_lt: DateTime
+
+  """All values less than or equal the given value."""
+  age_lte: DateTime
+
+  """All values greater than the given value."""
+  age_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  age_gte: DateTime
+  city: String
+
+  """All values that are not equal to given value."""
+  city_not: String
+
+  """All values that are contained in given list."""
+  city_in: [String!]
+
+  """All values that are not contained in given list."""
+  city_not_in: [String!]
+
+  """All values less than the given value."""
+  city_lt: String
+
+  """All values less than or equal the given value."""
+  city_lte: String
+
+  """All values greater than the given value."""
+  city_gt: String
+
+  """All values greater than or equal the given value."""
+  city_gte: String
+
+  """All values containing the given string."""
+  city_contains: String
+
+  """All values not containing the given string."""
+  city_not_contains: String
+
+  """All values starting with the given string."""
+  city_starts_with: String
+
+  """All values not starting with the given string."""
+  city_not_starts_with: String
+
+  """All values ending with the given string."""
+  city_ends_with: String
+
+  """All values not ending with the given string."""
+  city_not_ends_with: String
+  weight: Float
+
+  """All values that are not equal to given value."""
+  weight_not: Float
+
+  """All values that are contained in given list."""
+  weight_in: [Float!]
+
+  """All values that are not contained in given list."""
+  weight_not_in: [Float!]
+
+  """All values less than the given value."""
+  weight_lt: Float
+
+  """All values less than or equal the given value."""
+  weight_lte: Float
+
+  """All values greater than the given value."""
+  weight_gt: Float
+
+  """All values greater than or equal the given value."""
+  weight_gte: Float
+  height: Float
+
+  """All values that are not equal to given value."""
+  height_not: Float
+
+  """All values that are contained in given list."""
+  height_in: [Float!]
+
+  """All values that are not contained in given list."""
+  height_not_in: [Float!]
+
+  """All values less than the given value."""
+  height_lt: Float
+
+  """All values less than or equal the given value."""
+  height_lte: Float
+
+  """All values greater than the given value."""
+  height_gt: Float
+
+  """All values greater than or equal the given value."""
+  height_gte: Float
   password: String
 
   """All values that are not equal to given value."""
@@ -1689,4 +1723,150 @@ input VoteWhereInput {
 
 input VoteWhereUniqueInput {
   id: ID
+}
+
+type Weight {
+  weight: Float
+  date: DateTime
+}
+
+"""A connection to a list of items."""
+type WeightConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [WeightEdge]!
+  aggregate: AggregateWeight!
+}
+
+input WeightCreateInput {
+  weight: Float
+  date: DateTime
+}
+
+"""An edge in a connection."""
+type WeightEdge {
+  """The item at the end of the edge."""
+  node: Weight!
+
+  """A cursor for use in pagination."""
+  cursor: String!
+}
+
+enum WeightOrderByInput {
+  weight_ASC
+  weight_DESC
+  date_ASC
+  date_DESC
+  id_ASC
+  id_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  createdAt_ASC
+  createdAt_DESC
+}
+
+type WeightPreviousValues {
+  weight: Float
+  date: DateTime
+}
+
+type WeightSubscriptionPayload {
+  mutation: MutationType!
+  node: Weight
+  updatedFields: [String!]
+  previousValues: WeightPreviousValues
+}
+
+input WeightSubscriptionWhereInput {
+  """Logical AND on all given filters."""
+  AND: [WeightSubscriptionWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [WeightSubscriptionWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [WeightSubscriptionWhereInput!]
+
+  """
+  The subscription event gets dispatched when it's listed in mutation_in
+  """
+  mutation_in: [MutationType!]
+
+  """
+  The subscription event gets only dispatched when one of the updated fields names is included in this list
+  """
+  updatedFields_contains: String
+
+  """
+  The subscription event gets only dispatched when all of the field names included in this list have been updated
+  """
+  updatedFields_contains_every: [String!]
+
+  """
+  The subscription event gets only dispatched when some of the field names included in this list have been updated
+  """
+  updatedFields_contains_some: [String!]
+  node: WeightWhereInput
+}
+
+input WeightUpdateManyMutationInput {
+  weight: Float
+  date: DateTime
+}
+
+input WeightWhereInput {
+  """Logical AND on all given filters."""
+  AND: [WeightWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [WeightWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [WeightWhereInput!]
+  weight: Float
+
+  """All values that are not equal to given value."""
+  weight_not: Float
+
+  """All values that are contained in given list."""
+  weight_in: [Float!]
+
+  """All values that are not contained in given list."""
+  weight_not_in: [Float!]
+
+  """All values less than the given value."""
+  weight_lt: Float
+
+  """All values less than or equal the given value."""
+  weight_lte: Float
+
+  """All values greater than the given value."""
+  weight_gt: Float
+
+  """All values greater than or equal the given value."""
+  weight_gte: Float
+  date: DateTime
+
+  """All values that are not equal to given value."""
+  date_not: DateTime
+
+  """All values that are contained in given list."""
+  date_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  date_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  date_lt: DateTime
+
+  """All values less than or equal the given value."""
+  date_lte: DateTime
+
+  """All values greater than the given value."""
+  date_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  date_gte: DateTime
 }

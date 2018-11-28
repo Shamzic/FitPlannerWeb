@@ -75,31 +75,29 @@ function postm(parent, { name, type }, ctx, info) {
 }
 
 
-async function updateUser(parent, args, ctx, info) { //user
+async function updateUser(parent, args, ctx, info) { 
  console.log("args");
   console.log(args);
   const tmpUser = {};
   const { data, where}=args
-	//name= args.data.name, 
-	//email=args.data.email }
+
+  
   const userId = getUserId(ctx)
 
   const userMe  = await ctx.db.query.user({ where: { id : userId  } })
   tmpUser.id = userMe.id
   if(data.name!=''){tmpUser.name = data.name;}else{tmpUser.name = userMe.name;}
-  if(data.email!=''){ tmpUser.email = data.email;}else{tmpUser.email = userMe.email;} //else userMe.email
+  if(data.email!=''){ tmpUser.email = data.email;}else{tmpUser.email = userMe.email;} 
+  if(data.lastname!=''){ tmpUser.lastname = data.lastname;}else{tmpUser.lastname = userMe.lastname;} 
+  if(data.firstname!=''){ tmpUser.firstname = data.firstname;}else{tmpUser.firstname = userMe.firstname;} 
+  if(data.age!=''){ tmpUser.age = data.age;}else{tmpUser.age = userMe.age;} 
+  if(data.city!=''){ tmpUser.city = data.city;}else{tmpUser.city = userMe.city;} 
+  if!(data.weight){ tmpUser.weight = data.weight;}else{tmpUser.weight = userMe.weight;} 
+  if!(data.height){ tmpUser.height = data.height;}else{tmpUser.height = userMe.height;} 
 
 
-  console.log("test user intermediaire");
-  console.log(userMe.email);
-  console.log(tmpUser.name);
-  console.log(tmpUser.email);
-  console.log(tmpUser);
-  console.log("user en ttt lettre");
 
   console.log(ctx.db.mutation.updateUser({data:{user : tmpUser,},},{where:{ id : userId  }},));
-  console.log(typeof {data:{user : tmpUser,},});
-  console.log(data.name);
 
 
 
@@ -111,7 +109,12 @@ async function updateUser(parent, args, ctx, info) { //user
 		
 			name : tmpUser.name,
 			email : tmpUser.email,
-			
+			lastname : tmpUser.lastname,
+			firstname : tmpUser.firstname,
+			age : tmpUser.age,
+			city : tmpUser.city,
+			weight : tmpUser.weight,
+			height : tmpUser.height,
 	  },
 		where:{ id : userId }
 	}

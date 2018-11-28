@@ -16,12 +16,12 @@ type Link {
 type User {
   id: ID! @unique
   name: String!
-  firstname: String!
+  lastname: String
+  firstname: String
   email: String! @unique
-  username: String!
   age: DateTime
   city: String
-  weight: [Weight]
+  weight: Float
   height: Float
   password: String!
   links: [Link!]!
@@ -32,13 +32,7 @@ type User {
 type Muscle {
   id: ID! @unique
   name: String! @unique
-  type: String!
-}
-
-type Exercice {
-  id: ID! @unique
-  name: String
-  Muscle : Muscle
+  type: String! 
 }
 
 type Weight{

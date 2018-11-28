@@ -16,12 +16,12 @@ type Link {
 type User {
   id: ID! @unique
   name: String!
-  firstname: String!
+  lastname: String
+  firstname: String
   email: String! @unique
-  username: String!
   age: DateTime
   city: String
-  weight: [Weight]
+  weight: Float
   height: Float
   password: String!
   links: [Link!]!
@@ -35,9 +35,9 @@ type Muscle {
   type: String!
 }
 
-type Exos {
+type Exercice {
   id: ID! @unique
-  name: String
+  name: String! @unique
   Muscle : Muscle
 }
 

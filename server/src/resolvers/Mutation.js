@@ -92,8 +92,8 @@ async function updateUser(parent, args, ctx, info) {
   if(data.firstname!=''){ tmpUser.firstname = data.firstname;}else{tmpUser.firstname = userMe.firstname;} 
   if(data.age!=''){ tmpUser.age = data.age;}else{tmpUser.age = userMe.age;} 
   if(data.city!=''){ tmpUser.city = data.city;}else{tmpUser.city = userMe.city;} 
-  if!(data.weight){ tmpUser.weight = data.weight;}else{tmpUser.weight = userMe.weight;} 
-  if!(data.height){ tmpUser.height = data.height;}else{tmpUser.height = userMe.height;} 
+  if(data.weight){ tmpUser.weight = data.weight;}else{tmpUser.weight = userMe.weight;} 
+  if(data.height){ tmpUser.height = data.height;}else{tmpUser.height = userMe.height;} 
 
 
 

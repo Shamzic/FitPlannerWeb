@@ -9,19 +9,25 @@ const USER_QUERY = gql`
     user{
       name
       email
+	  firstname
+	  lastname
+			
+	  age
+	  city
+			
+	  weight
+	  height
     }
   }
 `
 
-class Profile extends Component {
 
-
+class Profil extends Component {
 
   render() {
-
     return (
 
-	  <Query query={USER_QUERY} >
+	  <Query query={USER_QUERY}>
         {({ loading, error, data }) => {
 
           if (loading)
@@ -30,14 +36,20 @@ class Profile extends Component {
 			      return <div>Error</div>
 
           const dataUser = data.user
-          return (
+ return (
             <div className="container text-center" id="main">
               <div class="row justify-content-md-center">
                 <div className="col col-lg-4">
     				<div key={dataUser.id} className="">
               	<h4> {dataUser.name}'s profile </h4>
-    					<p className="form-control">  Name : {dataUser.name} </p>
+    					<p className="form-control">  Username : {dataUser.name} </p>
     					<p className="form-control">  Email : {dataUser.email} </p>
+    					<p className="form-control">  Lastname : {dataUser.lastname} </p>
+    					<p className="form-control">  Firstname : {dataUser.firstname} </p>
+    					<p className="form-control">  Age : {dataUser.age} </p>
+    					<p className="form-control">  City : {dataUser.city} </p>
+    					<p className="form-control">  Weight : {dataUser.weight} </p>
+    					<p className="form-control">  Height : {dataUser.height} </p>
 						<Link to="/edit" className="btn btn-lg btn-primary btn-block"  >edit</Link>
     				</div>
           </div>
@@ -50,6 +62,5 @@ class Profile extends Component {
   }
 }
 
-
-// <Link to="/edit" className="nav-link">profile</Link>
-export default Profile
+//<Link to="/edit" className="nav-link">profile</Link>
+export default Profil

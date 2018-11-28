@@ -30,12 +30,13 @@ type AuthPayload {
 type User {
   id: ID!
   name: String!
-  firstname: String!
+  firstname: String
+  lastname: String
   email: String!
-  username: String!
+  
   age: Int
   city: String
-  weight: [Weight]
+  weight: Float
   height: Float
 }
 

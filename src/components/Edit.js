@@ -12,6 +12,14 @@ const UPDATE_USER_MUTATION = gql`
 	  id
       name
       email
+	  firstname
+	  lastname
+			
+	  age
+	  city
+			
+	  weight
+	  height
     }
   }
 `
@@ -22,37 +30,34 @@ const USER_QUERY = gql`
     user{
       name
       email
+	  firstname
+	  lastname
+			
+	  age
+	  city
+			
+	  weight
+	  height
     }
   }
 `
-/*
-  const MutationUpdateUser=( {name , email}) => (//, {id}
-	<Mutation
-          mutation={UPDATE_USER_MUTATION}
-          variables={{
-  "data":{
-    "email": email,
-    "name" : name ,
-  },
-  "where": {"id":'cjonjhuq0jllf0a64864l79sr'}
 
-}}
-		  //variables={{data}, {where}}//{name,email }
-		  //onCompleted={data => this._confirm(data)}
-          onCompleted={() => Edit.props.history.push(`/profile`)}
-        >
-          {updateUserMutation => <button  className="btn btn-lg btn-primary btn-block" id="button"
-		  onClick={updateUserMutation}//(data => this._confirm(data))
-		  >Save </button>}
-    </Mutation>
-  );
-*/
+
+
 class Edit extends Component {
 
 
     state = {
 			name: '',
 			email: '',
+			firstname: '',
+			lastname: '',
+			
+			age: '',
+			city: '',
+			
+			weight: '',
+			height: '',
 			id:'cjonjhuq0jllf0a64864l79sr'
 	}
 
@@ -95,6 +100,66 @@ class Edit extends Component {
                   placeholder = {dataUser.email}
                 />
 					</p>
+					
+					<p> <strong>  Lastname :</strong>
+						<input
+                  className="form-control"
+                  value={this.state.lastname}
+                  onChange={e => this.setState({ lastname: e.target.value})}
+                  type="text"
+                  placeholder = {dataUser.lastname}
+                />
+					</p>
+					
+					<p> <strong>  Firstname :</strong>
+						<input
+                  className="form-control"
+                  value={this.state.firstname}
+                  onChange={e => this.setState({ firstname: e.target.value})}
+                  type="text"
+                  placeholder = {dataUser.firstname}
+                />
+					</p>
+					
+					<p> <strong>  Age :</strong>
+						<input
+                  className="form-control"
+                  value={this.state.age}
+                  onChange={e => this.setState({ age: e.target.value})}
+                  type="text"
+                  placeholder = {dataUser.age}
+                />
+					</p>
+					
+					<p> <strong>  City :</strong>
+						<input
+                  className="form-control"
+                  value={this.state.city}
+                  onChange={e => this.setState({ city: e.target.value})}
+                  type="text"
+                  placeholder = {dataUser.city}
+                />
+					</p>
+					
+					<p> <strong>  Weight :</strong>
+						<input
+                  className="form-control"
+                  value={this.state.weight}
+                  onChange={e => this.setState({ weight: e.target.value})}
+                  type="text"
+                  placeholder = {dataUser.weight}
+                />
+					</p>
+					
+					<p> <strong>  Height :</strong>
+						<input
+                  className="form-control"
+                  value={this.state.height}
+                  onChange={e => this.setState({ height: e.target.value})}
+                  type="text"
+                  placeholder = {dataUser.height}
+                />
+					</p>
 
 				</div>
           )
@@ -110,6 +175,12 @@ class Edit extends Component {
   "data":{
     "email": this.state.email,
     "name" : this.state.name ,
+    "firstname" : this.state.firstname ,
+    "lastname" : this.state.lastname ,
+    "age" : this.state.age ,
+    "city" : this.state.city ,
+    "weight" : this.state.weight ,
+    "height" : this.state.height ,
   },
   "where": {"id":'cjonjhuq0jllf0a64864l79sr'}
 

@@ -32,7 +32,13 @@ type User {
 type Muscle {
   id: ID! @unique
   name: String! @unique
-  type: String! 
+  type: String!
+}
+
+type Exercice {
+  id: ID! @unique
+  name: String! @unique
+  Muscle : Muscle
 }
 
 type Weight{

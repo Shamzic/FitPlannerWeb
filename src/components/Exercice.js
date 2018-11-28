@@ -5,7 +5,7 @@ import gql from 'graphql-tag'
 
 const EXERCICES_QUERY = gql`
   {
-    exercices{
+    exercice{
       name
       id
       Muscle {
@@ -19,7 +19,7 @@ const EXERCICES_QUERY = gql`
 
 
 
-class Exercices extends Component {
+class Exercice extends Component {
   render() {
     return (
 
@@ -30,7 +30,7 @@ class Exercices extends Component {
             if (error)
         return <div>Error</div>
 
-        const dataExercice = data.exercices
+        const dataExercice = data.exercice
             return (
                 <div key={dataExercice.id}>
 
@@ -52,4 +52,4 @@ class Exercices extends Component {
   }
 }
 
-export default Exercices
+export default Exercice

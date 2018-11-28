@@ -61,12 +61,12 @@ async function muscle(parent, args, ctx, info) {
   }
 }
 
-async function exercices(parent, args, ctx, info) {
+async function exercice(parent, args, ctx, info) {
   const { filter, first, skip } = args // destructure input arguments
-  const exercices = await ctx.db.query.exercices({ where: { name : args.name  } })
-  const id = exercices.id
-  const name = exercices.name
-  const muscle = exercices.muscle
+  const exercice = await ctx.db.query.exercice({ where: { name : args.name  } })
+  const id = exercice.id
+  const name = exercice.name
+  const muscle = exercice.muscle
 
   return {
 	id,
@@ -81,4 +81,5 @@ module.exports = {
   feed,
   user,
   muscle,
+  exercice
 }

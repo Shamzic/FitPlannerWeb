@@ -35,7 +35,7 @@ type Muscle {
   type: String!
 }
 
-type Exercice {
+type Exos {
   id: ID! @unique
   name: String
   Muscle : Muscle

@@ -67,22 +67,17 @@ async function exercice(parent, args, ctx, info) {
   console.log("Query Ex !");
   console.log("Args.name :"+ args.name);
   const exercice = await ctx.db.query.exercice({ where: { name : args.name } })
-  //console.log("ex :"+ exercice);
   const id = exercice.id
   const name = exercice.name
-  const Muscle = exercice.muscle
-  console.log("muscle :"+ Muscle);
-  //console.log("name:"+ name);
   const muscle = await ctx.db.query.muscle({ first, skip, where: { id:"cjoon536zoxz90a64isxxigb5" } })
-  console.log("queriedMuscle")
-  console.log(muscle)
   return {
 	id,
 	name,
 	muscle
+	
   }
 }
-
+//muscle:queriedmuscle.map(muscle => muscle.id)
 //
 
 module.exports = {

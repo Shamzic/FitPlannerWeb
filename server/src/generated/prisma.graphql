@@ -1,5 +1,5 @@
 # source: https://us1.prisma.sh/simon-hamery-b2180b/fitplanner-db/dev
-# timestamp: Mon Dec 03 2018 14:32:16 GMT-0500 (GMT-05:00)
+# timestamp: Mon Dec 03 2018 15:16:31 GMT-0500 (GMT-05:00)
 
 type AggregateExercice {
   count: Int!
@@ -36,6 +36,7 @@ type Exercice implements Node {
   id: ID!
   name: String!
   muscle: Muscle
+  suggstfactor: Float
 }
 
 """A connection to a list of items."""
@@ -50,6 +51,7 @@ type ExerciceConnection {
 
 input ExerciceCreateInput {
   name: String!
+  suggstfactor: Float
   muscle: MuscleCreateOneInput
 }
 
@@ -67,6 +69,8 @@ enum ExerciceOrderByInput {
   id_DESC
   name_ASC
   name_DESC
+  suggstfactor_ASC
+  suggstfactor_DESC
   updatedAt_ASC
   updatedAt_DESC
   createdAt_ASC
@@ -76,6 +80,7 @@ enum ExerciceOrderByInput {
 type ExercicePreviousValues {
   id: ID!
   name: String!
+  suggstfactor: Float
 }
 
 type ExerciceSubscriptionPayload {
@@ -119,11 +124,13 @@ input ExerciceSubscriptionWhereInput {
 
 input ExerciceUpdateInput {
   name: String
+  suggstfactor: Float
   muscle: MuscleUpdateOneInput
 }
 
 input ExerciceUpdateManyMutationInput {
   name: String
+  suggstfactor: Float
 }
 
 input ExerciceWhereInput {
@@ -215,6 +222,28 @@ input ExerciceWhereInput {
 
   """All values not ending with the given string."""
   name_not_ends_with: String
+  suggstfactor: Float
+
+  """All values that are not equal to given value."""
+  suggstfactor_not: Float
+
+  """All values that are contained in given list."""
+  suggstfactor_in: [Float!]
+
+  """All values that are not contained in given list."""
+  suggstfactor_not_in: [Float!]
+
+  """All values less than the given value."""
+  suggstfactor_lt: Float
+
+  """All values less than or equal the given value."""
+  suggstfactor_lte: Float
+
+  """All values greater than the given value."""
+  suggstfactor_gt: Float
+
+  """All values greater than or equal the given value."""
+  suggstfactor_gte: Float
   muscle: MuscleWhereInput
 }
 

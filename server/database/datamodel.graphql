@@ -39,6 +39,7 @@ type Exercice {
   id: ID! @unique
   name: String! @unique
   muscle : Muscle
+  suggstfactor:Float
 }
 
 type Weight{

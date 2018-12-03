@@ -47,12 +47,13 @@ async function user(parent, args, ctx, info) {
 async function muscle(parent, args, ctx, info) {
   const { filter, first, skip } = args // destructure input arguments
   //const userId = getUserId(ctx)
-  console.log("Query muscle !");
+  console.log("Query muscle !!");
   console.log("Args.name :"+args.name);
   const muscle = await ctx.db.query.muscle({ where: { name : args.name } })//args.email"rachel.noireau@orange.fr"
   const mid  = muscle.id
   const name = muscle.name
   const type = muscle.type
+  
 
   return {
 	mid,
@@ -63,10 +64,15 @@ async function muscle(parent, args, ctx, info) {
 
 async function exercice(parent, args, ctx, info) {
   const { filter, first, skip } = args // destructure input arguments
-  const exercice = await ctx.db.query.exercice({ where: { name : args.name  } })
+  console.log("Query Ex !");
+  console.log("Args.name :"+ args.name);
+  const exercice = await ctx.db.query.exercice({ where: { name : args.name } })
+  //console.log("ex :"+ exercice);
   const id = exercice.id
   const name = exercice.name
-  const muscle = exercice.muscle
+  const muscle = exercice.Muscle
+  console.log("muscle :"+ muscle);
+  console.log("name:"+ name);
 
   return {
 	id,

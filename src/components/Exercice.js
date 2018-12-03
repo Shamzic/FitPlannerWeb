@@ -4,11 +4,11 @@ import gql from 'graphql-tag'
 
 
 const EXERCICES_QUERY = gql`
-  {
-    exercice{
-      name
+  query($name: String!){
+    exercice(name: $name){
       id
-      Muscle {
+	  name
+	  Muscle {
         id
         name
         type
@@ -16,19 +16,17 @@ const EXERCICES_QUERY = gql`
     }
   }
 `
-
-
-
-class Exercice extends Component {
-  render() {
-    return (
-
-      <Query query={EXERCICES_QUERY}>
+/* id
+      
+*/
+const QueryEx = ({ name }) => (
+    <Query query={EXERCICES_QUERY} variables={{name}}>
           {({ loading, error, data }) => {
-            if (loading)
+			if (loading)
               return <div>Fetching</div>
             if (error)
-        return <div>Error</div>
+				
+              return <div>Error</div>
 
         const dataExercice = data.exercice
             return (
@@ -45,11 +43,27 @@ class Exercice extends Component {
                 </div>
                 )
             }}
-          </Query>
+    </Query>
+);
+
+class Exercice extends Component {
+  state={
+	  name:"Curl Biceps"
+  };
+  
+  render() {
+	  console.log("reeeeeeeeeeeeeeQQQQQQQQQQuuuuuuuuuuettttttttttttttte")
+    return (
+	<div>
+	
+		<QueryEx name={this.state.name} />
+
+    </div>
 
 
     )
   }
 }
+// <QueryEx name={this.state.name} />
 
 export default Exercice

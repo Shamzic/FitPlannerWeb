@@ -38,7 +38,7 @@ type Muscle {
 type Exercice {
   id: ID! @unique
   name: String! @unique
-  Muscle : Muscle
+  muscle : Muscle
 }
 
 type Weight{

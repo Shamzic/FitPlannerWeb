@@ -8,7 +8,7 @@ const EXERCICES_QUERY = gql`
     exercice(name: $name){
       id
 	  name
-	  Muscle {
+	  muscle {
         id
         name
         type
@@ -33,10 +33,12 @@ const QueryEx = ({ name }) => (
                 <div key={dataExercice.id}>
 
                     <h3> Exercice name: {dataExercice.name} </h3>
-                    /*<ul>
+                    <ul>
                       <li> Exercice name: {dataExercice.name} /li>
+					  </li>
+					  <li> Exercice name: {dataExercice.muscle.name} /li>
                       </li>
-                    </ul>*/
+                    </ul>
 
 
 

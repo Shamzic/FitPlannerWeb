@@ -1,5 +1,5 @@
 # source: https://us1.prisma.sh/simon-hamery-b2180b/fitplanner-db/dev
-# timestamp: Wed Nov 28 2018 01:29:58 GMT-0500 (EST)
+# timestamp: Mon Dec 03 2018 14:32:16 GMT-0500 (GMT-05:00)
 
 type AggregateExercice {
   count: Int!
@@ -35,7 +35,7 @@ scalar DateTime
 type Exercice implements Node {
   id: ID!
   name: String!
-  Muscle: Muscle
+  muscle: Muscle
 }
 
 """A connection to a list of items."""
@@ -50,7 +50,7 @@ type ExerciceConnection {
 
 input ExerciceCreateInput {
   name: String!
-  Muscle: MuscleCreateOneInput
+  muscle: MuscleCreateOneInput
 }
 
 """An edge in a connection."""
@@ -119,7 +119,7 @@ input ExerciceSubscriptionWhereInput {
 
 input ExerciceUpdateInput {
   name: String
-  Muscle: MuscleUpdateOneInput
+  muscle: MuscleUpdateOneInput
 }
 
 input ExerciceUpdateManyMutationInput {
@@ -215,7 +215,7 @@ input ExerciceWhereInput {
 
   """All values not ending with the given string."""
   name_not_ends_with: String
-  Muscle: MuscleWhereInput
+  muscle: MuscleWhereInput
 }
 
 input ExerciceWhereUniqueInput {

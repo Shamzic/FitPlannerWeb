@@ -70,10 +70,12 @@ async function exercice(parent, args, ctx, info) {
   //console.log("ex :"+ exercice);
   const id = exercice.id
   const name = exercice.name
-  const muscle = exercice.Muscle
-  console.log("muscle :"+ muscle);
-  console.log("name:"+ name);
-
+  const Muscle = exercice.muscle
+  console.log("muscle :"+ Muscle);
+  //console.log("name:"+ name);
+  const muscle = await ctx.db.query.muscle({ first, skip, where: { id:"cjoon536zoxz90a64isxxigb5" } })
+  console.log("queriedMuscle")
+  console.log(muscle)
   return {
 	id,
 	name,

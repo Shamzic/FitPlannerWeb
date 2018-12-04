@@ -44,6 +44,7 @@ export default class MuscleSchema extends Component {
       super(props);
       this.state = {
         selectedMuscle: null,
+        selectedExercise: null,
         gifExercise: null,
         imgBody:'/img/body-empty.png',
         shareLink: '',

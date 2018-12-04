@@ -52,10 +52,9 @@ class Exercice extends Component {
 
   render() {
     const {name} = this.props.location.state
-	  console.log("reeeeeeeeeeeeeeQQQQQQQQQQuuuuuuuuuuettttttttttttttte")
     return (
   	  <div>
-  		    <QueryEx name={this.state.name} />
+  		    <QueryEx name={this.state.name}/>
           <p>{name}</p>
       </div>
     )

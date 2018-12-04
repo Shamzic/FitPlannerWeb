@@ -12,19 +12,19 @@ const EXO_SUGGEST_QUERY = gql`
   }
   `
 
-  
+
 const USER_QUERY = gql`
   {
     user{
 	  age
 	  city
-			
+
 	  weight
 	  height
     }
   }
 `
-  
+
 //const
 class Suggestion extends Component {
  state = {
@@ -33,30 +33,30 @@ class Suggestion extends Component {
  render() {
  return(
  <div>
- 
- 
+
+
   <Query query={USER_QUERY}>
         {({ loading, error, data }) => {
           if (loading)
             return <div>Fetching</div>
           if (error)
 			return <div>Error</div>
-		
-		  const dataUser = data.user//({ where: { id : userId  } })
+
+		  //const dataUser = data.user//({ where: { id : userId  } })
 		  const imc=data.user.weight/(data.user.height*data.user.height)
 		  this.setState({imc: imc });//'gif/deltoid1.gif'
 		}}
 	</Query>
-		
+
   <Query query={EXO_SUGGEST_QUERY}>
         {({ loading, error, data }) => {
           if (loading)
             return <div>Fetching</div>
           if (error)
 			return <div>Error</div>
-		
-		const dataEx=data.excercice
-		
+
+		//const dataEx=data.excercice
+
   if(this.state.imc!=null) {
     //cardExercises =
     <div className="contrainer-fluid">
@@ -79,8 +79,8 @@ class Suggestion extends Component {
       </div>
     </div>
   }
- 
- 
+
+
  }
 }
  </Query>

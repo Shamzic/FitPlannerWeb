@@ -47,8 +47,7 @@ export default class MuscleSchema extends Component {
         selectedExercise: null,
         gifExercise: null,
         imgBody:'/img/body-empty.png',
-        shareLink: '',
-        redirect: null
+        shareLink: ''
       };
     }
 
@@ -86,25 +85,12 @@ export default class MuscleSchema extends Component {
 
 render() {
 
-  var divStyle = {
-    width: '100%',
-  }
   const gifExercise = this.state.gifExercise;
   let cardExercises;
-  let redirect = this.state.redirect;
 
-
-  if(redirect == true) {
-    const selectedMuscle = this.state.selectedMuscle;
-    return   <Link to="/about"></Link>
-      // (<Link to={{ pathname: "/exercise", state: {
-      //     name: selectedMuscle
-      //   }}}/>)
-    // return <Redirect push to={"/exercise",  state: {name: this.state.selectedMuscle}}  />;
-  }
 
   if(gifExercise!=null) {
-    this.state.shareLink = window.location.href;
+    this.setState({shareLink: window.location.href})
     console.log("pathname : "+window.location.href);
     cardExercises =
     <div className="contrainer-fluid">

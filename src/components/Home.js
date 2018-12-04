@@ -24,7 +24,7 @@ export default class Home extends Component {
 
     let WelcomePack;
     var close = this.state.close;
-    if(close == false) {
+    if(close === false) {
       WelcomePack =
       <Jumbotron>
         <h2>Welcome to FitPlanner</h2>

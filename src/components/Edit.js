@@ -24,7 +24,7 @@ import gql from 'graphql-tag'
 const UPDATE_USER_MUTATION = gql`
   mutation UpdateUserMutation($data: UserUpdateInput!, $where: UserWhereUniqueInput!) {
     updateUser(data: $data, where: $where) {
-	  id
+	    id
       name
       email
     }

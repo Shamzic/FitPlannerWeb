@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import LinkList from './LinkList'
 import CreateLink from './CreateLink'
 import Header from './Header'
+import Footer from './Footer'
 import { Switch, Route } from 'react-router-dom'
 import Login from './Login'
 import Home from './Home'
@@ -12,7 +13,7 @@ import Edit from './Edit'
 class App extends Component {
   render() {
     return (
-      <div className="">
+      <div className="container">
         <Header />
         <div className="">
           <Switch>
@@ -26,6 +27,7 @@ class App extends Component {
 			      <Route exact path="/edit" component={Edit} />
           </Switch>
         </div>
+        <Footer/>
       </div>
     )
   }

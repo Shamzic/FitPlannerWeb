@@ -122,7 +122,7 @@ render() {
   }
 
     return (
-      <div className="container">
+      <div className="container" id="body">
       <div class="row">
           <div class="col">
             <div className="text-center">

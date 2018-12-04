@@ -4,81 +4,67 @@ import { AUTH_TOKEN } from '../constants'
 import { Mutation } from 'react-apollo'
 import { Query } from 'react-apollo'
 import gql from 'graphql-tag'
-//import Link from './Link'
 
-//const { APP_SECRET, getUserId } = require('../../server/utils')
-//const { USER_QUERY } = require('')
 
-//, $where: UserWhereUniqueInput!
-//,where : $where
-/*const UPDATE_USER_MUTATION = gql`
-  mutation UpdateUserMutation($name: String!, $email: String!) {
-    updateUser(name: $name, email: $email) {
-	  id
-      name
-      email
-    }
-  }
-`
-*/
 const UPDATE_USER_MUTATION = gql`
   mutation UpdateUserMutation($data: UserUpdateInput!, $where: UserWhereUniqueInput!) {
     updateUser(data: $data, where: $where) {
 	    id
       name
       email
+	  firstname
+	  lastname
+			
+	  age
+	  city
+			
+	  weight
+	  height
     }
   }
 `
-//
 
-///
 
 const USER_QUERY = gql`
   {
     user{
       name
       email
+	  firstname
+	  lastname
+			
+	  age
+	  city
+			
+	  weight
+	  height
     }
   }
 `
-  const MutationUpdateUser=( {name , email}) => (//, {id}
-	<Mutation
-          mutation={UPDATE_USER_MUTATION}
-          variables={{
-  "data":{
-    "email": email,
-    "name" : name ,
-  },
-  "where": {"id":'cjonjhuq0jllf0a64864l79sr'}
 
-}}//, ,{id}{data},{where2}
-		  //variables={{data}, {where}}//{name,email }
-		  //onCompleted={data => this._confirm(data)}
-          onCompleted={() => Edit.props.history.push(`/profile`)}
-        >
-          {updateUserMutation => <button  className="btn btn-lg btn-primary btn-block" id="button"
-		  onClick={updateUserMutation}//(data => this._confirm(data))
-		  >Save </button>}
-    </Mutation>
-  );
+
 
 class Edit extends Component {
 
 
-    state = {// switch between Login and SignUp
-
+    state = {
 			name: '',
 			email: '',
+			firstname: '',
+			lastname: '',
+			
+			age: '',
+			city: '',
+			
+			weight: '',
+			height: '',
 			id:'cjonjhuq0jllf0a64864l79sr'
 	}
 
 
 
   render() {
-
-	console.log("ssssssssssssssssssssssaaaaaaaaaaaaaaaaaaallllllllllllluuuuuuuuutttt")
-    return (
+  return (
 	 <div>
      <div className="container text-center" id="main">
        <div class="row justify-content-md-center">
@@ -91,16 +77,10 @@ class Edit extends Component {
 			return <div>Error</div>
 
 		  const dataUser = data.user
-		  //this.setState( {where : {id: dataUser.id}})
-		  //userid=dataUser.id
-		  //this.setState({id:dataUser.id})
-		  //where:{id : dataUser.id }
+		  
           return (
-		  //state={name,email}
-
-
 				<div key={dataUser.id} className="">
-
+					
 					<p><strong> Name :</strong>
 					<input
                   className="form-control"
@@ -120,6 +100,66 @@ class Edit extends Component {
                   placeholder = {dataUser.email}
                 />
 					</p>
+					
+					<p> <strong>  Lastname :</strong>
+						<input
+                  className="form-control"
+                  value={this.state.lastname}
+                  onChange={e => this.setState({ lastname: e.target.value})}
+                  type="text"
+                  placeholder = {dataUser.lastname}
+                />
+					</p>
+					
+					<p> <strong>  Firstname :</strong>
+						<input
+                  className="form-control"
+                  value={this.state.firstname}
+                  onChange={e => this.setState({ firstname: e.target.value})}
+                  type="text"
+                  placeholder = {dataUser.firstname}
+                />
+					</p>
+					
+					<p> <strong>  Age :</strong>
+						<input
+                  className="form-control"
+                  value={this.state.age.substring(0,10)}
+                  onChange={e => this.setState({ age: e.target.value})}
+                  type="date"
+                  placeholder = {dataUser.age.substring(0,10)}
+                />
+					</p>
+					
+					<p> <strong>  City :</strong>
+						<input
+                  className="form-control"
+                  value={this.state.city}
+                  onChange={e => this.setState({ city: e.target.value})}
+                  type="text"
+                  placeholder = {dataUser.city}
+                />
+					</p>
+					
+					<p> <strong>  Weight :</strong>
+						<input
+                  className="form-control"
+                  value={this.state.weight}
+                  onChange={e => this.setState({ weight: parseFloat(e.target.value)})}
+                  type="number"
+                  placeholder = {dataUser.weight}
+                />
+					</p>
+					
+					<p> <strong>  Height :</strong>
+						<input
+                  className="form-control"
+                  value={this.state.height}
+                  onChange={e => this.setState({ height: parseFloat(e.target.value)})}
+                  type="number"
+                  placeholder = {dataUser.height}
+                />
+					</p>
 
 				</div>
           )
@@ -135,16 +175,22 @@ class Edit extends Component {
   "data":{
     "email": this.state.email,
     "name" : this.state.name ,
+    "firstname" : this.state.firstname ,
+    "lastname" : this.state.lastname ,
+    "age" : this.state.age ,
+    "city" : this.state.city ,
+    "weight" : parseFloat(this.state.weight) ,
+    "height" : parseFloat(this.state.height) ,
   },
   "where": {"id":'cjonjhuq0jllf0a64864l79sr'}
 
-}}//, ,{id}{data},{where2}
+}}
 		  //variables={{data}, {where}}//{name,email }
 		  onCompleted={data => this._confirm(data)}
           //onCompleted={() => this.props.history.push(`/profile`)}//, window.location.reload()
         >
           {updateUserMutation => <button  className="btn btn-lg btn-primary btn-block" id="button"
-		  onClick={updateUserMutation}//(data => this._confirm(data))
+		  onClick={updateUserMutation}
 		  >Save </button>}
     </Mutation>
 

@@ -22,12 +22,24 @@ async function user(parent, args, ctx, info) {
   const userId = getUserId(ctx)
   const userMe = await ctx.db.query.user({ where: { id : userId  } })//args.email"rachel.noireau@orange.fr"
   const name = userMe.name
-  const email = userMe.email //"sdfghjklmù"//await ctx.db.query.user.email//"blabla"
+  const email = userMe.email
+  const firstname = userMe.firstname
+  const lastname = userMe.lastname
+  const age = userMe.age
+  const city = userMe.city
+  const weight = userMe.weight
+  const height = userMe.height
 
   return {
 	userId,
 	name,
-	email
+	email,
+	firstname,
+	lastname,
+	age,
+	city,
+	weight,
+	height
   }
 }
 
@@ -35,12 +47,13 @@ async function user(parent, args, ctx, info) {
 async function muscle(parent, args, ctx, info) {
   const { filter, first, skip } = args // destructure input arguments
   //const userId = getUserId(ctx)
-  console.log("Query muscle !");
+  console.log("Query muscle !!");
   console.log("Args.name :"+args.name);
   const muscle = await ctx.db.query.muscle({ where: { name : args.name } })//args.email"rachel.noireau@orange.fr"
   const mid  = muscle.id
   const name = muscle.name
   const type = muscle.type
+  
 
   return {
 	mid,
@@ -49,11 +62,27 @@ async function muscle(parent, args, ctx, info) {
   }
 }
 
-
+async function exercice(parent, args, ctx, info) {
+  const { filter, first, skip } = args // destructure input arguments
+  console.log("Query Ex !");
+  console.log("Args.name :"+ args.name);
+  const exercice = await ctx.db.query.exercice({ where: { name : args.name } })
+  const id = exercice.id
+  const name = exercice.name
+  const muscle = await ctx.db.query.muscle({ first, skip, where: { id:"cjoon536zoxz90a64isxxigb5" } })
+  return {
+	id,
+	name,
+	muscle
+	
+  }
+}
+//muscle:queriedmuscle.map(muscle => muscle.id)
 //
 
 module.exports = {
   feed,
   user,
   muscle,
+  exercice
 }

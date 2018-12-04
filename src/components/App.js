@@ -9,6 +9,8 @@ import Home from './Home'
 import Profile from './Profile'
 import About from './About'
 import Edit from './Edit'
+import Suggestion from './Suggestion'
+import Exercice from './Exercice'
 
 class App extends Component {
   render() {
@@ -24,7 +26,9 @@ class App extends Component {
             <Route exact path="/create" component={CreateLink} />
             <Route exact path="/login" component={Login} />
             <Route exact path="/profile" component={Profile} />
-			      <Route exact path="/edit" component={Edit} />
+            <Route exact path="/edit" component={Edit} />
+            <Route exact path="/suggestion" component={Suggestion} />
+            <Route exact path="/exercice" component={Exercice} />
           </Switch>
         </div>
         <Footer/>

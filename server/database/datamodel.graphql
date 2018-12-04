@@ -16,7 +16,13 @@ type Link {
 type User {
   id: ID! @unique
   name: String!
+  lastname: String
+  firstname: String
   email: String! @unique
+  age: DateTime
+  city: String
+  weight: Float
+  height: Float
   password: String!
   links: [Link!]!
   votes: [Vote!]!
@@ -30,7 +36,13 @@ type Muscle {
 }
 
 type Exercice {
-  id: ID!
-  name: String
-  Muscle : Muscle
+  id: ID! @unique
+  name: String! @unique
+  muscle : Muscle
+  suggstfactor:Float
+}
+
+type Weight{
+	weight:Float
+	date:DateTime
 }

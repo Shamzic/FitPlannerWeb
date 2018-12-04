@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import '../styles/MuscleSchema.css'
 import { Query } from "react-apollo";
 import gql from 'graphql-tag'
-import { FacebookShareButton } from "react-simple-share";
+import { TwitterShareButton  } from "react-simple-share";
 import { Link } from 'react-router-dom'
 
   const MUSCLE_QUERY = gql`
@@ -93,6 +93,7 @@ render() {
   let cardExercises;
   let redirect = this.state.redirect;
 
+
   if(redirect == true) {
     const selectedMuscle = this.state.selectedMuscle;
     return   <Link to="/about"></Link>
@@ -134,10 +135,23 @@ render() {
         </div>
       </div>
       <div class="row">
-          <FacebookShareButton
-            url={this.state.shareLink}
-            color="#3B5998"
-            size="40px"
+      {/*  <TwitterShareButton
+          url="https://github.com/Shamzic/FitPlannerWeb/"
+          color="#1DA1F2"
+          size="40px"
+          text={"Come on see my profil and challenge me on the "+ this.state.selectedMuscle}
+          hashtags={"fitplanner,"+this.state.selectedMuscle}
+          via="FitPlanner"
+          related="stephanwozniak,chillective"
+        />*/}
+        <TwitterShareButton
+           url="https://github.com/Shamzic/FitPlannerWeb/"
+           color="#1DA1F2"
+           size="40px"
+           text={"Come on see my profil and challenge me on this "+ this.state.selectedMuscle+" exercise !"}
+           hashtags={"fitplanner,fitchallenge,"+this.state.selectedMuscle}
+           via="github"
+           related="stephanwozniak,chillective"
           />
       </div>
     </div>

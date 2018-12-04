@@ -10,3 +10,7 @@ body {
   color: white;
   margin-left: 20%;
 }
+
+.nav-link:hover {
+  color: black !important;
+}

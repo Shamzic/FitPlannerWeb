@@ -8,7 +8,6 @@ class Header extends Component {
   render() {
     const authToken = localStorage.getItem(AUTH_TOKEN)
     return (
-
          <nav className="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
           <div className="row">
             <Link to="/" className="navbar-brand">
@@ -17,26 +16,31 @@ class Header extends Component {
             <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
               <span className="navbar-toggler-icon"></span>
             </button>
-
           </div>
           <div className="collapse navbar-collapse" id="navbarsExampleDefault">
            <ul className="navbar-nav mr-auto">
-           <li className="nav-item active">
+           <li className="nav-item active ">
              <a className="nav-link" href="/">Home
                <span className="sr-only">
                 (current)
                </span>
              </a>
           </li>
+          {/*}  <div>
+              {authToken && (
+              <li className="nav-item active">
+                <Link to="/create" className="nav-link">Submit</Link>
+              </li>
+              )}
+            </div>*/}
+            {/*  <div>
+              {authToken && (
+              <li className="nav-item active">
+                <Link to="/exercise" className="nav-link">Exercises</Link>
+              </li>
+              )}
+            </div>*/}
           <div>
-            {authToken && (
-            <li className="nav-item active">
-              <Link to="/create" className="nav-link">Submit</Link>
-            </li>
-            )}
-          </div>
-
-		  <div>
             {authToken && (
             <li className="nav-item active">
               <Link to="/profile" className="nav-link">Profile</Link>

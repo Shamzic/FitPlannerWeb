@@ -135,15 +135,6 @@ render() {
         </div>
       </div>
       <div class="row">
-      {/*  <TwitterShareButton
-          url="https://github.com/Shamzic/FitPlannerWeb/"
-          color="#1DA1F2"
-          size="40px"
-          text={"Come on see my profil and challenge me on the "+ this.state.selectedMuscle}
-          hashtags={"fitplanner,"+this.state.selectedMuscle}
-          via="FitPlanner"
-          related="stephanwozniak,chillective"
-        />*/}
         <TwitterShareButton
            url="https://github.com/Shamzic/FitPlannerWeb/"
            color="#1DA1F2"

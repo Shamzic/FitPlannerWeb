@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { Jumbotron, Grid, Button } from 'react-bootstrap';
 import MuscleSchema from './MuscleSchema'
 import '../styles/Home.css';
-import { FacebookShareButton } from "react-simple-share";
+
 
 
 export default class Home extends Component {
@@ -43,12 +43,6 @@ export default class Home extends Component {
           <div className="muscleSchema">
             <MuscleSchema/>
           </div>
-          
-          <FacebookShareButton
-            url="https://github.com/Shamzic/"
-            color="#3B5998"
-            size="40px"
-          />
         </div>
     )
   }

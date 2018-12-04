@@ -3,7 +3,7 @@ import { Query } from 'react-apollo'
 import gql from 'graphql-tag'
 
 
-const EXERCICES_QUERY = gql`
+const EXERCISES_QUERY = gql`
   query($name: String!){
     exercice(name: $name){
       id
@@ -16,32 +16,24 @@ const EXERCICES_QUERY = gql`
     }
   }
 `
-/* id
-      
-*/
+
 const QueryEx = ({ name }) => (
-    <Query query={EXERCICES_QUERY} variables={{name}}>
+    <Query query={EXERCISES_QUERY} variables={{name}}>
           {({ loading, error, data }) => {
 			if (loading)
               return <div>Fetching</div>
             if (error)
-				
+
               return <div>Error</div>
 
         const dataExercice = data.exercice
             return (
                 <div key={dataExercice.id}>
-
-                    <h3> Exercice name: {dataExercice.name} </h3>
+                    <h3> Exercise name: {dataExercice.name} </h3>
                     <ul>
-                      <li> Exercice name: {dataExercice.name} /li>
-					  </li>
-					  <li> Exercice name: {dataExercice.muscle.name} /li>
-                      </li>
+                      <li> Exercise name: {dataExercice.name} </li>
+					            <li> Muscle name: {dataExercice.muscle.name} </li>
                     </ul>
-
-
-
                 </div>
                 )
             }}
@@ -49,20 +41,23 @@ const QueryEx = ({ name }) => (
 );
 
 class Exercice extends Component {
-  state={
-	  name:"Curl Biceps"
-  };
-  
+
+  constructor(props) {
+    super(props);
+    this.state={
+    	  name:"Curl Biceps"
+      };
+
+  }
+
   render() {
+    const {name} = this.props.location.state
 	  console.log("reeeeeeeeeeeeeeQQQQQQQQQQuuuuuuuuuuettttttttttttttte")
     return (
-	<div>
-	
-		<QueryEx name={this.state.name} />
-
-    </div>
-
-
+  	  <div>
+  		    <QueryEx name={this.state.name} />
+          <p>{name}</p>
+      </div>
     )
   }
 }

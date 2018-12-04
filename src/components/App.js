@@ -10,7 +10,7 @@ import Profile from './Profile'
 import About from './About'
 import Edit from './Edit'
 import Suggestion from './Suggestion'
-import Exercice from './Exercice'
+import Exercise from './Exercise'
 
 class App extends Component {
   render() {
@@ -28,7 +28,7 @@ class App extends Component {
             <Route exact path="/profile" component={Profile} />
             <Route exact path="/edit" component={Edit} />
             <Route exact path="/suggestion" component={Suggestion} />
-            <Route exact path="/exercice" component={Exercice} />
+            <Route exact path="/exercise" component={Exercise} />
           </Switch>
         </div>
         <Footer/>

@@ -4,18 +4,26 @@ import { Query } from "react-apollo";
 import gql from 'graphql-tag'
 
 
-const EXO_SUGGEST_QUERY = gql`
-  query($suggstfactor:suggstfactor, $orderBy : numberOfUser_DES){
-    excercice(suggstfactor: $suggstfactor, orderBy : numberOfUser_DES) {
-      name
-    }
-  }
-  `
 
+
+const EXO_SUGGEST_QUERY = gql`
+	query($suggstfactor:suggstfactor){
+		suggst(suggstfactor: $suggstfactor) {
+			name
+    }    
+  } 
+  `
   
+
+
 const USER_QUERY = gql`
   {
     user{
+      name
+      email
+	  firstname
+	  lastname
+			
 	  age
 	  city
 			
@@ -29,26 +37,41 @@ const USER_QUERY = gql`
 class Suggestion extends Component {
  state = {
 			imc: '',
+			gifExercise:'',
+			suggestfactor:1,
+			notsuggt:true 
 	}
  render() {
  return(
  <div>
- 
- 
   <Query query={USER_QUERY}>
         {({ loading, error, data }) => {
           if (loading)
             return <div>Fetching</div>
           if (error)
 			return <div>Error</div>
-		
-		  const dataUser = data.user//({ where: { id : userId  } })
-		  const imc=data.user.weight/(data.user.height*data.user.height)
-		  this.setState({imc: imc });//'gif/deltoid1.gif'
+		  console.log(data.user)
+		  const dataUser = data.user
+		  if(data.user.height!=null & data.user.weight!=null){
+			const imc=data.user.weight/(data.user.height*data.user.height)
+			console.log({imc})
+			if(imc!=null){
+				if(this.state.notsuggt)
+					if (imc<20){
+						this.setState({suggestfactor: 1 });
+						this.setState({notsuggt: false });
+				}else{
+					this.setState({suggestfactor: 1 });
+					this.setState({notsuggt: false });
+				}
+				return <div>Suggestion</div>
+			}
+			
+		  }
 		}}
 	</Query>
-		
-  <Query query={EXO_SUGGEST_QUERY}>
+	console.log({this.state.suggestfactor})
+	<Query query={EXO_SUGGEST_QUERY}>
         {({ loading, error, data }) => {
           if (loading)
             return <div>Fetching</div>
@@ -56,8 +79,8 @@ class Suggestion extends Component {
 			return <div>Error</div>
 		
 		const dataEx=data.excercice
-		
-  if(this.state.imc!=null) {
+		this.setState({gifExercise: dataEx.name });//'gif/deltoid1.gif'
+  if(this.state.suggestfactor!=null) {
     //cardExercises =
     <div className="contrainer-fluid">
       <div class="row">

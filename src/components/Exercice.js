@@ -34,9 +34,9 @@ const QueryEx = ({ name }) => (
 
                     <h3> Exercice name: {dataExercice.name} </h3>
                     <ul>
-                      <li> Exercice name: {dataExercice.name} /li>
+                      <li> Exercice name: {dataExercice.name}
 					  </li>
-					  <li> Exercice name: {dataExercice.muscle.name} /li>
+					  <li> Exercice name: {dataExercice.muscle.name}
                       </li>
                     </ul>
 
@@ -50,11 +50,10 @@ const QueryEx = ({ name }) => (
 
 class Exercice extends Component {
   state={
-	  name:"Curl Biceps"
+	  name:"biceps"
   };
   
   render() {
-	  console.log("reeeeeeeeeeeeeeQQQQQQQQQQuuuuuuuuuuettttttttttttttte")
     return (
 	<div>
 	

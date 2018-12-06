@@ -69,12 +69,12 @@ async function exercice(parent, args, ctx, info) {
   const muscle = await ctx.db.query.muscle({ where: { name : args.name } })//args.name
   const id = muscle.id
   console.log("Args.id :"+id);
-  //const name = exercice.name
-  const exercice = await ctx.db.query.exercice({ first, skip, where: { muscle : id } })
+  const name = muscle.name
+  const exercice = await ctx.db.query.exercice({ where: { muscle : muscle.id } }) //first, skip,
   return {
 	id,
 	name,
-	//muscle
+	excercice
 	
   }
 }

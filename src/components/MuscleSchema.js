@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import '../styles/MuscleSchema.css'
 import { Query } from "react-apollo";
 import gql from 'graphql-tag'
-
+import { TwitterShareButton  } from "react-simple-share";
+import { Link } from 'react-router-dom'
 
   const MUSCLE_QUERY = gql`
   query($name: String!){
@@ -37,14 +38,17 @@ import gql from 'graphql-tag'
       </Query>
     );
 
-class MuscleSchema extends Component {
+export default class MuscleSchema extends Component {
 
   constructor(props) {
       super(props);
       this.state = {
         selectedMuscle: null,
+        selectedExercise: null,
         gifExercise: null,
-        imgBody:'/img/body-empty.png'
+        imgBody:'/img/body-empty.png',
+        shareLink: '',
+        redirect: null
       };
     }
 
@@ -66,10 +70,6 @@ class MuscleSchema extends Component {
   }
 
 
-  onMuscleSelected = ({ target }) => {
-    this.setState(() => ({ selectedMuscle: target.value }));
-  };
-
   ExerciseCards(m) {
     switch(m) {
       case 'biceps':
@@ -90,39 +90,66 @@ render() {
     width: '100%',
   }
   const gifExercise = this.state.gifExercise;
-
   let cardExercises;
+  let redirect = this.state.redirect;
+
+
+  if(redirect == true) {
+    const selectedMuscle = this.state.selectedMuscle;
+    return   <Link to="/about"></Link>
+      // (<Link to={{ pathname: "/exercise", state: {
+      //     name: selectedMuscle
+      //   }}}/>)
+    // return <Redirect push to={"/exercise",  state: {name: this.state.selectedMuscle}}  />;
+  }
 
   if(gifExercise!=null) {
+    this.state.shareLink = window.location.href;
+    console.log("pathname : "+window.location.href);
     cardExercises =
     <div className="contrainer-fluid">
       <div class="row">
         <div class="col-md-4">
           <div class ="card">
-            <img src={this.state.gifExercise} id="topImage" alt="gif" onClick={() => this.openImg(this)}/>
+            <img src={this.state.gifExercise} id="topImage" alt="gif"/>
           </div>
         </div>
         <div class="col-md-4">
             <div class ="card">
-              <img src={this.state.gifExercise} id="topImage" alt="gif" onClick={() => this.openImg(this)}/>
+              <img src={this.state.gifExercise} id="topImage" alt="gif"/>
             </div>
         </div>
         <div class="col-md-4">
           <div class ="card">
-            <img src={this.state.gifExercise} id="topImage" alt="gif" onClick={() => this.openImg(this)}/>
+            <img src={this.state.gifExercise} id="topImage" alt="gif"/>
           </div>
         </div>
       </div>
       <div class="row">
         <div class ="card" id="bottomCard">
-          <img src={this.state.gifExercise} id="bottomImage" alt="gif" onClick={() => this.openImg(this)}/>
+          <Link to={{pathname: "/exercise", state : {
+              name: this.state.selectedMuscle
+            }}}>
+            <img src={this.state.gifExercise} id="bottomImage" alt="gif"/>
+          </Link>
         </div>
+      </div>
+      <div class="row">
+        <TwitterShareButton
+           url="https://github.com/Shamzic/FitPlannerWeb/"
+           color="#1DA1F2"
+           size="40px"
+           text={"Come on see my profil and challenge me on this "+ this.state.selectedMuscle+" exercise !"}
+           hashtags={"fitplanner,fitchallenge,"+this.state.selectedMuscle}
+           via="github"
+           related="stephanwozniak,chillective"
+          />
       </div>
     </div>
   }
 
     return (
-      <div className="container">
+      <div className="container" id="body">
       <div class="row">
           <div class="col">
             <div className="text-center">
@@ -161,7 +188,9 @@ render() {
                     <QueryMuscle name={this.state.selectedMuscle} />
                   )}
             </div>
-              {cardExercises}
+              <div class="row">
+                {cardExercises}
+              </div>
             </div>
           </div>
       </div>
@@ -169,5 +198,3 @@ render() {
     )
   }
 }
-
-export default MuscleSchema;

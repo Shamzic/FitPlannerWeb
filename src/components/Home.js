@@ -5,6 +5,7 @@ import MuscleSchema from './MuscleSchema'
 import '../styles/Home.css';
 
 
+
 export default class Home extends Component {
 
   constructor(props) {
@@ -43,7 +44,6 @@ export default class Home extends Component {
             <MuscleSchema/>
           </div>
         </div>
-
     )
   }
 }

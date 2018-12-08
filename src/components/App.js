@@ -15,9 +15,9 @@ import Exercise from './Exercise'
 class App extends Component {
   render() {
     return (
-      <div className="container">
+      <div className="">
         <Header />
-        <div className="">
+        <div className="container">
           <Switch>
             <Route exact path="/" component={Home} />
             <Route exact path="/about" component={About} />

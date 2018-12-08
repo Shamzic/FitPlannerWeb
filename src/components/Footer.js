@@ -1,17 +1,27 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import { withRouter } from 'react-router'
 import '../styles/Footer.css'
 
-class Header extends Component {
+class Footer extends Component {
+
   render() {
     return (
-     <div className="navbar navbar-expand-md fixed-bottom w3-theme-d2">
-     <div className="col">
-        <p id="titleFooter"> Copyright @ 2018 FitPlanner </p>
+      <div>
+        <div id="wrap">
+          <div id="main" class="container clear-top">
+
+          </div>
         </div>
-     </div>
+        <footer class="footer">
+          <p> Copyrights © FitPlanner 2018</p>
+        </footer>
+      </div>
+
+
+
    )
   }
 }
 
-export default withRouter(Header)
+export default withRouter(Footer)

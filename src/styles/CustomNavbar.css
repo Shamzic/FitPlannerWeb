@@ -1,5 +1,7 @@
 nav.navbar, .navbar-default {
-  background-color: #2892D7 !important;
+  /*background-color: #2892D7 !important;*/
+  color: white !important;
+    background-image: url("/img/background-image-header.png") !important;
 }
 
 .navbar-default {

@@ -6,6 +6,7 @@ type Query {
   user(filter: String, skip: Int, first: Int, orderBy: LinkOrderByInput): User!
   muscle(name: String): Muscle!
   exercice(name: String!): Exercice!
+  suggst(suggstfactor: Float):Exercice
   }
 
 type Feed {

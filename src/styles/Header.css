@@ -1,5 +1,5 @@
 body {
-  padding-top: 5rem;
+  padding-top: 5%;
 }
 
 .navbar-brand {
@@ -12,5 +12,5 @@ body {
 }
 
 .nav-link:hover {
-  color: black !important;
+  color: white !important;
 }

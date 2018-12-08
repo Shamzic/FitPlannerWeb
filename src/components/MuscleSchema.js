@@ -90,8 +90,8 @@ render() {
 
 
   if(gifExercise!=null) {
-    this.setState({shareLink: window.location.href})
-    console.log("pathname : "+window.location.href);
+    //this.setState({shareLink: window.location.href})
+    //console.log("pathname : "+window.location.href);
     cardExercises =
     <div className="contrainer-fluid">
       <div class="row">

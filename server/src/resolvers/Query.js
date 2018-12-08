@@ -66,23 +66,41 @@ async function exercice(parent, args, ctx, info) {
   const { filter, first, skip } = args // destructure input arguments
   console.log("Query Ex !");
   console.log("Args.name :"+ args.name);
-  const exercice = await ctx.db.query.exercice({ where: { name : args.name } })
-  const id = exercice.id
-  const name = exercice.name
-  const muscle = await ctx.db.query.muscle({ first, skip, where: { id:"cjoon536zoxz90a64isxxigb5" } })
+  const muscle = await ctx.db.query.muscle({ where: { name : args.name } })//args.name
+  const id = muscle.id
+  console.log("Args.id :"+id);
+  const name = muscle.name
+  const exercice = await ctx.db.query.exercice({ where: { muscle : muscle.id } }) //first, skip,
   return {
 	id,
 	name,
-	muscle
+	excercice
 	
   }
 }
 //muscle:queriedmuscle.map(muscle => muscle.id)
 //
 
+async function suggst(parent, args, ctx, info) {
+  const { filter, first, skip } = args // destructure input arguments
+  console.log("Args.suggestfactor :"+ args.suggstfactor);
+  const exercice = await ctx.db.query.exercice({ where: { suggstfactor : args.suggstfactor } })
+  //const id = exercice.id
+  //const name = exercice.name
+  //const muscle = await ctx.db.query.muscle({ first, skip, where: { id:"cjoon536zoxz90a64isxxigb5" } })
+  return {
+	//name
+	exercice
+	//muscle
+  }
+}
+
+
+
 module.exports = {
   feed,
   user,
   muscle,
-  exercice
+  exercice,
+  suggst
 }

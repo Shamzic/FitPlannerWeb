@@ -14,3 +14,8 @@ body {
 .nav-link:hover {
   color: white !important;
 }
+
+
+li:hover {
+  cursor:pointer;
+}

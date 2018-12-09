@@ -1,14 +1,15 @@
 import React, { Component } from 'react'
 import { Query } from 'react-apollo'
 import gql from 'graphql-tag'
+import '../styles/Exercise.css'
 
 
-const EXERCISES_QUERY = gql`
+const EXERCISE_QUERY = gql`
   query($name: String!){
-    exercice(name: $name){
-      id
-	  name
-	  muscle {
+    exercise(name: $name){
+    id
+    name
+    muscle {
         id
         name
         type
@@ -17,43 +18,40 @@ const EXERCISES_QUERY = gql`
   }
 `
 
-const QueryEx = ({ name }) => (
-    <Query query={EXERCISES_QUERY} variables={{name}}>
-          {({ loading, error, data }) => {
-			if (loading)
-              return <div>Fetching</div>
-            if (error)
+const QueryExecution = ({ name }) => (
+<Query query={EXERCISE_QUERY} variables={{name}}>
+  {({ loading, error, data }) => {
+    if (loading)
+      return <div>Fetching</div>
+    if (error)
+      return <div>Error</div>
 
-              return <div>Error</div>
-
-        const dataExercice = data.exercice
-            return (
-                <div key={dataExercice.id}>
-                    <h3> Exercise name: {dataExercice.name} </h3>
-                    <ul>
-                      <li> Exercise name: {dataExercice.name} </li>
-					            <li> Muscle name: {dataExercice.muscle.name} </li>
-                    </ul>
-                </div>
-                )
-            }}
-    </Query>
+    return (
+      <div key={data.id}>
+      <h3> Exercise name: {data.exercise.name} </h3>
+      <ul>
+        <li> Muscle used : {data.exercise.muscle.name} </li>
+        {/*<li> Muscle name: {dataExercise.muscle.name} </li>*/}
+      </ul>
+      </div>
+    )
+  }}
+</Query>
 );
 
-class Exercice extends Component {
-  state={
-	  name:"biceps"
-  };
+class Exercise extends Component {
 
+  constructor(props) {
+    super(props);
+  }
   render() {
+    const {exerciseName} = this.props.location.state
     return (
-	<div>
-
-		<QueryEx name={this.state.name} />
-
-	</div>
+    	<div id="exercise">
+    		<QueryExecution name={exerciseName}/>
+    	</div>
   )}
 }
 
 
-export default Exercice
+export default Exercise

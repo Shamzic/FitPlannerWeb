@@ -9,7 +9,7 @@ class Header extends Component {
     const authToken = localStorage.getItem(AUTH_TOKEN)
     return (
          <nav className="navbar navbar-expand-md fixed-top">
-          <div class="container">
+          <div className="container">
           <div className="row">
             <Link to="/" className="navbar-brand">
                FitPlanner

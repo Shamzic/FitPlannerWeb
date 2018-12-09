@@ -1,12 +1,12 @@
-# import DateTime, Link, Vote, LinkSubscriptionPayload,VoteSubscriptionPayload, Muscle, Exercice, UserWhereUniqueInput, UserUpdateInput, updateUser from "./generated/prisma.graphql"
+# import DateTime, Link, Vote, LinkSubscriptionPayload,VoteSubscriptionPayload, Muscle, Exercise, UserWhereUniqueInput, UserUpdateInput, updateUser from "./generated/prisma.graphql"
 
 
 type Query {
   feed(filter: String, skip: Int, first: Int, orderBy: LinkOrderByInput): Feed!
   user(filter: String, skip: Int, first: Int, orderBy: LinkOrderByInput): User!
   muscle(name: String): Muscle!
-  exercice(name: String!): Exercice!
-  suggst(suggstfactor: Float):Exercice
+  exercise(name: String!): Exercise!
+  suggst(suggstfactor: Float):Exercise
   }
 
 type Feed {

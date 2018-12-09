@@ -1,7 +1,7 @@
 # source: https://us1.prisma.sh/simon-hamery-b2180b/fitplanner-db/dev
-# timestamp: Mon Dec 03 2018 15:16:31 GMT-0500 (GMT-05:00)
+# timestamp: Sun Dec 09 2018 12:37:52 GMT-0500 (GMT-05:00)
 
-type AggregateExercice {
+type AggregateExercise {
   count: Int!
 }
 
@@ -32,7 +32,7 @@ type BatchPayload {
 
 scalar DateTime
 
-type Exercice implements Node {
+type Exercise implements Node {
   id: ID!
   name: String!
   muscle: Muscle
@@ -40,31 +40,31 @@ type Exercice implements Node {
 }
 
 """A connection to a list of items."""
-type ExerciceConnection {
+type ExerciseConnection {
   """Information to aid in pagination."""
   pageInfo: PageInfo!
 
   """A list of edges."""
-  edges: [ExerciceEdge]!
-  aggregate: AggregateExercice!
+  edges: [ExerciseEdge]!
+  aggregate: AggregateExercise!
 }
 
-input ExerciceCreateInput {
+input ExerciseCreateInput {
   name: String!
   suggstfactor: Float
   muscle: MuscleCreateOneInput
 }
 
 """An edge in a connection."""
-type ExerciceEdge {
+type ExerciseEdge {
   """The item at the end of the edge."""
-  node: Exercice!
+  node: Exercise!
 
   """A cursor for use in pagination."""
   cursor: String!
 }
 
-enum ExerciceOrderByInput {
+enum ExerciseOrderByInput {
   id_ASC
   id_DESC
   name_ASC
@@ -77,28 +77,28 @@ enum ExerciceOrderByInput {
   createdAt_DESC
 }
 
-type ExercicePreviousValues {
+type ExercisePreviousValues {
   id: ID!
   name: String!
   suggstfactor: Float
 }
 
-type ExerciceSubscriptionPayload {
+type ExerciseSubscriptionPayload {
   mutation: MutationType!
-  node: Exercice
+  node: Exercise
   updatedFields: [String!]
-  previousValues: ExercicePreviousValues
+  previousValues: ExercisePreviousValues
 }
 
-input ExerciceSubscriptionWhereInput {
+input ExerciseSubscriptionWhereInput {
   """Logical AND on all given filters."""
-  AND: [ExerciceSubscriptionWhereInput!]
+  AND: [ExerciseSubscriptionWhereInput!]
 
   """Logical OR on all given filters."""
-  OR: [ExerciceSubscriptionWhereInput!]
+  OR: [ExerciseSubscriptionWhereInput!]
 
   """Logical NOT on all given filters combined by AND."""
-  NOT: [ExerciceSubscriptionWhereInput!]
+  NOT: [ExerciseSubscriptionWhereInput!]
 
   """
   The subscription event gets dispatched when it's listed in mutation_in
@@ -119,29 +119,29 @@ input ExerciceSubscriptionWhereInput {
   The subscription event gets only dispatched when some of the field names included in this list have been updated
   """
   updatedFields_contains_some: [String!]
-  node: ExerciceWhereInput
+  node: ExerciseWhereInput
 }
 
-input ExerciceUpdateInput {
+input ExerciseUpdateInput {
   name: String
   suggstfactor: Float
   muscle: MuscleUpdateOneInput
 }
 
-input ExerciceUpdateManyMutationInput {
+input ExerciseUpdateManyMutationInput {
   name: String
   suggstfactor: Float
 }
 
-input ExerciceWhereInput {
+input ExerciseWhereInput {
   """Logical AND on all given filters."""
-  AND: [ExerciceWhereInput!]
+  AND: [ExerciseWhereInput!]
 
   """Logical OR on all given filters."""
-  OR: [ExerciceWhereInput!]
+  OR: [ExerciseWhereInput!]
 
   """Logical NOT on all given filters combined by AND."""
-  NOT: [ExerciceWhereInput!]
+  NOT: [ExerciseWhereInput!]
   id: ID
 
   """All values that are not equal to given value."""
@@ -247,7 +247,7 @@ input ExerciceWhereInput {
   muscle: MuscleWhereInput
 }
 
-input ExerciceWhereUniqueInput {
+input ExerciseWhereUniqueInput {
   id: ID
   name: String
 }
@@ -1018,33 +1018,33 @@ type Mutation {
   createVote(data: VoteCreateInput!): Vote!
   createLink(data: LinkCreateInput!): Link!
   createUser(data: UserCreateInput!): User!
-  createExercice(data: ExerciceCreateInput!): Exercice!
+  createExercise(data: ExerciseCreateInput!): Exercise!
   createWeight(data: WeightCreateInput!): Weight!
   createMuscle(data: MuscleCreateInput!): Muscle!
   updateVote(data: VoteUpdateInput!, where: VoteWhereUniqueInput!): Vote
   updateLink(data: LinkUpdateInput!, where: LinkWhereUniqueInput!): Link
   updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
-  updateExercice(data: ExerciceUpdateInput!, where: ExerciceWhereUniqueInput!): Exercice
+  updateExercise(data: ExerciseUpdateInput!, where: ExerciseWhereUniqueInput!): Exercise
   updateMuscle(data: MuscleUpdateInput!, where: MuscleWhereUniqueInput!): Muscle
   deleteVote(where: VoteWhereUniqueInput!): Vote
   deleteLink(where: LinkWhereUniqueInput!): Link
   deleteUser(where: UserWhereUniqueInput!): User
-  deleteExercice(where: ExerciceWhereUniqueInput!): Exercice
+  deleteExercise(where: ExerciseWhereUniqueInput!): Exercise
   deleteMuscle(where: MuscleWhereUniqueInput!): Muscle
   upsertVote(where: VoteWhereUniqueInput!, create: VoteCreateInput!, update: VoteUpdateInput!): Vote!
   upsertLink(where: LinkWhereUniqueInput!, create: LinkCreateInput!, update: LinkUpdateInput!): Link!
   upsertUser(where: UserWhereUniqueInput!, create: UserCreateInput!, update: UserUpdateInput!): User!
-  upsertExercice(where: ExerciceWhereUniqueInput!, create: ExerciceCreateInput!, update: ExerciceUpdateInput!): Exercice!
+  upsertExercise(where: ExerciseWhereUniqueInput!, create: ExerciseCreateInput!, update: ExerciseUpdateInput!): Exercise!
   upsertMuscle(where: MuscleWhereUniqueInput!, create: MuscleCreateInput!, update: MuscleUpdateInput!): Muscle!
   updateManyLinks(data: LinkUpdateManyMutationInput!, where: LinkWhereInput): BatchPayload!
   updateManyUsers(data: UserUpdateManyMutationInput!, where: UserWhereInput): BatchPayload!
-  updateManyExercices(data: ExerciceUpdateManyMutationInput!, where: ExerciceWhereInput): BatchPayload!
+  updateManyExercises(data: ExerciseUpdateManyMutationInput!, where: ExerciseWhereInput): BatchPayload!
   updateManyWeights(data: WeightUpdateManyMutationInput!, where: WeightWhereInput): BatchPayload!
   updateManyMuscles(data: MuscleUpdateManyMutationInput!, where: MuscleWhereInput): BatchPayload!
   deleteManyVotes(where: VoteWhereInput): BatchPayload!
   deleteManyLinks(where: LinkWhereInput): BatchPayload!
   deleteManyUsers(where: UserWhereInput): BatchPayload!
-  deleteManyExercices(where: ExerciceWhereInput): BatchPayload!
+  deleteManyExercises(where: ExerciseWhereInput): BatchPayload!
   deleteManyWeights(where: WeightWhereInput): BatchPayload!
   deleteManyMuscles(where: MuscleWhereInput): BatchPayload!
 }
@@ -1080,18 +1080,18 @@ type Query {
   votes(where: VoteWhereInput, orderBy: VoteOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Vote]!
   links(where: LinkWhereInput, orderBy: LinkOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Link]!
   users(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User]!
-  exercices(where: ExerciceWhereInput, orderBy: ExerciceOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Exercice]!
+  exercises(where: ExerciseWhereInput, orderBy: ExerciseOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Exercise]!
   weights(where: WeightWhereInput, orderBy: WeightOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Weight]!
   muscles(where: MuscleWhereInput, orderBy: MuscleOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Muscle]!
   vote(where: VoteWhereUniqueInput!): Vote
   link(where: LinkWhereUniqueInput!): Link
   user(where: UserWhereUniqueInput!): User
-  exercice(where: ExerciceWhereUniqueInput!): Exercice
+  exercise(where: ExerciseWhereUniqueInput!): Exercise
   muscle(where: MuscleWhereUniqueInput!): Muscle
   votesConnection(where: VoteWhereInput, orderBy: VoteOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): VoteConnection!
   linksConnection(where: LinkWhereInput, orderBy: LinkOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): LinkConnection!
   usersConnection(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserConnection!
-  exercicesConnection(where: ExerciceWhereInput, orderBy: ExerciceOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ExerciceConnection!
+  exercisesConnection(where: ExerciseWhereInput, orderBy: ExerciseOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ExerciseConnection!
   weightsConnection(where: WeightWhereInput, orderBy: WeightOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): WeightConnection!
   musclesConnection(where: MuscleWhereInput, orderBy: MuscleOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): MuscleConnection!
 
@@ -1106,7 +1106,7 @@ type Subscription {
   vote(where: VoteSubscriptionWhereInput): VoteSubscriptionPayload
   link(where: LinkSubscriptionWhereInput): LinkSubscriptionPayload
   user(where: UserSubscriptionWhereInput): UserSubscriptionPayload
-  exercice(where: ExerciceSubscriptionWhereInput): ExerciceSubscriptionPayload
+  exercise(where: ExerciseSubscriptionWhereInput): ExerciseSubscriptionPayload
   weight(where: WeightSubscriptionWhereInput): WeightSubscriptionPayload
   muscle(where: MuscleSubscriptionWhereInput): MuscleSubscriptionPayload
 }

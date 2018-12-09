@@ -49,7 +49,7 @@ class Login extends Component {
     const { login, email, password, name } = this.state
 
     return (
-      <div className="container text-center" id="main">
+      <div className="container text-center" id="login">
         <div class="row justify-content-md-center">
           <div className="col col-lg-4">
 

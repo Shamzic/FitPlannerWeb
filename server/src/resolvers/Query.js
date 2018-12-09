@@ -53,7 +53,6 @@ async function muscle(parent, args, ctx, info) {
   const mid  = muscle.id
   const name = muscle.name
   const type = muscle.type
-  
 
   return {
 	mid,
@@ -62,20 +61,32 @@ async function muscle(parent, args, ctx, info) {
   }
 }
 
-async function exercice(parent, args, ctx, info) {
+async function exercise(parent, args, ctx, info) {
   const { filter, first, skip } = args // destructure input arguments
   console.log("Query Ex !");
   console.log("Args.name :"+ args.name);
-  const muscle = await ctx.db.query.muscle({ where: { name : args.name } })//args.name
-  const id = muscle.id
-  console.log("Args.id :"+id);
-  const name = muscle.name
-  const exercice = await ctx.db.query.exercice({ where: { muscle : muscle.id } }) //first, skip,
+  var exercise = await ctx.db.query.exercise({ where: { name : args.name }},
+    `{
+      id
+      name
+      suggstfactor
+      muscle {
+        id
+        name
+        type
+      }
+    }`
+  );
+  var name = exercise.name;
+  var suggstfactor = exercise.suggstfactor;
+  var id = exercise.id;
+  var  muscle = exercise.muscle;
   return {
-	id,
-	name,
-	excercice
-	
+  	exercise,
+    suggstfactor,
+    id,
+    name,
+    muscle
   }
 }
 //muscle:queriedmuscle.map(muscle => muscle.id)
@@ -84,13 +95,13 @@ async function exercice(parent, args, ctx, info) {
 async function suggst(parent, args, ctx, info) {
   const { filter, first, skip } = args // destructure input arguments
   console.log("Args.suggestfactor :"+ args.suggstfactor);
-  const exercice = await ctx.db.query.exercice({ where: { suggstfactor : args.suggstfactor } })
-  //const id = exercice.id
-  //const name = exercice.name
+  const exercise = await ctx.db.query.exercise({ where: { suggstfactor : args.suggstfactor } })
+  //const id = exercise.id
+  //const name = exercise.name
   //const muscle = await ctx.db.query.muscle({ first, skip, where: { id:"cjoon536zoxz90a64isxxigb5" } })
   return {
 	//name
-	exercice
+	exercise
 	//muscle
   }
 }
@@ -101,6 +112,6 @@ module.exports = {
   feed,
   user,
   muscle,
-  exercice,
+  exercise,
   suggst
 }

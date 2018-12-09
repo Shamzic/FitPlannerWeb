@@ -72,10 +72,12 @@ export default class MuscleSchema extends Component {
   ExerciseCards(m) {
     switch(m) {
       case 'biceps':
-        this.setState({gifExercise: 'gif/biceps1.gif'});
+        this.setState({gifExercise: 'gif/curlbiceps.gif'});
+        this.setState({selectedExercise: 'curlbiceps'});
           break;
-      case 'deltoïde':
-        this.setState({gifExercise: 'gif/deltoid1.gif'});
+      case 'deltoid':
+        this.setState({gifExercise: 'gif/dumbellshoulderdeltoid.gif'});
+        this.setState({selectedExercise: 'dumbellshoulderdeltoid'});
           break;
       default :
           this.setState({gifExercise: null});
@@ -113,9 +115,8 @@ render() {
       </div>
       <div class="row">
         <div class ="card" id="bottomCard">
-          <Link to={{pathname: "/exercise", state : {
-              name: this.state.selectedMuscle
-            }}}>
+          <Link to={{pathname: "/exercise", state: { exerciseName: this.state.selectedExercise}
+          }}>
             <img src={this.state.gifExercise} id="bottomImage" alt="gif"/>
           </Link>
         </div>
@@ -128,7 +129,7 @@ render() {
            text={"Come on see my profil and challenge me on this "+ this.state.selectedMuscle+" exercise !"}
            hashtags={"fitplanner,fitchallenge,"+this.state.selectedMuscle}
            via="github"
-           related="stephanwozniak,chillective"
+           related="stephanwozniak ,chillective"
           />
       </div>
     </div>
@@ -154,12 +155,12 @@ render() {
                   onMouseOut={() =>  this.handleMouseOut()}
                 />
                 <area shape="poly" coords="64,111,78,109,90,111,88,123,77,136,50,159,48,145,49,130,51,120"
-                  alt="deltoideLeft" onClick={() => this.ExerciseCards("deltoïde")}
+                  alt="deltoidLeft" onClick={() => this.ExerciseCards("deltoid")}
                   onMouseOver={() => this.handleMouseOver("deltoid")}
                   onMouseOut={() =>  this.handleMouseOut()}
                 />
               <area shape="poly" coords="184,111,187,121,192,129,200,137,207,143,213,148,219,154,225,158,226,145,226,137,226,129,225,124,222,119,218,115,212,113,205,110,197,109"
-                alt="deltoideRight" onClick={() => this.ExerciseCards("deltoïde")}
+                alt="deltoidRight" onClick={() => this.ExerciseCards("deltoid")}
                 onMouseOver={() => this.handleMouseOver("deltoid")}
                 onMouseOut={() =>  this.handleMouseOut()}
               />

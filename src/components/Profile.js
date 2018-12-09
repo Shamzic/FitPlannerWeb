@@ -34,7 +34,7 @@ class Profil extends Component {
 			      return <div>Error</div>
 
           const dataUser = data.user
-		  var age = "2000-01-01"
+		  var age = ""
 		  if(dataUser.age){
 			  age = dataUser.age.substring(0,10)
 		  }

@@ -223,6 +223,6 @@ class Edit extends Component {
 
 }
 
-
+//placeholder = {dataUser.age.substring(0,10)}//pour la date
 
 export default Edit

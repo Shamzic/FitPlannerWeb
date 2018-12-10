@@ -34,6 +34,11 @@ class Profil extends Component {
 			      return <div>Error</div>
 
           const dataUser = data.user
+		  var age = ""
+		  if(dataUser.age){
+			  age = dataUser.age.substring(0,10)
+		  }
+		  
  return (
             <div className="container text-center" id="main">
               <div class="row justify-content-md-center">
@@ -44,7 +49,7 @@ class Profil extends Component {
     					<p className="form-control">  Email : {dataUser.email} </p>
     					<p className="form-control">  Lastname : {dataUser.lastname} </p>
     					<p className="form-control">  Firstname : {dataUser.firstname} </p>
-    					<p className="form-control">  Age : {dataUser.age.substring(0,10)} </p>
+    					<p className="form-control">  DayofBirth : {age} </p>
     					<p className="form-control">  City : {dataUser.city} </p>
     					<p className="form-control">  Weight : {dataUser.weight} </p>
     					<p className="form-control">  Height : {dataUser.height} </p>

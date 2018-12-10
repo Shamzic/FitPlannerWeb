@@ -20,7 +20,7 @@ async function feed(parent, args, ctx, info) {
 async function user(parent, args, ctx, info) {
   const { filter, first, skip } = args // destructure input arguments
   const userId = getUserId(ctx)
-  const userMe = await ctx.db.query.user({ where: { id : userId  } })//args.email"rachel.noireau@orange.fr"
+  const userMe = await ctx.db.query.user({ where: { id : userId  } })
   const name = userMe.name
   const email = userMe.email
   const firstname = userMe.firstname
@@ -56,6 +56,7 @@ async function muscle(parent, args, ctx, info) {
       type
       exercises {
         name
+        imageUrl
       }
     }`
 )

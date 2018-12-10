@@ -1,5 +1,5 @@
 # source: https://us1.prisma.sh/simon-hamery-b2180b/fitplanner-db/dev
-# timestamp: Sun Dec 09 2018 17:12:49 GMT-0500 (GMT-05:00)
+# timestamp: Sun Dec 09 2018 22:29:25 GMT-0500 (GMT-05:00)
 
 type AggregateExercise {
   count: Int!
@@ -37,6 +37,7 @@ type Exercise implements Node {
   name: String!
   muscle: Muscle
   suggstfactor: Float
+  imageUrl: String
 }
 
 """A connection to a list of items."""
@@ -52,6 +53,7 @@ type ExerciseConnection {
 input ExerciseCreateInput {
   name: String!
   suggstfactor: Float
+  imageUrl: String
   muscle: MuscleCreateOneWithoutExercisesInput
 }
 
@@ -63,6 +65,7 @@ input ExerciseCreateManyWithoutMuscleInput {
 input ExerciseCreateWithoutMuscleInput {
   name: String!
   suggstfactor: Float
+  imageUrl: String
 }
 
 """An edge in a connection."""
@@ -81,6 +84,8 @@ enum ExerciseOrderByInput {
   name_DESC
   suggstfactor_ASC
   suggstfactor_DESC
+  imageUrl_ASC
+  imageUrl_DESC
   updatedAt_ASC
   updatedAt_DESC
   createdAt_ASC
@@ -91,6 +96,7 @@ type ExercisePreviousValues {
   id: ID!
   name: String!
   suggstfactor: Float
+  imageUrl: String
 }
 
 input ExerciseScalarWhereInput {
@@ -204,6 +210,46 @@ input ExerciseScalarWhereInput {
 
   """All values greater than or equal the given value."""
   suggstfactor_gte: Float
+  imageUrl: String
+
+  """All values that are not equal to given value."""
+  imageUrl_not: String
+
+  """All values that are contained in given list."""
+  imageUrl_in: [String!]
+
+  """All values that are not contained in given list."""
+  imageUrl_not_in: [String!]
+
+  """All values less than the given value."""
+  imageUrl_lt: String
+
+  """All values less than or equal the given value."""
+  imageUrl_lte: String
+
+  """All values greater than the given value."""
+  imageUrl_gt: String
+
+  """All values greater than or equal the given value."""
+  imageUrl_gte: String
+
+  """All values containing the given string."""
+  imageUrl_contains: String
+
+  """All values not containing the given string."""
+  imageUrl_not_contains: String
+
+  """All values starting with the given string."""
+  imageUrl_starts_with: String
+
+  """All values not starting with the given string."""
+  imageUrl_not_starts_with: String
+
+  """All values ending with the given string."""
+  imageUrl_ends_with: String
+
+  """All values not ending with the given string."""
+  imageUrl_not_ends_with: String
 }
 
 type ExerciseSubscriptionPayload {
@@ -248,17 +294,20 @@ input ExerciseSubscriptionWhereInput {
 input ExerciseUpdateInput {
   name: String
   suggstfactor: Float
+  imageUrl: String
   muscle: MuscleUpdateOneWithoutExercisesInput
 }
 
 input ExerciseUpdateManyDataInput {
   name: String
   suggstfactor: Float
+  imageUrl: String
 }
 
 input ExerciseUpdateManyMutationInput {
   name: String
   suggstfactor: Float
+  imageUrl: String
 }
 
 input ExerciseUpdateManyWithoutMuscleInput {
@@ -280,6 +329,7 @@ input ExerciseUpdateManyWithWhereNestedInput {
 input ExerciseUpdateWithoutMuscleDataInput {
   name: String
   suggstfactor: Float
+  imageUrl: String
 }
 
 input ExerciseUpdateWithWhereUniqueWithoutMuscleInput {
@@ -404,6 +454,46 @@ input ExerciseWhereInput {
 
   """All values greater than or equal the given value."""
   suggstfactor_gte: Float
+  imageUrl: String
+
+  """All values that are not equal to given value."""
+  imageUrl_not: String
+
+  """All values that are contained in given list."""
+  imageUrl_in: [String!]
+
+  """All values that are not contained in given list."""
+  imageUrl_not_in: [String!]
+
+  """All values less than the given value."""
+  imageUrl_lt: String
+
+  """All values less than or equal the given value."""
+  imageUrl_lte: String
+
+  """All values greater than the given value."""
+  imageUrl_gt: String
+
+  """All values greater than or equal the given value."""
+  imageUrl_gte: String
+
+  """All values containing the given string."""
+  imageUrl_contains: String
+
+  """All values not containing the given string."""
+  imageUrl_not_contains: String
+
+  """All values starting with the given string."""
+  imageUrl_starts_with: String
+
+  """All values not starting with the given string."""
+  imageUrl_not_starts_with: String
+
+  """All values ending with the given string."""
+  imageUrl_ends_with: String
+
+  """All values not ending with the given string."""
+  imageUrl_not_ends_with: String
   muscle: MuscleWhereInput
 }
 

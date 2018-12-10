@@ -38,13 +38,13 @@ class Profil extends Component {
 		  if(dataUser.age){
 			  age = dataUser.age.substring(0,10)
 		  }
-		  
+
  return (
             <div className="container text-center" id="main">
               <div class="row justify-content-md-center">
                 <div className="col col-lg-4">
     				<div key={dataUser.id} className="">
-              	<h4> {dataUser.name}'s profile </h4>
+              	<h4> {dataUser.name} profile </h4>
     					<p className="form-control">  Username : {dataUser.name} </p>
     					<p className="form-control">  Email : {dataUser.email} </p>
     					<p className="form-control">  Lastname : {dataUser.lastname} </p>
@@ -60,7 +60,7 @@ class Profil extends Component {
       </div>
             )
         }}
-      </Query>//className="nav-link"//lien a pparait que quandon passe dessu
+      </Query>//className="nav-link"//lien apparait quand on passe dessus
     )
   }
 }

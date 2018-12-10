@@ -3,7 +3,7 @@ import '../styles/MuscleSchema.css'
 import { Query } from "react-apollo";
 import gql from 'graphql-tag'
 import { TwitterShareButton  } from "react-simple-share";
-import { Link } from 'react-router-dom'
+
 import Caroussel from './Caroussel'
 
   const MUSCLE_QUERY = gql`
@@ -31,7 +31,7 @@ export default class MuscleSchema extends Component {
         gifExercise: null,
         imgBody:'/img/body-empty.png',
         shareLink: '',
-        exerciseList: ['toto','caro', 'pascalou'],
+        exerciseList: null,
       };
     }
 
@@ -73,7 +73,7 @@ export default class MuscleSchema extends Component {
 render() {
 
 
-    const QueryMuscle = ({ name }) => (
+    var QueryMuscle = ({ name }) => (
       <Query
         query={MUSCLE_QUERY}
         variables = {{ name }}
@@ -87,19 +87,11 @@ render() {
 
             const dataMuscle = data.muscle
             var exerciseList = data.muscle.exercises
-            // this.setState({exerciseList: data.muscle.exercises});
+
             return (
               <div key={dataMuscle.id} className="alert alert-primary">
                 <p> <strong>Selected muscle :</strong> {dataMuscle.name}</p>
               <p> <strong>Type :</strong> {dataMuscle.type} </p>
-                <div>
-                  <h>Liste des exercices associés : </h>
-                  <ul>
-                      {exerciseList.map(exercise => <li>{exercise.name}</li>)}
-                  </ul>
-
-
-                </div>
               </div>
               )
           }}
@@ -109,40 +101,10 @@ render() {
   const gifExercise = this.state.gifExercise;
   let cardExercises;
 
-  var items = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-
-
-
   if(gifExercise!=null) {
-    //this.setState({shareLink: window.location.href})
-    //console.log("pathname : "+window.location.href);
     cardExercises =
     <div className="contrainer-fluid">
-      <div class="row">
-        <div class="col-md-4">
-          <div class ="card">
-            <img src={this.state.gifExercise} id="topImage" alt="gif"/>
-          </div>
-        </div>
-        <div class="col-md-4">
-            <div class ="card">
-              <img src={this.state.gifExercise} id="topImage" alt="gif"/>
-            </div>
-        </div>
-        <div class="col-md-4">
-          <div class ="card">
-            <img src={this.state.gifExercise} id="topImage" alt="gif"/>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class ="card" id="bottomCard">
-          <Link to={{pathname: "/exercise", state: { exerciseName: this.state.selectedExercise}
-          }}>
-            <img src={this.state.gifExercise} id="bottomImage" alt="gif"/>
-          </Link>
-        </div>
-      </div>
+
       <div class="row">
         <TwitterShareButton
            url="https://github.com/Shamzic/FitPlannerWeb/"
@@ -157,6 +119,10 @@ render() {
     </div>
   }
 
+    let caroussel = null;
+    if(this.state.selectedMuscle != null) {
+      caroussel = <div><Caroussel selectedMuscle={this.state.selectedMuscle}/></div>
+    }
     return (
       <div className="container" id="body">
       <div class="row">
@@ -191,9 +157,7 @@ render() {
           </div>
           <div class="col">
             <div class="container">
-              <div>
-                <Caroussel exerciseList={this.state.exerciseList}/>
-              </div>
+              {caroussel}
               <div class="row">
 			  {this.state.selectedMuscle}
                 {this.state.selectedMuscle && (

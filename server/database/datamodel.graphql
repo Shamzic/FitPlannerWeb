@@ -41,6 +41,7 @@ type Exercise {
   name: String! @unique
   muscle: Muscle
   suggstfactor:Float
+  imageUrl: String
 }
 
 type Weight{

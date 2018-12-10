@@ -31,7 +31,7 @@ export default class MuscleSchema extends Component {
         gifExercise: null,
         imgBody:'/img/body-empty.png',
         shareLink: '',
-        exerciseList: null,
+        exerciseList: ['toto','caro', 'pascalou'],
       };
     }
 
@@ -203,7 +203,6 @@ render() {
               <div class="row">
                 {cardExercises}
               </div>
-
             </div>
           </div>
       </div>

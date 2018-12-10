@@ -1,5 +1,5 @@
 # source: https://us1.prisma.sh/simon-hamery-b2180b/fitplanner-db/dev
-# timestamp: Sun Dec 09 2018 12:37:52 GMT-0500 (GMT-05:00)
+# timestamp: Sun Dec 09 2018 17:12:49 GMT-0500 (GMT-05:00)
 
 type AggregateExercise {
   count: Int!
@@ -52,7 +52,17 @@ type ExerciseConnection {
 input ExerciseCreateInput {
   name: String!
   suggstfactor: Float
-  muscle: MuscleCreateOneInput
+  muscle: MuscleCreateOneWithoutExercisesInput
+}
+
+input ExerciseCreateManyWithoutMuscleInput {
+  create: [ExerciseCreateWithoutMuscleInput!]
+  connect: [ExerciseWhereUniqueInput!]
+}
+
+input ExerciseCreateWithoutMuscleInput {
+  name: String!
+  suggstfactor: Float
 }
 
 """An edge in a connection."""
@@ -81,6 +91,119 @@ type ExercisePreviousValues {
   id: ID!
   name: String!
   suggstfactor: Float
+}
+
+input ExerciseScalarWhereInput {
+  """Logical AND on all given filters."""
+  AND: [ExerciseScalarWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [ExerciseScalarWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [ExerciseScalarWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  name: String
+
+  """All values that are not equal to given value."""
+  name_not: String
+
+  """All values that are contained in given list."""
+  name_in: [String!]
+
+  """All values that are not contained in given list."""
+  name_not_in: [String!]
+
+  """All values less than the given value."""
+  name_lt: String
+
+  """All values less than or equal the given value."""
+  name_lte: String
+
+  """All values greater than the given value."""
+  name_gt: String
+
+  """All values greater than or equal the given value."""
+  name_gte: String
+
+  """All values containing the given string."""
+  name_contains: String
+
+  """All values not containing the given string."""
+  name_not_contains: String
+
+  """All values starting with the given string."""
+  name_starts_with: String
+
+  """All values not starting with the given string."""
+  name_not_starts_with: String
+
+  """All values ending with the given string."""
+  name_ends_with: String
+
+  """All values not ending with the given string."""
+  name_not_ends_with: String
+  suggstfactor: Float
+
+  """All values that are not equal to given value."""
+  suggstfactor_not: Float
+
+  """All values that are contained in given list."""
+  suggstfactor_in: [Float!]
+
+  """All values that are not contained in given list."""
+  suggstfactor_not_in: [Float!]
+
+  """All values less than the given value."""
+  suggstfactor_lt: Float
+
+  """All values less than or equal the given value."""
+  suggstfactor_lte: Float
+
+  """All values greater than the given value."""
+  suggstfactor_gt: Float
+
+  """All values greater than or equal the given value."""
+  suggstfactor_gte: Float
 }
 
 type ExerciseSubscriptionPayload {
@@ -125,12 +248,49 @@ input ExerciseSubscriptionWhereInput {
 input ExerciseUpdateInput {
   name: String
   suggstfactor: Float
-  muscle: MuscleUpdateOneInput
+  muscle: MuscleUpdateOneWithoutExercisesInput
+}
+
+input ExerciseUpdateManyDataInput {
+  name: String
+  suggstfactor: Float
 }
 
 input ExerciseUpdateManyMutationInput {
   name: String
   suggstfactor: Float
+}
+
+input ExerciseUpdateManyWithoutMuscleInput {
+  create: [ExerciseCreateWithoutMuscleInput!]
+  connect: [ExerciseWhereUniqueInput!]
+  disconnect: [ExerciseWhereUniqueInput!]
+  delete: [ExerciseWhereUniqueInput!]
+  update: [ExerciseUpdateWithWhereUniqueWithoutMuscleInput!]
+  updateMany: [ExerciseUpdateManyWithWhereNestedInput!]
+  deleteMany: [ExerciseScalarWhereInput!]
+  upsert: [ExerciseUpsertWithWhereUniqueWithoutMuscleInput!]
+}
+
+input ExerciseUpdateManyWithWhereNestedInput {
+  where: ExerciseScalarWhereInput!
+  data: ExerciseUpdateManyDataInput!
+}
+
+input ExerciseUpdateWithoutMuscleDataInput {
+  name: String
+  suggstfactor: Float
+}
+
+input ExerciseUpdateWithWhereUniqueWithoutMuscleInput {
+  where: ExerciseWhereUniqueInput!
+  data: ExerciseUpdateWithoutMuscleDataInput!
+}
+
+input ExerciseUpsertWithWhereUniqueWithoutMuscleInput {
+  where: ExerciseWhereUniqueInput!
+  update: ExerciseUpdateWithoutMuscleDataInput!
+  create: ExerciseCreateWithoutMuscleInput!
 }
 
 input ExerciseWhereInput {
@@ -760,6 +920,7 @@ type Muscle implements Node {
   id: ID!
   name: String!
   type: String!
+  exercises(where: ExerciseWhereInput, orderBy: ExerciseOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Exercise!]
 }
 
 """A connection to a list of items."""
@@ -775,11 +936,17 @@ type MuscleConnection {
 input MuscleCreateInput {
   name: String!
   type: String!
+  exercises: ExerciseCreateManyWithoutMuscleInput
 }
 
-input MuscleCreateOneInput {
-  create: MuscleCreateInput
+input MuscleCreateOneWithoutExercisesInput {
+  create: MuscleCreateWithoutExercisesInput
   connect: MuscleWhereUniqueInput
+}
+
+input MuscleCreateWithoutExercisesInput {
+  name: String!
+  type: String!
 }
 
 """An edge in a connection."""
@@ -849,14 +1016,10 @@ input MuscleSubscriptionWhereInput {
   node: MuscleWhereInput
 }
 
-input MuscleUpdateDataInput {
-  name: String
-  type: String
-}
-
 input MuscleUpdateInput {
   name: String
   type: String
+  exercises: ExerciseUpdateManyWithoutMuscleInput
 }
 
 input MuscleUpdateManyMutationInput {
@@ -864,18 +1027,23 @@ input MuscleUpdateManyMutationInput {
   type: String
 }
 
-input MuscleUpdateOneInput {
-  create: MuscleCreateInput
+input MuscleUpdateOneWithoutExercisesInput {
+  create: MuscleCreateWithoutExercisesInput
   connect: MuscleWhereUniqueInput
   disconnect: Boolean
   delete: Boolean
-  update: MuscleUpdateDataInput
-  upsert: MuscleUpsertNestedInput
+  update: MuscleUpdateWithoutExercisesDataInput
+  upsert: MuscleUpsertWithoutExercisesInput
 }
 
-input MuscleUpsertNestedInput {
-  update: MuscleUpdateDataInput!
-  create: MuscleCreateInput!
+input MuscleUpdateWithoutExercisesDataInput {
+  name: String
+  type: String
+}
+
+input MuscleUpsertWithoutExercisesInput {
+  update: MuscleUpdateWithoutExercisesDataInput!
+  create: MuscleCreateWithoutExercisesInput!
 }
 
 input MuscleWhereInput {
@@ -1007,6 +1175,9 @@ input MuscleWhereInput {
 
   """All values not ending with the given string."""
   type_not_ends_with: String
+  exercises_every: ExerciseWhereInput
+  exercises_some: ExerciseWhereInput
+  exercises_none: ExerciseWhereInput
 }
 
 input MuscleWhereUniqueInput {
@@ -1018,35 +1189,35 @@ type Mutation {
   createVote(data: VoteCreateInput!): Vote!
   createLink(data: LinkCreateInput!): Link!
   createUser(data: UserCreateInput!): User!
+  createMuscle(data: MuscleCreateInput!): Muscle!
   createExercise(data: ExerciseCreateInput!): Exercise!
   createWeight(data: WeightCreateInput!): Weight!
-  createMuscle(data: MuscleCreateInput!): Muscle!
   updateVote(data: VoteUpdateInput!, where: VoteWhereUniqueInput!): Vote
   updateLink(data: LinkUpdateInput!, where: LinkWhereUniqueInput!): Link
   updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
-  updateExercise(data: ExerciseUpdateInput!, where: ExerciseWhereUniqueInput!): Exercise
   updateMuscle(data: MuscleUpdateInput!, where: MuscleWhereUniqueInput!): Muscle
+  updateExercise(data: ExerciseUpdateInput!, where: ExerciseWhereUniqueInput!): Exercise
   deleteVote(where: VoteWhereUniqueInput!): Vote
   deleteLink(where: LinkWhereUniqueInput!): Link
   deleteUser(where: UserWhereUniqueInput!): User
-  deleteExercise(where: ExerciseWhereUniqueInput!): Exercise
   deleteMuscle(where: MuscleWhereUniqueInput!): Muscle
+  deleteExercise(where: ExerciseWhereUniqueInput!): Exercise
   upsertVote(where: VoteWhereUniqueInput!, create: VoteCreateInput!, update: VoteUpdateInput!): Vote!
   upsertLink(where: LinkWhereUniqueInput!, create: LinkCreateInput!, update: LinkUpdateInput!): Link!
   upsertUser(where: UserWhereUniqueInput!, create: UserCreateInput!, update: UserUpdateInput!): User!
-  upsertExercise(where: ExerciseWhereUniqueInput!, create: ExerciseCreateInput!, update: ExerciseUpdateInput!): Exercise!
   upsertMuscle(where: MuscleWhereUniqueInput!, create: MuscleCreateInput!, update: MuscleUpdateInput!): Muscle!
+  upsertExercise(where: ExerciseWhereUniqueInput!, create: ExerciseCreateInput!, update: ExerciseUpdateInput!): Exercise!
   updateManyLinks(data: LinkUpdateManyMutationInput!, where: LinkWhereInput): BatchPayload!
   updateManyUsers(data: UserUpdateManyMutationInput!, where: UserWhereInput): BatchPayload!
+  updateManyMuscles(data: MuscleUpdateManyMutationInput!, where: MuscleWhereInput): BatchPayload!
   updateManyExercises(data: ExerciseUpdateManyMutationInput!, where: ExerciseWhereInput): BatchPayload!
   updateManyWeights(data: WeightUpdateManyMutationInput!, where: WeightWhereInput): BatchPayload!
-  updateManyMuscles(data: MuscleUpdateManyMutationInput!, where: MuscleWhereInput): BatchPayload!
   deleteManyVotes(where: VoteWhereInput): BatchPayload!
   deleteManyLinks(where: LinkWhereInput): BatchPayload!
   deleteManyUsers(where: UserWhereInput): BatchPayload!
+  deleteManyMuscles(where: MuscleWhereInput): BatchPayload!
   deleteManyExercises(where: ExerciseWhereInput): BatchPayload!
   deleteManyWeights(where: WeightWhereInput): BatchPayload!
-  deleteManyMuscles(where: MuscleWhereInput): BatchPayload!
 }
 
 enum MutationType {
@@ -1080,20 +1251,20 @@ type Query {
   votes(where: VoteWhereInput, orderBy: VoteOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Vote]!
   links(where: LinkWhereInput, orderBy: LinkOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Link]!
   users(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User]!
+  muscles(where: MuscleWhereInput, orderBy: MuscleOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Muscle]!
   exercises(where: ExerciseWhereInput, orderBy: ExerciseOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Exercise]!
   weights(where: WeightWhereInput, orderBy: WeightOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Weight]!
-  muscles(where: MuscleWhereInput, orderBy: MuscleOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Muscle]!
   vote(where: VoteWhereUniqueInput!): Vote
   link(where: LinkWhereUniqueInput!): Link
   user(where: UserWhereUniqueInput!): User
-  exercise(where: ExerciseWhereUniqueInput!): Exercise
   muscle(where: MuscleWhereUniqueInput!): Muscle
+  exercise(where: ExerciseWhereUniqueInput!): Exercise
   votesConnection(where: VoteWhereInput, orderBy: VoteOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): VoteConnection!
   linksConnection(where: LinkWhereInput, orderBy: LinkOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): LinkConnection!
   usersConnection(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserConnection!
+  musclesConnection(where: MuscleWhereInput, orderBy: MuscleOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): MuscleConnection!
   exercisesConnection(where: ExerciseWhereInput, orderBy: ExerciseOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ExerciseConnection!
   weightsConnection(where: WeightWhereInput, orderBy: WeightOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): WeightConnection!
-  musclesConnection(where: MuscleWhereInput, orderBy: MuscleOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): MuscleConnection!
 
   """Fetches an object given its ID"""
   node(
@@ -1106,9 +1277,9 @@ type Subscription {
   vote(where: VoteSubscriptionWhereInput): VoteSubscriptionPayload
   link(where: LinkSubscriptionWhereInput): LinkSubscriptionPayload
   user(where: UserSubscriptionWhereInput): UserSubscriptionPayload
+  muscle(where: MuscleSubscriptionWhereInput): MuscleSubscriptionPayload
   exercise(where: ExerciseSubscriptionWhereInput): ExerciseSubscriptionPayload
   weight(where: WeightSubscriptionWhereInput): WeightSubscriptionPayload
-  muscle(where: MuscleSubscriptionWhereInput): MuscleSubscriptionPayload
 }
 
 type User implements Node {

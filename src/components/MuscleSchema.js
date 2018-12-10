@@ -4,39 +4,22 @@ import { Query } from "react-apollo";
 import gql from 'graphql-tag'
 import { TwitterShareButton  } from "react-simple-share";
 import { Link } from 'react-router-dom'
+import Caroussel from './Caroussel'
 
   const MUSCLE_QUERY = gql`
   query($name: String!){
     muscle(name: $name) {
       name
       type
+      exercises{
+          name
+        }
       }
   }
   `
 
-  const QueryMuscle = ({ name }) => (
-    <Query
-      query={MUSCLE_QUERY}
-      variables = {{ name }}
-      >
-        {({ loading, error, data }) => {
-          console.log(data);
-          if (loading)
-            return <div>Fetching...</div>
-          if (error)
-            return <div>! Error !</div>
 
-          const dataMuscle = data.muscle
 
-          return (
-            <div key={dataMuscle.id} className="alert alert-primary">
-              <p> <strong>Selected muscle :</strong> {dataMuscle.name}</p>
-            <p> <strong>Type :</strong> {dataMuscle.type} </p>
-            </div>
-            )
-        }}
-      </Query>
-    );
 
 export default class MuscleSchema extends Component {
 
@@ -47,7 +30,8 @@ export default class MuscleSchema extends Component {
         selectedExercise: null,
         gifExercise: null,
         imgBody:'/img/body-empty.png',
-        shareLink: ''
+        shareLink: '',
+        exerciseList: null,
       };
     }
 
@@ -68,11 +52,10 @@ export default class MuscleSchema extends Component {
      this.setState({imgBody: 'img/body-empty.png'})
   }
 
-
   ExerciseCards(m) {
     switch(m) {
       case 'biceps':
-        this.setState({gifExercise: 'gif/curlbiceps.gif'});
+        this.setState({gifExercise: 'https://i.imgur.com/iyluOns.gif'}); // lien imgur "Original GIF Link"
         this.setState({selectedExercise: 'curlbiceps'});
           break;
       case 'deltoid':
@@ -85,10 +68,49 @@ export default class MuscleSchema extends Component {
     this.setState({selectedMuscle: m});
   }
 
+
+
 render() {
+
+
+    const QueryMuscle = ({ name }) => (
+      <Query
+        query={MUSCLE_QUERY}
+        variables = {{ name }}
+        >
+        {({ loading, error, data }) => {
+            //console.log(data);
+            if (loading)
+              return <div>Fetching...</div>
+            if (error)
+              return <div>! Error !</div>
+
+            const dataMuscle = data.muscle
+            var exerciseList = data.muscle.exercises
+            // this.setState({exerciseList: data.muscle.exercises});
+            return (
+              <div key={dataMuscle.id} className="alert alert-primary">
+                <p> <strong>Selected muscle :</strong> {dataMuscle.name}</p>
+              <p> <strong>Type :</strong> {dataMuscle.type} </p>
+                <div>
+                  <h>Liste des exercices associés : </h>
+                  <ul>
+                      {exerciseList.map(exercise => <li>{exercise.name}</li>)}
+                  </ul>
+
+
+                </div>
+              </div>
+              )
+          }}
+        </Query>
+      );
 
   const gifExercise = this.state.gifExercise;
   let cardExercises;
+
+  var items = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
 
 
   if(gifExercise!=null) {
@@ -169,6 +191,9 @@ render() {
           </div>
           <div class="col">
             <div class="container">
+              <div>
+                <Caroussel exerciseList={this.state.exerciseList}/>
+              </div>
               <div class="row">
 			  {this.state.selectedMuscle}
                 {this.state.selectedMuscle && (
@@ -178,6 +203,7 @@ render() {
               <div class="row">
                 {cardExercises}
               </div>
+
             </div>
           </div>
       </div>

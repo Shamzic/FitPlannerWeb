@@ -49,15 +49,26 @@ async function muscle(parent, args, ctx, info) {
   //const userId = getUserId(ctx)
   console.log("Query muscle !!");
   console.log("Args.name :"+args.name);
-  const muscle = await ctx.db.query.muscle({ where: { name : args.name } })//args.email"rachel.noireau@orange.fr"
-  const mid  = muscle.id
+  const muscle = await ctx.db.query.muscle({ where: { name : args.name }},
+    `{
+      id
+      name
+      type
+      exercises {
+        name
+      }
+    }`
+)
+
+  const id  = muscle.id
   const name = muscle.name
   const type = muscle.type
-
+  var exercises = muscle.exercises;
   return {
-	mid,
+	id,
 	name,
-	type
+	type,
+  exercises
   }
 }
 

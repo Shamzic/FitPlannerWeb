@@ -46,12 +46,12 @@ class Suggestion extends Component {
 state = {
 			imc: '',
 			gifExercise:'',
-			suggestfactor: parseFloat(1),
+			suggestfactor: '1',
 			notsuggt:true
 	}
  render() {
 var QuerySuggest = ({ suggestfactor }) => (
-<Query query={EXO_SUGGEST_QUERY} variables={{"suggestfactor" : {suggestfactor}}}>
+<Query query={EXO_SUGGEST_QUERY} variables={{suggestfactor}}>
       {({ loading, error, data }) => {
         if (loading)
           return <div>Fetching</div>
@@ -99,10 +99,10 @@ var QuerySuggest = ({ suggestfactor }) => (
 				if(imc!=null){
 					if(this.state.notsuggt)
 						if (imc<20){
-							this.setState({suggestfactor: parseFloat(1) });
+							this.setState({suggestfactor: '1' });
 							this.setState({notsuggt: false });
 					}else{
-						this.setState({suggestfactor: parseFloat(2) });
+						this.setState({suggestfactor:'2' });
 						this.setState({notsuggt: false });
 					}
 					return <div>Suggestion</div>

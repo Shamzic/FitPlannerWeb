@@ -8,7 +8,7 @@ const EXO_SUGGEST_QUERY = gql`
 		suggst(suggstfactor: $suggstfactor) {
 			names
 			urls
-			
+
     }
   }
   `
@@ -33,16 +33,16 @@ const USER_QUERY = gql`
 
 
 class Suggestion extends Component {
-	
-	
+
+
      imageClick(musclename, imageUrl){
       this.setState({selectedExerciseName: musclename}),
       this.setState({selectedExerciseImageUrl: imageUrl}),
       console.log("selectedExerciseImageUrl : "+this.state.selectedExerciseImageUrl)
       console.log("selectedExerciseName : "+this.state.selectedExerciseName)
     }
-	
-	
+
+
 state = {
 			imc: '',
 			gifExercise:'',
@@ -50,8 +50,8 @@ state = {
 			notsuggt:true
 	}
  render() {
-var QuerySuggest = ({ suggestfactor }) => (
-<Query query={EXO_SUGGEST_QUERY} variables={{suggestfactor}}>
+var QuerySuggest = ({ suggstfactor }) => (
+<Query query={EXO_SUGGEST_QUERY} variables={{suggstfactor}}>
       {({ loading, error, data }) => {
         if (loading)
           return <div>Fetching</div>
@@ -59,9 +59,9 @@ var QuerySuggest = ({ suggestfactor }) => (
 			return <div>Error</div>
 		var names=data.suggst.names;
 		var urls=data.suggst.urls;
-		
+
 		return (
-			  
+
 			    <div className="contrainer-fluid">
 			      <div class="row">
 			        <div class="col-md-4">
@@ -105,16 +105,13 @@ var QuerySuggest = ({ suggestfactor }) => (
 						this.setState({suggestfactor:'2' });
 						this.setState({notsuggt: false });
 					}
-					return <div>Suggestion</div>
+					return <div><h3>Suggestions</h3><hr/></div>
 				}
   		}
 		}}
 	</Query>
-	console.log(suggestfactor)
-	console.log({this.state.suggestfactor})
-	"suggestfactor" : this.state.suggestfactor
 	{this.state.suggestfactor && (
-	  <QuerySuggest suggestfactor={this.state.suggestfactor} />
+	  <QuerySuggest suggstfactor={this.state.suggestfactor} />
 	)}
  </div>
 )}

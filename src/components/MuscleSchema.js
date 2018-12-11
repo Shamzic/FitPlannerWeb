@@ -162,9 +162,9 @@ render() {
                     <QueryMuscle name={this.state.selectedMuscle} />
                   )}
             </div>
-              <div class="row">
+            {/*  <div class="row">
                 {cardExercises}
-              </div>
+              </div> */}
             </div>
           </div>
       </div>

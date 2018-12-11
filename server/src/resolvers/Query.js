@@ -105,16 +105,35 @@ async function exercise(parent, args, ctx, info) {
 //
 
 async function suggst(parent, args, ctx, info) {
-  const { filter, first, skip } = args // destructure input arguments
+  const { filter, first, skip } = args 
   console.log("Args.suggestfactor :"+ args.suggstfactor);
-  const exercise = await ctx.db.query.exercise({ where: { suggstfactor : args.suggstfactor } })
-  //const id = exercise.id
-  //const name = exercise.name
-  //const muscle = await ctx.db.query.muscle({ first, skip, where: { id:"cjoon536zoxz90a64isxxigb5" } })
+  console.log("Args.suggestfactor :"+ parseFloat(1));
+  var exercise = await ctx.db.query.exercises({ where: { suggstfactor : parseFloat(1) } },
+  `{
+      id
+      name
+	  imageUrl
+      suggstfactor
+      muscle {
+        id
+        name
+        type
+      }
+    }`
+  );
+  var name1 = exercise.name;
+  var suggstfactor = exercise.suggstfactor;
+  var id = exercise.id;
+  var  muscle = exercise.muscle;
+  console.log("esssssssssssaaaaaaaaaaaaaaaaaaaaaaaaaaaaallllllluuuuuuuuutttttttttttttttt");
+  console.log(exercise);
+  console.log("cccccccccccccccccoooooooooooooooooooooouuuuuuuuuuuuuuuuuuuuuuccccccccccccccooooooooooooooooouuuuuuuuuuu");
+  console.log(exercise.map(exercise=>exercise.name))
+  console.log(exercise.map(exercise=>exercise.imageUrl))
   return {
-	//name
-	exercise
-	//muscle
+	names : exercise.map(exercise=>exercise.name),
+	urls : exercise.map(exercise=>exercise.imageUrl)
+
   }
 }
 

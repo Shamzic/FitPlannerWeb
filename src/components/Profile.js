@@ -45,6 +45,7 @@ class Profil extends Component {
                 <div className="col col-lg-4">
     				<div key={dataUser.id} className="">
               	<h4> {dataUser.name} profile </h4>
+						<img id="profile" src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSgWIeOetiqZ-0WQvax0oLpXaGVWgEIgIpc-bfWykRjNrv1Gonu' alt="profile"  height="120"/>
     					<p className="form-control">  Username : {dataUser.name} </p>
     					<p className="form-control">  Email : {dataUser.email} </p>
     					<p className="form-control">  Lastname : {dataUser.lastname} </p>

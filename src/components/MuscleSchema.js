@@ -87,11 +87,10 @@ render() {
 
             const dataMuscle = data.muscle
             var exerciseList = data.muscle.exercises
-
             return (
               <div key={dataMuscle.id} className="alert alert-primary">
                 <p> <strong>Selected muscle :</strong> {dataMuscle.name}</p>
-              <p> <strong>Type :</strong> {dataMuscle.type} </p>
+                <p> <strong>Type :</strong> {dataMuscle.type} </p>
               </div>
               )
           }}

@@ -3,6 +3,7 @@ import { Query } from 'react-apollo'
 import Link from './Link'
 import gql from 'graphql-tag'
 import '../styles/Training.css'
+import { TwitterShareButton  } from "react-simple-share";
 
 const EXERCISE_QUERY = gql`
 {
@@ -67,7 +68,17 @@ export default class Training extends Component {
               <hr/>
             {linksToRender.map(link =>
               <div >
-                <p>{link.exercise.name} | Series : {link.series} | Repetitions : {link.repetitions}</p>
+                <p> <div id="listedExercise">{link.exercise.name}</div> | Series : {link.series} | Repetitions : {link.repetitions} |
+                <TwitterShareButton
+                   url="https://github.com/Shamzic/FitPlannerWeb/"
+                   color="#1DA1F2"
+                   size="40px"
+                   text={"Come on see my profil and challenge me on this "+ link.exercise.name+" exercise !"}
+                   hashtags={"fitplanner,fitchallenge,"+link.exercise.name}
+                   via="github"
+                   related="stephanwozniak ,chillective"
+                  />
+              </p>
                 <hr/>
               </div>
             )}

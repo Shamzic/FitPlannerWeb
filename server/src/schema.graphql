@@ -6,12 +6,12 @@ type Query {
   user(filter: String, skip: Int, first: Int, orderBy: LinkOrderByInput): User!
   muscle(name: String): Muscle!
   exercise(name: String!): Exercise!
-  exerciseExecutionList: [ExerciseExecution!]!
   suggst(suggstfactor: Float):ExerciseNames
   }
 
 type Feed {
   links: [Link!]!
+  exerciseExecutions: [ExerciseExecution!]!
   count: Int!
 }
 

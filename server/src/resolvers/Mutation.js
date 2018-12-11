@@ -146,5 +146,5 @@ module.exports = {
   vote,
   updateUser,
   postm,
-  postExerciseExecution,
+  postExerciseExecution
 }

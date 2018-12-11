@@ -159,7 +159,6 @@ render() {
             <div class="container">
               {caroussel}
               <div class="row">
-			  {this.state.selectedMuscle}
                 {this.state.selectedMuscle && (
                     <QueryMuscle name={this.state.selectedMuscle} />
                   )}

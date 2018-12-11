@@ -26,6 +26,7 @@ type User {
   password: String!
   links: [Link!]!
   votes: [Vote!]!
+  training: [ExerciseExecution!]!
 }
 
 
@@ -47,4 +48,14 @@ type Exercise {
 type Weight{
 	weight:Float
 	date:DateTime
+}
+
+type ExerciseExecution{
+  id: ID! @unique
+  exercise: Exercise!
+  user: User!
+  createdAt: DateTime!
+  series: Float!
+  repetitions: Float!
+  durationInSeconds: Float
 }

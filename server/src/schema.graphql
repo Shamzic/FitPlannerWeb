@@ -11,6 +11,7 @@ type Query {
 
 type Feed {
   links: [Link!]!
+  exerciseExecutions: [ExerciseExecution!]!
   count: Int!
 }
 
@@ -26,6 +27,7 @@ type Mutation {
   vote(linkId: ID!): Vote
   postm(name: String!, type: String!): Muscle!
   updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
+  postExerciseExecution(exercisename: String!, series: Float!, repetitions: Float!): ExerciseExecution!
 }
 
 type AuthPayload {

@@ -10,9 +10,11 @@ async function feed(parent, args, ctx, info) {
   const count = allLinks.length
 
   const queriedLinkes = await ctx.db.query.links({ first, skip, where })
+  const queriedExercises = await ctx.db.query.exerciseExecutions({ first, skip, where })
 
   return {
     linkIds: queriedLinkes.map(link => link.id),
+    exerciseExecutionIds: queriedExercises.map(exercise => exercise.id),
     count
   }
 }
@@ -82,6 +84,7 @@ async function exercise(parent, args, ctx, info) {
       id
       name
       suggstfactor
+      imageUrl
       muscle {
         id
         name
@@ -90,6 +93,7 @@ async function exercise(parent, args, ctx, info) {
     }`
   );
   var name = exercise.name;
+  var imageUrl = exercise.imageUrl;
   var suggstfactor = exercise.suggstfactor;
   var id = exercise.id;
   var  muscle = exercise.muscle;
@@ -98,6 +102,7 @@ async function exercise(parent, args, ctx, info) {
     suggstfactor,
     id,
     name,
+    imageUrl,
     muscle
   }
 }
@@ -105,7 +110,7 @@ async function exercise(parent, args, ctx, info) {
 //
 
 async function suggst(parent, args, ctx, info) {
-  const { filter, first, skip } = args 
+  const { filter, first, skip } = args
   console.log("Args.suggestfactor :"+ args.suggstfactor);
   console.log("Args.suggestfactor :"+ args.name);
   console.log("Args.suggestfactor :"+ args);
@@ -135,16 +140,13 @@ async function suggst(parent, args, ctx, info) {
   return {
 	names : exercise.map(exercise=>exercise.name),
 	urls : exercise.map(exercise=>exercise.imageUrl)
-
   }
 }
-
-
 
 module.exports = {
   feed,
   user,
   muscle,
   exercise,
-  suggst
+  suggst,
 }

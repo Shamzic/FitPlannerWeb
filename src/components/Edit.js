@@ -4,7 +4,6 @@ import { AUTH_TOKEN } from '../constants'
 import { Mutation } from 'react-apollo'
 import { Query } from 'react-apollo'
 import gql from 'graphql-tag'
-import { Imgur } from './ImgurUpload'
 
 
 const UPDATE_USER_MUTATION = gql`
@@ -15,10 +14,10 @@ const UPDATE_USER_MUTATION = gql`
       email
 	  firstname
 	  lastname
-			
+
 	  age
 	  city
-			
+
 	  weight
 	  height
     }
@@ -33,10 +32,10 @@ const USER_QUERY = gql`
       email
 	  firstname
 	  lastname
-			
+
 	  age
 	  city
-			
+
 	  weight
 	  height
     }
@@ -66,7 +65,7 @@ const USER_QUERY = gql`
 
 
 // const uploadImg=(image)=>({
-		// const nom1 =md5(uniqid(rand(),true)); 
+		// const nom1 =md5(uniqid(rand(),true));
         // const nom="Images/album/fichier".$idef."/$nom1";
         // const resultat=move_uploaded_file(image['tmp_name'], nom);
 // });
@@ -81,10 +80,10 @@ class Edit extends Component {
 			email: '',
 			firstname: '',
 			lastname: '',
-			
+
 			age: '',
 			city: '',
-			
+
 			weight: '',
 			height: '',
 			id:'cjonjhuq0jllf0a64864l79sr',
@@ -96,7 +95,7 @@ class Edit extends Component {
   render() {
 
   return (
-	
+
 	 <div>
      <div className="container text-center" id="main">
        <div class="row justify-content-md-center">
@@ -115,9 +114,9 @@ class Edit extends Component {
 //<input type="submit" value="Upload File" name="submit"/>
           return (
 				<div key={dataUser.id} className="">
-					
+
 					<img id="profile" src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSgWIeOetiqZ-0WQvax0oLpXaGVWgEIgIpc-bfWykRjNrv1Gonu' alt="profile"  height="120"/>
-					
+
 					<html>
 					<form>
 						<input name="myFile" type="file" required/>
@@ -126,7 +125,7 @@ class Edit extends Component {
 					</html>
 
 
-					
+
 					<p><strong> Name :</strong>
 					<input
                   className="form-control"
@@ -146,7 +145,7 @@ class Edit extends Component {
                   placeholder = {dataUser.email}
                 />
 					</p>
-					
+
 					<p> <strong>  Lastname :</strong>
 						<input
                   className="form-control"
@@ -156,7 +155,7 @@ class Edit extends Component {
                   placeholder = {dataUser.lastname}
                 />
 					</p>
-					
+
 					<p> <strong>  Firstname :</strong>
 						<input
                   className="form-control"
@@ -166,7 +165,7 @@ class Edit extends Component {
                   placeholder = {dataUser.firstname}
                 />
 					</p>
-					
+
 					<p> <strong>  Age :</strong>
 						<input
                   className="form-control"
@@ -176,7 +175,7 @@ class Edit extends Component {
                   placeholder = {dataUser.age.substring(0,10)}
                 />
 					</p>
-					
+
 					<p> <strong>  City :</strong>
 						<input
                   className="form-control"
@@ -186,7 +185,7 @@ class Edit extends Component {
                   placeholder = {dataUser.city}
                 />
 					</p>
-					
+
 					<p> <strong>  Weight :</strong>
 						<input
                   className="form-control"
@@ -196,7 +195,7 @@ class Edit extends Component {
                   placeholder = {dataUser.weight}
                 />
 					</p>
-					
+
 					<p> <strong>  Height :</strong>
 						<input
                   className="form-control"

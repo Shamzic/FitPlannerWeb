@@ -66,8 +66,8 @@ class Exercise extends Component {
               return (
                 <div key={data.id}>
                   <h3> Exercise name: {data.exercise.name}</h3>
-                  <div class="card" id="bottomCard">
-                    <img src= {data.exercise.imageUrl}/>
+                  <div class="card" >
+                    <img id="exercisecard" src= {data.exercise.imageUrl}/>
                   </div>
                   <hr/>
                   <h3>Add this exercise to your program</h3>

@@ -14,10 +14,10 @@ const UPDATE_USER_MUTATION = gql`
       email
 	  firstname
 	  lastname
-			
+
 	  age
 	  city
-			
+
 	  weight
 	  height
     }
@@ -32,15 +32,43 @@ const USER_QUERY = gql`
       email
 	  firstname
 	  lastname
-			
+
 	  age
 	  city
-			
+
 	  weight
 	  height
     }
   }
 `
+
+
+
+   function previewFile(){
+       var preview = document.querySelector('img'); //selects the query named img
+       var file    = document.querySelector('input[type=file]').files[0]; //sames as here
+       var reader  = new FileReader();
+
+       reader.onloadend = function () {
+           preview.src = reader.result;
+       }
+
+       if (file) {
+           reader.readAsDataURL(file); //reads the data as a URL
+       } else {
+           preview.src = "";
+       }
+   }
+
+  //previewFile();  //calls the function named previewFile()
+
+
+
+// const uploadImg=(image)=>({
+		// const nom1 =md5(uniqid(rand(),true));
+        // const nom="Images/album/fichier".$idef."/$nom1";
+        // const resultat=move_uploaded_file(image['tmp_name'], nom);
+// });
 
 
 
@@ -52,19 +80,22 @@ class Edit extends Component {
 			email: '',
 			firstname: '',
 			lastname: '',
-			
+
 			age: '',
 			city: '',
-			
+
 			weight: '',
 			height: '',
-			id:'cjonjhuq0jllf0a64864l79sr'
+			id:'cjonjhuq0jllf0a64864l79sr',
+			photo:''
 	}
 
-
+			  //onchange="previewFile()"
 
   render() {
+
   return (
+
 	 <div>
      <div className="container text-center" id="main">
        <div class="row justify-content-md-center">
@@ -77,10 +108,24 @@ class Edit extends Component {
 			return <div>Error</div>
 
 		  const dataUser = data.user
-		  
+		  //'https://i.imgur.com/iyluOns.gif'
+//<img src="" height="200" alt="Image preview..."/>
+//<script src="ImgurUpload.js"></script>
+//<input type="submit" value="Upload File" name="submit"/>
           return (
 				<div key={dataUser.id} className="">
-					
+
+					<img id="profile" src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSgWIeOetiqZ-0WQvax0oLpXaGVWgEIgIpc-bfWykRjNrv1Gonu' alt="profile"  height="120"/>
+
+					<html>
+					<form>
+						<input name="myFile" type="file" required/>
+						<button type="submit">Submit</button>
+					</form>
+					</html>
+
+
+
 					<p><strong> Name :</strong>
 					<input
                   className="form-control"
@@ -100,7 +145,7 @@ class Edit extends Component {
                   placeholder = {dataUser.email}
                 />
 					</p>
-					
+
 					<p> <strong>  Lastname :</strong>
 						<input
                   className="form-control"
@@ -110,7 +155,7 @@ class Edit extends Component {
                   placeholder = {dataUser.lastname}
                 />
 					</p>
-					
+
 					<p> <strong>  Firstname :</strong>
 						<input
                   className="form-control"
@@ -120,7 +165,7 @@ class Edit extends Component {
                   placeholder = {dataUser.firstname}
                 />
 					</p>
-					
+
 					<p> <strong>  Age :</strong>
 						<input
                   className="form-control"
@@ -130,7 +175,7 @@ class Edit extends Component {
                   placeholder = {dataUser.age.substring(0,10)}
                 />
 					</p>
-					
+
 					<p> <strong>  City :</strong>
 						<input
                   className="form-control"
@@ -140,7 +185,7 @@ class Edit extends Component {
                   placeholder = {dataUser.city}
                 />
 					</p>
-					
+
 					<p> <strong>  Weight :</strong>
 						<input
                   className="form-control"
@@ -150,7 +195,7 @@ class Edit extends Component {
                   placeholder = {dataUser.weight}
                 />
 					</p>
-					
+
 					<p> <strong>  Height :</strong>
 						<input
                   className="form-control"

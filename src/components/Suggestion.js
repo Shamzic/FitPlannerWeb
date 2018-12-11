@@ -51,7 +51,7 @@ state = {
 	}
  render() {
 var QuerySuggest = ({ suggestfactor }) => (
-<Query query={EXO_SUGGEST_QUERY} variables={{suggestfactor}}>
+<Query query={EXO_SUGGEST_QUERY} variables={{"suggestfactor" : {suggestfactor}}}>
       {({ loading, error, data }) => {
         if (loading)
           return <div>Fetching</div>
@@ -112,6 +112,7 @@ var QuerySuggest = ({ suggestfactor }) => (
 	</Query>
 	console.log(suggestfactor)
 	console.log({this.state.suggestfactor})
+	"suggestfactor" : this.state.suggestfactor
 	{this.state.suggestfactor && (
 	  <QuerySuggest suggestfactor={this.state.suggestfactor} />
 	)}

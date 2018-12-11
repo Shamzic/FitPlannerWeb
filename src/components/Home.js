@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom';
 import { Jumbotron, Grid, Button } from 'react-bootstrap';
 import MuscleSchema from './MuscleSchema'
+import Suggestion from './Suggestion'
 import '../styles/Home.css';
 
 
@@ -43,6 +44,9 @@ export default class Home extends Component {
           <div className="muscleSchema">
             <MuscleSchema/>
           </div>
+		  <div>
+			<Suggestion/>
+		  </div>
         </div>
     )
   }

@@ -107,6 +107,8 @@ async function exercise(parent, args, ctx, info) {
 async function suggst(parent, args, ctx, info) {
   const { filter, first, skip } = args 
   console.log("Args.suggestfactor :"+ args.suggstfactor);
+  console.log("Args.suggestfactor :"+ args.name);
+  console.log("Args.suggestfactor :"+ args);
   console.log("Args.suggestfactor :"+ parseFloat(1));
   var exercise = await ctx.db.query.exercises({ where: { suggstfactor : parseFloat(1) } },
   `{

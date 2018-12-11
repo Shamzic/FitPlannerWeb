@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import '../styles/MuscleSchema.css'
 import { Query } from "react-apollo";
 import gql from 'graphql-tag'
+import { AUTH_TOKEN } from '../constants'
 
 const EXO_SUGGEST_QUERY = gql`
 	query($suggstfactor:Float){
@@ -50,6 +51,7 @@ state = {
 			notsuggt:true
 	}
  render() {
+	     const authToken = localStorage.getItem(AUTH_TOKEN)
 var QuerySuggest = ({ suggstfactor }) => (
 <Query query={EXO_SUGGEST_QUERY} variables={{suggstfactor}}>
       {({ loading, error, data }) => {
@@ -86,7 +88,9 @@ var QuerySuggest = ({ suggstfactor }) => (
 }
  </Query>
 )
+if(authToken)
  return(
+
  <div>
   <Query query={USER_QUERY}>
     {({ loading, error, data }) => {
@@ -114,7 +118,9 @@ var QuerySuggest = ({ suggstfactor }) => (
 	  <QuerySuggest suggstfactor={this.state.suggestfactor} />
 	)}
  </div>
-)}
+)
+	else return null
+}
 }
 //
 //

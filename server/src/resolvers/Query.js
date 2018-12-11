@@ -82,6 +82,7 @@ async function exercise(parent, args, ctx, info) {
       id
       name
       suggstfactor
+      imageUrl
       muscle {
         id
         name
@@ -90,6 +91,7 @@ async function exercise(parent, args, ctx, info) {
     }`
   );
   var name = exercise.name;
+  var imageUrl = exercise.imageUrl;
   var suggstfactor = exercise.suggstfactor;
   var id = exercise.id;
   var  muscle = exercise.muscle;
@@ -98,6 +100,7 @@ async function exercise(parent, args, ctx, info) {
     suggstfactor,
     id,
     name,
+    imageUrl,
     muscle
   }
 }
@@ -118,12 +121,16 @@ async function suggst(parent, args, ctx, info) {
   }
 }
 
-
+async function exerciseExecutionList(parent, args, ctx, info) {
+  const userId = getUserId(ctx)
+  return await ctx.db.query.exerciseExecutions({})
+}
 
 module.exports = {
   feed,
   user,
   muscle,
   exercise,
-  suggst
+  suggst,
+  exerciseExecutionList,
 }

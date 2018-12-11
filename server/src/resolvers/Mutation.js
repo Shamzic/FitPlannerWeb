@@ -12,6 +12,18 @@ function post(parent, { url, description }, ctx, info) {
   )
 }
 
+async function postExerciseExecution(parent, args, ctx, info) {
+  const userId = getUserId(ctx)
+  const exercisename = args.exercisename
+  const series = args.series
+  const repetitions = args.repetitions
+  const exerciseGet  = await ctx.db.query.exercise({ where: { name : exercisename  } })
+  return ctx.db.mutation.createExerciseExecution(
+    { data: { user: { connect: { id: userId } }, exercise: { connect: { id: exerciseGet.id } }, series, repetitions } },
+    info,
+  )
+}
+
 async function signup(parent, args, ctx, info) {
   const password = await bcrypt.hash(args.password, 10)
   const user = await ctx.db.mutation.createUser({
@@ -75,13 +87,13 @@ function postm(parent, { name, type }, ctx, info) {
 }
 
 
-async function updateUser(parent, args, ctx, info) { 
+async function updateUser(parent, args, ctx, info) {
  console.log("args");
   console.log(args);
   const tmpUser = {};
   const { data, where}=args
 
-  
+
   const userId = getUserId(ctx)
 
   const userMe  = await ctx.db.query.user({ where: { id : userId  } })
@@ -89,13 +101,13 @@ async function updateUser(parent, args, ctx, info) {
   console.log("test1")
   if(data.name!=''){tmpUser.name = data.name;}else{tmpUser.name = userMe.name;}
   console.log("test2")
-  if(data.email!=''){ tmpUser.email = data.email;}else{tmpUser.email = userMe.email;} 
-  if(data.lastname!=''){ tmpUser.lastname = data.lastname;}else{tmpUser.lastname = userMe.lastname;} 
-  if(data.firstname!=''){ tmpUser.firstname = data.firstname;}else{tmpUser.firstname = userMe.firstname;} 
-  if(data.age!=''){ tmpUser.age = data.age;}else{tmpUser.age = userMe.age;} 
-  if(data.city!=''){ tmpUser.city = data.city;}else{tmpUser.city = userMe.city;} 
-  if(data.weight){ tmpUser.weight = data.weight;}else{tmpUser.weight = parseFloat(userMe.weight);} 
-  if(data.height){ tmpUser.height = data.height;}else{tmpUser.height = parseFloat(userMe.height);} 
+  if(data.email!=''){ tmpUser.email = data.email;}else{tmpUser.email = userMe.email;}
+  if(data.lastname!=''){ tmpUser.lastname = data.lastname;}else{tmpUser.lastname = userMe.lastname;}
+  if(data.firstname!=''){ tmpUser.firstname = data.firstname;}else{tmpUser.firstname = userMe.firstname;}
+  if(data.age!=''){ tmpUser.age = data.age;}else{tmpUser.age = userMe.age;}
+  if(data.city!=''){ tmpUser.city = data.city;}else{tmpUser.city = userMe.city;}
+  if(data.weight){ tmpUser.weight = data.weight;}else{tmpUser.weight = parseFloat(userMe.weight);}
+  if(data.height){ tmpUser.height = data.height;}else{tmpUser.height = parseFloat(userMe.height);}
 
 
 
@@ -105,10 +117,10 @@ async function updateUser(parent, args, ctx, info) {
 
 
   return ctx.db.mutation.updateUser(
-	
+
 	{
 		data:{
-		
+
 			name : tmpUser.name,
 			email : tmpUser.email,
 			lastname : tmpUser.lastname,
@@ -123,12 +135,16 @@ async function updateUser(parent, args, ctx, info) {
   )
 }
 
+
+
+
+
 module.exports = {
   post,
   signup,
   login,
   vote,
   updateUser,
-  postm
-
+  postm,
+  postExerciseExecution,
 }

@@ -1,14 +1,15 @@
 import React, { Component } from 'react'
-import { Query } from 'react-apollo'
+import { Query, Mutation } from 'react-apollo'
 import gql from 'graphql-tag'
 import '../styles/Exercise.css'
 
 
 const EXERCISE_QUERY = gql`
-  query($name: String!){
-    exercise(name: $name){
+  query($exerciseName: String!){
+    exercise(name: $exerciseName){
     id
     name
+    imageUrl
     muscle {
         id
         name
@@ -17,60 +18,94 @@ const EXERCISE_QUERY = gql`
     }
   }
 `
-
-const QueryExecution = ({ name }) => (
-<Query query={EXERCISE_QUERY} variables={{name}}>
-  {({ loading, error, data }) => {
-    if (loading)
-      return <div>Fetching</div>
-    if (error)
-      return <div>Error</div>
-
-    return (
-      <div key={data.id}>
-      <h3> Exercise name: {data.exercise.name} </h3>
-      <ul>
-        <li> Muscle used : {data.exercise.muscle.name} </li>
-        {/*<li> Muscle name: {dataExercise.muscle.name} </li>*/}
-      </ul>
-      </div>
-    )
-  }}
-</Query>
-);
+const POST_MUTATION = gql`
+  mutation PostMutation($exercisename: String!, $series: Float!,  $repetitions: Float!)
+    {
+      postExerciseExecution(exercisename: $exercisename, series: $series,  repetitions: $repetitions)
+       {
+          id
+          createdAt
+          series
+          repetitions
+          exercise {
+            id
+            name
+          }
+          user {
+            id
+            name
+          }
+        }
+    }
+`
 
 class Exercise extends Component {
 
   constructor(props) {
     super(props);
   }
+
+  state = {
+    exercisename: this.props.location.state.exerciseName,
+    series: '10',
+    repetitions: '10',
+  }
+
   render() {
-    const {exerciseName} = this.props.location.state
+    const { exercisename, series, repetitions } = this.state
+    const { exerciseName } = this.props.location.state
     return (
     	<div id="exercise">
-    		<QueryExecution name={exerciseName}/>
-        <hr/>
-        <h3>Add this exercise to your program</h3>
-        <form>
-          <div className="form-group col-md-3 ">
-            <label for="repetitions">Repetitions</label>
-            <input type="number" className="form-control" id="repetitions" ></input>
-          </div>
-          <div className="form-group col-md-3">
-            <label for="series">Series</label>
-            <input type="number" className="form-control" id="series" ></input>
-          </div>
-          <div className="form-group col-md-3">
-            <label for="date">Date</label>
-            <input type="date" className="form-control" id="date" ></input>
-          </div>
-          <br/>
-          <div className="form-group col-md-3">
-            <button type="submit" className="btn btn-outline-success col-md-12">
-              Add
-            </button>
-          </div>
-        </form>
+        <Query query={EXERCISE_QUERY} variables={{exerciseName }}>
+          {({ loading, error, data }) => {
+            if (loading)
+              return <div>Fetching</div>
+            if (error)
+              return <div>Error</div>
+            else {
+              return (
+                <div key={data.id}>
+                  <h3> Exercise name: {data.exercise.name}</h3>
+                  <div class="card" id="bottomCard">
+                    <img src= {data.exercise.imageUrl}/>
+                  </div>
+                  <hr/>
+                  <h3>Add this exercise to your program</h3>
+                  <div>
+                    <div className="form-group col-md-3">
+                      <label>Series</label>
+                      <input
+                        className="form-control"
+                        value={series}
+                        onChange={e => this.setState({ series: e.target.value })}
+                        type="number"
+                        placeholder="Number of Series"
+                      />
+                    <label>Repetitions</label>
+                      <input
+                        className="form-control"
+                        value={repetitions}
+                        onChange={e => this.setState({ repetitions: e.target.value })}
+                        type="number"
+                        placeholder="Number of Reps"
+                      />
+
+                    <Mutation
+                      mutation={POST_MUTATION}
+                      variables={{ exercisename, series, repetitions }}
+                      onCompleted={() => this.props.history.push('/')}
+                    >
+                      {postMutation => <button className="btn btn-outline-success col-md-12" onClick={postMutation}>Submit</button>}
+                    </Mutation>
+                    </div>
+                  </div>
+                </div>
+
+              )
+            }
+
+          }}
+        </Query>
     	</div>
   )}
 }
